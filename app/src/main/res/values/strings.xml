@@ -19,5 +19,10 @@ Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
     <string name="text_auto_import">Auto-import</string>
     <string name="content_desc_image_autoimport">Auto import image</string>
     <string name="text_more">More</string>
+    <string name="text_updates">Updates</string>
+    <string name="content_desc_image_update">New uploaded work</string>
+    <string name="text_update_title">Update title</string>
+    <string name="text_update_subtitle">Update subtitle</string>
+    <string name="content_desc_profile_photo">Profile photo</string>
 
 </resources>
