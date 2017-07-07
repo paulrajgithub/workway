@@ -1,6 +1,8 @@
 package com.asdev.edu
 
 import android.os.Bundle
+import android.support.design.internal.BottomNavigationItemView
+import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -55,14 +57,14 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.content, fragments[0])
                 .commit()
 
-//        BottomNavigationMenuView menuView = (BottomNavigationMenuView) navigation.getChildAt(0);
-//
-//        // disable shifting
-//        for (int i = 0; i < menuView.getChildCount(); i++) {
-//            BottomNavigationItemView child = (BottomNavigationItemView) menuView.getChildAt(i);
-//            child.setShiftingMode(false);
-//            child.setChecked(false);
-//        }
+        val menuView = navigation.getChildAt(0) as BottomNavigationMenuView
+
+        // disable shifting
+        for (i in 0..menuView.childCount - 1) {
+            val child = menuView.getChildAt(i) as BottomNavigationItemView
+            child.setShiftingMode(false)
+            child.setChecked(false)
+        }
     }
 
 }

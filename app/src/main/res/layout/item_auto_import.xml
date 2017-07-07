@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    android:layout_margin="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
 
     android:foreground="?attr/selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    android:background="@drawable/half_accent">
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="120dp"
 
-        app:srcCompat="@drawable/work"
+        android:src="@drawable/work"
 
         android:scaleType="centerCrop"
         android:contentDescription="@string/content_desc_image_autoimport"/>

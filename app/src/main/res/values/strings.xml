@@ -24,5 +24,9 @@ Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
     <string name="text_update_title">Update title</string>
     <string name="text_update_subtitle">Update subtitle</string>
     <string name="content_desc_profile_photo">Profile photo</string>
+    <string name="text_header">Header</string>
+    <string name="content_desc_action_save">Save image</string>
+    <string name="content_desc_action_fullscreen">Fullscreen image</string>
+    <string name="content_desc_action_send">Send image</string>
 
 </resources>

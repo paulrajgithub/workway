@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <!-- Main image display -->
-    <ImageView
+    <com.asdev.edu.views.SquareImageView
         android:id="@+id/update_image"
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="160dp"
 
         android:src="@drawable/work"
@@ -15,8 +21,49 @@
         android:contentDescription="@string/content_desc_image_update"
 
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         />
+
+    <LinearLayout
+        android:id="@+id/update_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:layout_below="@+id/update_image">
+
+        <ImageButton
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            app:srcCompat="@drawable/ic_fullscreen_black_24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+
+            android:contentDescription="@string/content_desc_action_fullscreen"/>
+
+        <ImageButton
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            app:srcCompat="@drawable/ic_save_black_24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+
+            android:contentDescription="@string/content_desc_action_save"/>
+
+        <ImageButton
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            app:srcCompat="@drawable/ic_send_black_24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+
+            android:contentDescription="@string/content_desc_action_send"/>
+
+    </LinearLayout>
 
     <!-- Title -->
     <TextView
@@ -24,14 +71,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_below="@+id/update_image"
+        android:layout_below="@+id/update_actions"
         android:layout_toStartOf="@+id/update_profile_photo"
         android:layout_toLeftOf="@+id/update_profile_photo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
 
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="@dimen/gutter_size"
+        android:layout_marginStart="@dimen/gutter_size"
+
+        android:layout_marginBottom="2dp"
 
         style="@style/AppTheme.TextAppearance.Title"
         android:text="@string/text_update_title"
@@ -49,24 +98,30 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
 
+        android:layout_marginLeft="@dimen/gutter_size"
+        android:layout_marginStart="@dimen/gutter_size"
+
         style="@style/AppTheme.TextAppearance.Subtitle"
         android:text="@string/text_update_subtitle"
         />
 
     <!-- Profile photo view -->
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/update_profile_photo"
         android:layout_width="42dp"
         android:layout_height="0dp"
 
-        android:layout_below="@+id/update_image"
         android:layout_alignRight="@+id/update_image"
         android:layout_alignEnd="@+id/update_image"
         android:layout_alignTop="@+id/update_title"
         android:layout_alignBottom="@+id/update_subtitle"
 
-        android:padding="6dp"
-        app:srcCompat="@drawable/ic_person_black_24dp"
+        android:padding="2dp"
+
+        android:layout_marginRight="@dimen/gutter_size"
+        android:layout_marginEnd="@dimen/gutter_size"
+
+        android:src="@drawable/pp1"
         android:contentDescription="@string/content_desc_profile_photo"
         />
 

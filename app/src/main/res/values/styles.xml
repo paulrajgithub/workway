@@ -20,13 +20,13 @@
     </style>
 
     <style name="AppTheme.TextAppearance.Title">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="AppTheme.TextAppearance.Subtitle">
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
