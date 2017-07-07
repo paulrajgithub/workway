@@ -67,14 +67,133 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/home_recycler"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                style="@style/AppTheme.TextAppearance.Header"
+                android:text="@string/text_auto_import"
+
+                android:background="@color/colorAccent"
+                android:textColor="#FFF"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+            <android.support.v7.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/half_accent"
+
+                app:columnCount="3"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+
+                app:orientation="horizontal">
+
+                <com.asdev.edu.views.SquareImageView
+                    android:id="@+id/autoimport_image1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+
+                    app:layout_columnWeight="1"
+
+                    android:src="@drawable/work"
+
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/content_desc_image_autoimport"/>
+
+                <com.asdev.edu.views.SquareImageView
+                    android:id="@+id/autoimport_image2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+
+                    android:src="@drawable/work2"
+
+                    app:layout_columnWeight="1"
+
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/content_desc_image_autoimport"/>
+
+                <com.asdev.edu.views.SquareImageView
+                    android:id="@+id/autoimport_image3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+
+                    app:layout_columnWeight="1"
+
+                    android:src="@drawable/work3"
+
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/content_desc_image_autoimport"/>
+
+            </android.support.v7.widget.GridLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:text="@string/text_more"
+                android:gravity="center_vertical|start"
+                />
+
+            <include layout="@layout/item_divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                style="@style/AppTheme.TextAppearance.Header"
+                android:text="@string/text_find_by_course"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/home_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+                android:scrollbars="vertical"
+                android:fadeScrollbars="true"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
