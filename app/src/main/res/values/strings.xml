@@ -28,5 +28,24 @@ Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
     <string name="content_desc_action_save">Save image</string>
     <string name="content_desc_action_fullscreen">Fullscreen image</string>
     <string name="content_desc_action_send">Send image</string>
+    <string name="content_desc_course">Course icon</string>
+    <string name="text_course_title">Course title</string>
+    <string name="text_find_by_course">Find by course</string>
+    <string name="title_course_biology">Biology</string>
+    <string name="title_course_business">Business</string>
+    <string name="title_course_chemistry">Chemistry</string>
+    <string name="title_course_english">English</string>
+    <string name="title_course_law">Law</string>
+    <string name="title_course_math">Math</string>
+    <string name="title_course_calculus">Calculus</string>
+    <string name="title_course_algebra">Algebra</string>
+    <string name="title_course_functions">Functions</string>
+    <string name="title_course_accounting">Accounting</string>
+    <string name="title_course_marketing">Marketing</string>
+    <string name="title_course_organic_chem">Organic Chemistry</string>
+    <string name="title_course_business_law">Business Law</string>
+    <string name="title_course_crim_law">Criminal Law</string>
+    <string name="title_course_creative_writing">Creative Writing</string>
+    <string name="title_course_physics">Physics</string>
 
 </resources>

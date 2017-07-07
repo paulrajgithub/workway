@@ -2,9 +2,11 @@ package com.asdev.edu.fragments
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,8 +15,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.asdev.edu.MD_PRIMARY_COLOR_REFS
 import com.asdev.edu.R
+import com.asdev.edu.RANDOM
 import com.asdev.edu.adjustPadding
+import com.asdev.edu.models.DCourse
 
 class FragmentHome: Fragment() {
 
@@ -65,10 +70,15 @@ class AdapterHomeContent: RecyclerView.Adapter<VHHomeItem>() {
         const val VT_AUTOIMPORT_ITEM = 3
         const val VT_UPDATE_ITEM = 4
         const val VT_DIVIDER = 5
+        const val VT_COURSE_ITEM = 6
 
-        const val SPAN_FULL = 6
-        const val SPAN_AUTOIMPORT_ITEM = 2
-        const val SPAN_UPDATE_ITEM = 6
+        const val SPAN_FULL = 12
+        const val SPAN_AUTOIMPORT_ITEM = 4
+        const val SPAN_UPDATE_ITEM = SPAN_FULL
+        const val SPAN_COURSE_ITEM = 3
+        const val SPAN_COURSE_ITEM_LARGE = 4
+
+        const val HIGHLIGHT_COURSE_END_INDEX = 3
 
         ////// View index functions //////
         fun headerBlankIndex() = -1
@@ -76,7 +86,13 @@ class AdapterHomeContent: RecyclerView.Adapter<VHHomeItem>() {
         fun itemsAutoImportIndex() = headerAutoImportIndex() + 1..headerAutoImportIndex() + 3 // TODO: dynamic number of items
         fun buttonAutoImportMoreIndex() = itemsAutoImportIndex().endInclusive + 1
         fun dividerAutoImportIndex() = buttonAutoImportMoreIndex() + 1
-        fun headerUpdatesIndex() = dividerAutoImportIndex() + 1
+
+        fun headerCoursesIndex() = dividerAutoImportIndex() + 1
+        fun itemsCoursesIndex() = headerCoursesIndex() + 1..headerCoursesIndex() + 7 // TODO: dynamic
+        fun buttonCoursesMoreIndex() = itemsCoursesIndex().endInclusive + 1
+        fun dividerCoursesIndex() = buttonCoursesMoreIndex() + 1
+
+        fun headerUpdatesIndex() = dividerCoursesIndex() + 1
         fun itemsUpdatesIndex() = headerUpdatesIndex() + 1..headerUpdatesIndex() + 4 // TODO: dynamic number of items
     }
 
@@ -102,6 +118,12 @@ class AdapterHomeContent: RecyclerView.Adapter<VHHomeItem>() {
             in itemsAutoImportIndex() -> VT_AUTOIMPORT_ITEM
             buttonAutoImportMoreIndex() -> VT_MORE_BUTTON
             dividerAutoImportIndex() -> VT_DIVIDER
+
+            headerCoursesIndex() -> VT_TEXT_HEADER
+            in itemsCoursesIndex() -> VT_COURSE_ITEM
+            buttonCoursesMoreIndex() -> VT_MORE_BUTTON
+            dividerCoursesIndex() -> VT_DIVIDER
+
             headerUpdatesIndex() -> VT_TEXT_HEADER
             in itemsUpdatesIndex() -> VT_UPDATE_ITEM
             else -> -1
@@ -119,6 +141,7 @@ class AdapterHomeContent: RecyclerView.Adapter<VHHomeItem>() {
             VT_UPDATE_ITEM -> R.layout.item_update_item
             VT_DIVIDER -> R.layout.item_divider
             VT_AUTOIMPORT_ITEM -> R.layout.item_auto_import
+            VT_COURSE_ITEM -> R.layout.item_course_selector
             else -> -1
         }
 
@@ -133,6 +156,16 @@ class AdapterHomeContent: RecyclerView.Adapter<VHHomeItem>() {
             VT_BLANK_HEADER, VT_TEXT_HEADER, VT_MORE_BUTTON, VT_DIVIDER -> SPAN_FULL
             VT_AUTOIMPORT_ITEM -> SPAN_AUTOIMPORT_ITEM
             VT_UPDATE_ITEM -> SPAN_UPDATE_ITEM
+            VT_COURSE_ITEM -> {
+                // if part of highlight, make smaller
+                val posRelative = position - itemsCoursesIndex().start
+                if(posRelative in 0..HIGHLIGHT_COURSE_END_INDEX) {
+                    SPAN_COURSE_ITEM
+                } else {
+                    SPAN_COURSE_ITEM_LARGE
+                }
+
+            }
             else -> SPAN_FULL
         }
     }
@@ -162,6 +195,10 @@ class VHHomeItem(itemView: View, val type: Int): RecyclerView.ViewHolder(itemVie
                     // the item view is a text view
                     val textView = itemView as TextView
                     textView.text = itemView.context.getText(R.string.text_updates)
+                }
+                AdapterHomeContent.headerCoursesIndex() -> {
+                    val textView = itemView as TextView
+                    textView.text = itemView.context.getText(R.string.text_find_by_course)
                 }
             }
         } else if(type == AdapterHomeContent.VT_AUTOIMPORT_ITEM) {
@@ -195,6 +232,53 @@ class VHHomeItem(itemView: View, val type: Int): RecyclerView.ViewHolder(itemVie
                 ppView.setImageResource(R.drawable.pp1) // TODO
             } else {
                 ppView.setImageResource(R.drawable.pp2) // TODO
+            }
+        } else if(type == AdapterHomeContent.VT_COURSE_ITEM) {
+            val gutterSize = itemView.context.resources.getDimensionPixelSize(R.dimen.gutter_size)
+            val nominalSize = itemView.context.resources.getDimensionPixelSize(R.dimen.course_item_padding_horiz)
+
+            val posRelative = position - AdapterHomeContent.itemsCoursesIndex().start
+
+            // TODO: TEMP UI HACKS
+            val imgView = itemView.findViewById(R.id.course_icon) as ImageView
+            // change bg color
+            imgView.background.setColorFilter(
+                    ContextCompat.getColor(itemView.context, MD_PRIMARY_COLOR_REFS[posRelative % MD_PRIMARY_COLOR_REFS.size]),
+                    PorterDuff.Mode.SRC_ATOP
+            )
+            // get a random course
+            val course = DCourse.values()[RANDOM.nextInt(DCourse.values().size)]
+            // set title and icon to that
+            val titleView = itemView.findViewById(R.id.course_title) as TextView
+            titleView.text = course.getUITitle(itemView.context)
+            imgView.setImageResource(course.iconRes)
+
+            // if part of highlight, mod differently
+            if(posRelative in 0..AdapterHomeContent.HIGHLIGHT_COURSE_END_INDEX) {
+                if(posRelative == 0) {
+                    // left gutter
+                    itemView.adjustPadding(left = gutterSize * 2, right = nominalSize)
+                } else if(posRelative == AdapterHomeContent.HIGHLIGHT_COURSE_END_INDEX) {
+                    // right gutter
+                    itemView.adjustPadding(right = gutterSize * 2, left = nominalSize)
+                } else {
+                    // default padding
+                    itemView.adjustPadding(left = nominalSize, right = nominalSize)
+                }
+            } else {
+                // mod for every SPAN_FULL / SPAN_COURSE_ITEM_LARGE items
+                val itemsPerRow = AdapterHomeContent.SPAN_FULL / AdapterHomeContent.SPAN_COURSE_ITEM_LARGE
+                val posAdjusted = posRelative - AdapterHomeContent.HIGHLIGHT_COURSE_END_INDEX - 1
+                if(posAdjusted % itemsPerRow == 0) {
+                    // the first item of the row
+                    itemView.adjustPadding(left = gutterSize * 3, right = nominalSize)
+                } else if(posAdjusted % itemsPerRow == itemsPerRow - 1) {
+                    // last item of row
+                    itemView.adjustPadding(right = gutterSize * 3, left = nominalSize)
+                } else {
+                    // default padding
+                    itemView.adjustPadding(left = nominalSize, right = nominalSize)
+                }
             }
         }
     }
