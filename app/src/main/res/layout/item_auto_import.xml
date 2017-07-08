@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<com.asdev.edu.views.SquareImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:paddingLeft="4dp"
-    android:paddingRight="4dp"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
 
-    android:foreground="?attr/selectableItemBackground"
+    app:layout_columnWeight="1"
+
+    android:src="@drawable/work"
+
     android:clickable="true"
-    android:background="@drawable/half_accent">
+    android:foreground="?attr/selectableItemBackgroundBorderless"
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-
-        android:src="@drawable/work"
-
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/content_desc_image_autoimport"/>
-
-</FrameLayout>
+    android:scaleType="centerCrop"
+    android:contentDescription="@string/content_desc_image_autoimport" />
