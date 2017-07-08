@@ -6,6 +6,7 @@ import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.androidnetworking.AndroidNetworking
 import com.asdev.edu.fragments.FragmentCollections
 import com.asdev.edu.fragments.FragmentCreate
 import com.asdev.edu.fragments.FragmentHome
@@ -49,6 +50,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // init the network client
+        AndroidNetworking.initialize(applicationContext)
 
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
 

@@ -3,9 +3,9 @@ package com.asdev.edu
 import java.util.*
 
 /**
- * A standard set of primary material colors.
+ * A standard set of primary material colors that are used for the course backgrounds.
  */
-val MD_PRIMARY_COLOR_REFS = arrayOf(
+val MD_COURSE_COLORS = arrayOf(
         R.color.md_amber_500,
         R.color.md_green_500,
         R.color.md_indigo_500,

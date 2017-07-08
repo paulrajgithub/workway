@@ -112,8 +112,6 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
 
-                    android:src="@drawable/work"
-
                     app:layout_columnWeight="1"
 
                     android:clickable="true"
@@ -129,8 +127,6 @@
                     android:id="@+id/autoimport_image2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-
-                    android:src="@drawable/work2"
 
                     app:layout_columnWeight="1"
 
@@ -149,8 +145,6 @@
                     android:layout_height="0dp"
 
                     app:layout_columnWeight="1"
-
-                    android:src="@drawable/work3"
 
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"

@@ -1,36 +1,32 @@
 <resources>
     <string name="app_name">Homework Share</string>
+    <string name="vendor_name">Asdev</string>
+    <string name="vendor_name_full">Asdev Software Development</string>
+
+    <string name="text_auto_import">Auto-import</string>
+    <string name="text_more">More</string>
+    <string name="text_updates">Updates</string>
+    <string name="text_update_title">Update title</string>
+    <string name="text_update_subtitle">Update subtitle</string>
+    <string name="text_header">Header</string>
+    <string name="text_course_title">Course title</string>
+    <string name="text_find_by_course">Find by course</string>
+    <string name="text_search">Search anything</string>
+
+    <string name="content_desc_image_autoimport">Auto import image</string>
+    <string name="content_desc_profile_photo">Profile photo</string>
+    <string name="content_desc_image_update">New uploaded work</string>
+    <string name="content_desc_action_save">Save image</string>
+    <string name="content_desc_search_icon">Search</string>
+    <string name="content_desc_action_fullscreen">Fullscreen image</string>
+    <string name="content_desc_action_send">Send image</string>
+    <string name="content_desc_course">Course icon</string>
 
     <string name="title_home">Home</string>
     <string name="title_collections">Collections</string>
     <string name="title_create">Create</string>
     <string name="title_profile">Profile</string>
-    <string name="content_desc_search_icon">Search</string>
-    <string name="text_search">Search anything</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare dui eget dui semper, non hendrerit dolor ornare. Morbi dapibus neque et nisl ultricies dictum. Nunc quis vestibulum justo. Aenean ultricies, magna quis sollicitudin dapibus, nisl tellus pharetra arcu, vel consectetur quam erat eu lorem. Donec mattis arcu et ante tristique porttitor. Ut ut auctor metus, id pulvinar justo. Maecenas suscipit mauris sit amet tortor pellentesque, vitae mattis tortor rutrum.
 
-Praesent quis risus nibh. Integer sed mi sit amet nulla sagittis semper. Sed iaculis sem nec placerat vehicula. Aliquam et dolor velit. Donec ut velit ullamcorper, imperdiet metus non, ultricies diam. Etiam dignissim venenatis ultricies. Vivamus enim urna, maximus vel lectus vitae, euismod consectetur arcu. Donec venenatis euismod risus, eu egestas sem feugiat eget. Curabitur eget massa eros. Ut scelerisque sem metus, at pharetra massa suscipit et. Praesent a posuere tellus. Nulla dignissim auctor dui. Quisque aliquet urna eu enim tincidunt maximus non in neque. Curabitur varius turpis velit. Integer auctor mauris a magna interdum, at hendrerit nisl posuere.
-
-Maecenas imperdiet in augue eu lobortis. Morbi blandit lorem quam, tristique accumsan urna euismod eget. Phasellus a turpis a tellus vestibulum efficitur. Suspendisse molestie suscipit purus. Nullam sit amet dictum dolor, id rutrum lorem. Fusce venenatis, nibh eu bibendum mollis, quam enim tempus ante, vel blandit libero tortor vulputate dui. Mauris nec facilisis diam.
-
-Nullam non dolor at ante ullamcorper varius. Integer sagittis purus id ex scelerisque volutpat. Donec efficitur fermentum massa ut venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer volutpat id nibh quis consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer convallis eu lacus a tristique. Suspendisse eu sem elit. Vivamus porta bibendum massa eget semper.
-
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus pulvinar ante eget dui tincidunt, rhoncus consectetur mi cursus. Sed pellentesque libero in ante egestas elementum. Duis accumsan finibus tortor sed tristique. Ut ipsum magna, bibendum id odio non, dignissim ullamcorper turpis. Curabitur non interdum elit. In eleifend mi nec metus ornare faucibus. Nunc magna odio, tristique id lectus nec, finibus mattis augue. Vestibulum ut risus ex. Donec sit amet diam dignissim, lobortis ante nec, elementum magna. Proin eu ultrices nulla, ac interdum justo.</string>
-    <string name="text_auto_import">Auto-import</string>
-    <string name="content_desc_image_autoimport">Auto import image</string>
-    <string name="text_more">More</string>
-    <string name="text_updates">Updates</string>
-    <string name="content_desc_image_update">New uploaded work</string>
-    <string name="text_update_title">Update title</string>
-    <string name="text_update_subtitle">Update subtitle</string>
-    <string name="content_desc_profile_photo">Profile photo</string>
-    <string name="text_header">Header</string>
-    <string name="content_desc_action_save">Save image</string>
-    <string name="content_desc_action_fullscreen">Fullscreen image</string>
-    <string name="content_desc_action_send">Send image</string>
-    <string name="content_desc_course">Course icon</string>
-    <string name="text_course_title">Course title</string>
-    <string name="text_find_by_course">Find by course</string>
     <string name="title_course_biology">Biology</string>
     <string name="title_course_business">Business</string>
     <string name="title_course_chemistry">Chemistry</string>
