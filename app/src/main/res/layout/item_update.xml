@@ -6,6 +6,8 @@
 
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
 
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground">
@@ -29,23 +31,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
 
+        android:visibility="visible"
+
+        android:translationX="-9dp"
+
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         android:layout_below="@+id/update_image">
 
         <ImageButton
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            app:srcCompat="@drawable/ic_fullscreen_black_24dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-
-            android:contentDescription="@string/content_desc_action_fullscreen"/>
-
-        <ImageButton
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:id="@+id/update_action_save"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
 
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             app:srcCompat="@drawable/ic_save_black_24dp"
@@ -54,8 +51,9 @@
             android:contentDescription="@string/content_desc_action_save"/>
 
         <ImageButton
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:id="@+id/update_action_send"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
 
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             app:srcCompat="@drawable/ic_send_black_24dp"
@@ -77,9 +75,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
 
-        android:layout_marginLeft="@dimen/gutter_size"
-        android:layout_marginStart="@dimen/gutter_size"
-
         android:layout_marginBottom="2dp"
 
         style="@style/AppTheme.TextAppearance.Title"
@@ -98,9 +93,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
 
-        android:layout_marginLeft="@dimen/gutter_size"
-        android:layout_marginStart="@dimen/gutter_size"
-
         style="@style/AppTheme.TextAppearance.Subtitle"
         android:text="@string/text_update_subtitle"
         />
@@ -117,9 +109,6 @@
         android:layout_alignBottom="@+id/update_subtitle"
 
         android:padding="2dp"
-
-        android:layout_marginRight="@dimen/gutter_size"
-        android:layout_marginEnd="@dimen/gutter_size"
 
         android:src="@drawable/pp1"
         android:contentDescription="@string/content_desc_profile_photo"

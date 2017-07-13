@@ -37,9 +37,9 @@ enum class DCourse(
 
     BIOLOGY(R.string.title_course_biology, null, R.drawable.ic_course_biology, colorRes = MD_COURSE_COLORS[0]),
 
-    BUSINESS(R.string.title_course_business, null, R.drawable.ic_course_business, colorRes = MD_COURSE_COLORS[1]),
-        MARKETING(R.string.title_course_marketing, null, R.drawable.ic_course_business, BUSINESS, colorRes = MD_COURSE_COLORS[2]),
-        ACCOUNTING(R.string.title_course_accounting, null, R.drawable.ic_course_business, BUSINESS, colorRes = MD_COURSE_COLORS[3]),
+    BUSINESS(R.string.title_course_business, null, R.drawable.ic_course_business_alt, colorRes = MD_COURSE_COLORS[1]),
+        MARKETING(R.string.title_course_marketing, null, R.drawable.ic_course_marketing_alt, BUSINESS, colorRes = MD_COURSE_COLORS[2]),
+        ACCOUNTING(R.string.title_course_accounting, null, R.drawable.ic_course_accounting, BUSINESS, colorRes = MD_COURSE_COLORS[3]),
 
     CHEMISTRY(R.string.title_course_chemistry, null, R.drawable.ic_course_chemistry, colorRes = MD_COURSE_COLORS[4]),
         ORGANIC_CHEMISTRY(R.string.title_course_organic_chem, null, R.drawable.ic_course_chemistry, CHEMISTRY, colorRes = MD_COURSE_COLORS[5]),
@@ -63,8 +63,8 @@ enum class DCourse(
         /**
          * Returns the tag as a course object, or null if it is not.
          */
-        fun fromTag(tag: DTag): DCourse? =
-                tag.id as? DCourse
+        fun fromTag(tag: DTag?): DCourse? =
+                tag?.id as? DCourse
 
     }
 
@@ -87,6 +87,6 @@ enum class DCourse(
     /**
      * Returns this course object as a matching DTag object.
      */
-    fun asTag(context: Context) =
+    fun toTag(context: Context) =
             DTag(text = resolveTitle(context), id = this, scope = TAG_SCOPE_COURSE)
 }

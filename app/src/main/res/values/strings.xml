@@ -43,5 +43,13 @@
     <string name="title_course_crim_law">Criminal Law</string>
     <string name="title_course_creative_writing">Creative Writing</string>
     <string name="title_course_physics">Physics</string>
+    <string name="title_doc_textbook">Textbook</string>
+    <string name="title_doc_homework">Homework</string>
+    <string name="title_doc_note">Note</string>
+    <string name="title_doc_lab">Lab</string>
+    <string name="title_doc_essay">Essay</string>
+    <string name="title_doc_report">Report</string>
+    <string name="title_doc_assignment">Assignment</string>
+    <string name="title_doc_solution">Solution</string>
 
 </resources>
