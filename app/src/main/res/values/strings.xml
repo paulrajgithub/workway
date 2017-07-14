@@ -5,13 +5,15 @@
 
     <string name="text_auto_import">Auto-import</string>
     <string name="text_more">More</string>
-    <string name="text_updates">Updates</string>
+    <string name="text_updates">New</string>
     <string name="text_update_title">Update title</string>
     <string name="text_update_subtitle">Update subtitle</string>
     <string name="text_header">Header</string>
     <string name="text_course_title">Course title</string>
     <string name="text_find_by_course">Find by course</string>
     <string name="text_search">Search anything</string>
+    <string name="text_user_name">User name</string>
+    <string name="text_update_desc">Update description</string>
 
     <string name="content_desc_image_autoimport">Auto import image</string>
     <string name="content_desc_profile_photo">Profile photo</string>
@@ -43,6 +45,7 @@
     <string name="title_course_crim_law">Criminal Law</string>
     <string name="title_course_creative_writing">Creative Writing</string>
     <string name="title_course_physics">Physics</string>
+
     <string name="title_doc_textbook">Textbook</string>
     <string name="title_doc_homework">Homework</string>
     <string name="title_doc_note">Note</string>

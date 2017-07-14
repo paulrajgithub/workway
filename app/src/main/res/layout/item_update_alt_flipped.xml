@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <!-- 8% opacity - 14000000 -->
+        <!-- 5% opacity - 11000000 -->
+        <!-- 3% opacity - 08000000 -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#08000000">
+
+            <TextView
+                android:id="@+id/update_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/text_update_title"
+                style="@style/AppTheme.TextAppearance.Title"
+
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="12dp"
+                />
+
+            <TextView
+                android:id="@+id/update_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/update_title"
+
+                android:text="@string/text_update_subtitle"
+                style="@style/AppTheme.TextAppearance.Subtitle"
+
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="2dp"
+                />
+
+            <TextView
+                android:id="@+id/update_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/update_subtitle"
+
+                android:text="@string/text_update_desc"
+                style="@style/AppTheme.TextAppearance.Subtitle"
+
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="2dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/update_actions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:visibility="visible"
+
+                android:layout_above="@+id/update_user_bar"
+
+                android:translationX="-9dp"
+
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp">
+
+                <ImageButton
+                    android:id="@+id/update_action_save"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    app:srcCompat="@drawable/ic_save_black_24dp"
+                    android:tint="?android:textColorPrimary"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+
+                    android:contentDescription="@string/content_desc_action_save"/>
+
+                <ImageButton
+                    android:id="@+id/update_action_send"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    app:srcCompat="@drawable/ic_send_black_24dp"
+                    android:tint="?android:textColorPrimary"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+
+                    android:contentDescription="@string/content_desc_action_send"/>
+
+            </LinearLayout>
+
+
+            <!-- User profile bar -->
+            <LinearLayout
+                android:id="@+id/update_user_bar"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="#11000000"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                <!-- Profile photo view -->
+                <com.asdev.circleimageview.CompatCircleImageView
+                    android:id="@+id/update_profile_photo"
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+
+                    android:padding="6dp"
+
+                    app:srcCompat="@drawable/ic_person_default"
+                    android:contentDescription="@string/content_desc_profile_photo"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical|start"
+                    style="@style/AppTheme.TextAppearance.Subtitle"
+                    android:text="@string/text_user_name"
+
+                    android:paddingRight="8dp"
+                    android:paddingLeft="8dp"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/update_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:adjustViewBounds="true"
+
+            android:src="@drawable/ic_image_placeholder"
+            android:contentDescription="@string/content_desc_image_update"
+            />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

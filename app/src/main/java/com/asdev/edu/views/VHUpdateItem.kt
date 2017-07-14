@@ -9,6 +9,7 @@ import com.asdev.edu.R
 import com.asdev.edu.models.DPost
 import com.asdev.edu.models.DUIAction
 import com.asdev.edu.models.PostId
+import com.bumptech.glide.Glide
 import io.reactivex.subjects.BehaviorSubject
 
 /**
@@ -63,14 +64,15 @@ class VHUpdateItem(view: View,
 
         // try and resolve the course title first, then the professor, then the default blank
         subtitleView.text = course?.resolveTitle(itemView.context)?:professor?:""
-        // TODO: picasso fetch post ref
+        // TODO: glide fetch post ref
         post.ref
         // user should be already resolved
         val user = post.owner
 
         if (user != null) {
-            // TODO: picasso fetch user pp icon ref
+            // TODO: glide fetch user pp icon ref
             user.profilePicRef
+            user
         } else {
             // TODO: user resolution
         }

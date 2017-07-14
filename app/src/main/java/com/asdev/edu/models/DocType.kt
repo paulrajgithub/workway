@@ -3,6 +3,7 @@ package com.asdev.edu.models
 import android.content.Context
 import android.support.annotation.StringRes
 import com.asdev.edu.R
+import com.asdev.edu.containsBits
 
 enum class DDocType(
         /**
@@ -30,13 +31,20 @@ enum class DDocType(
         /**
          * Converts the given tag object to a DocType if applicable.
          */
-        fun fromTag(tag: DTag?) =
-                tag?.id as? DDocType
+        fun fromTag(tag: DTag?): DDocType? {
+            // if tag is null, return null, or if isn't string, or if tag scope isnt even a type
+            if (tag == null || tag.id !is String || !(tag.scope containsBits TAG_SCOPE_TYPE)) {
+                return null
+            }
+
+            // the tag id is the name of the course
+            return valueOf(tag.id)
+        }
     }
 
     /**
      * Converts this DocType to a tag object.
      */
     fun toTag(context: Context)
-        = DTag(context.getString(titleRef), this, TAG_SCOPE_TYPE)
+        = DTag(context.getString(titleRef), name, TAG_SCOPE_TYPE)
 }

@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.ViewCompat
 import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.GridLayout
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,7 +27,7 @@ import io.reactivex.subjects.BehaviorSubject
 const val SPAN_HIGHLIGHT_FIRST = true
 const val SPAN_BALANCE_LAST = true
 const val SPAN_FULL = 2
-const val SPAN_ONE = 1
+const val SPAN_ONE = 2
 
 class FragmentHome: Fragment() {
 
@@ -77,30 +77,33 @@ class FragmentHome: Fragment() {
         val updateRecycler = view.findViewById(R.id.home_update_recycler) as RecyclerView
         // disable nested scrolling for smooth scroll
         ViewCompat.setNestedScrollingEnabled(updateRecycler, false)
-        // set to a 2 column grid layout
-        updateRecycler.layoutManager = GridLayoutManager(context, SPAN_FULL).apply {
-            // TODO: adaptive span sizes
-            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    val size = updateAdapter.itemCount
+        updateRecycler.layoutManager = LinearLayoutManager(context)
+        updateRecycler.setHasFixedSize(true)
 
-                    // highlight the first item if in config
-                    if(position == 0 && SPAN_HIGHLIGHT_FIRST) {
-                        return SPAN_FULL
-                    } else if(position == size - 1 && SPAN_BALANCE_LAST) {
-                        // if highlight first, shift items mod by one to account for first 2 span
-                        if(SPAN_HIGHLIGHT_FIRST) {
-                            return if((size - 1) % 2 == 1) SPAN_FULL else SPAN_ONE
-                        } else {
-                           return if(size % 2 == 1) SPAN_FULL else SPAN_ONE
-                        }
-                    }
-
-                    // default 1 item span
-                    return SPAN_ONE
-                }
-            }
-        }
+//        // set to a 2 column grid layout
+//        updateRecycler.layoutManager = GridLayoutManager(context, SPAN_FULL).apply {
+//            // TODO: adaptive span sizes
+//            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+//                override fun getSpanSize(position: Int): Int {
+//                    val size = updateAdapter.itemCount
+//
+//                    // highlight the first item if in config
+//                    if(position == 0 && SPAN_HIGHLIGHT_FIRST) {
+//                        return SPAN_FULL
+//                    } else if(position == size - 1 && SPAN_BALANCE_LAST) {
+//                        // if highlight first, shift items mod by one to account for first 2 span
+//                        if(SPAN_HIGHLIGHT_FIRST) {
+//                            return if((size - 1) % 2 == 1) SPAN_FULL else SPAN_ONE
+//                        } else {
+//                           return if(size % 2 == 1) SPAN_FULL else SPAN_ONE
+//                        }
+//                    }
+//
+//                    // default 1 item span
+//                    return SPAN_ONE
+//                }
+//            }
+//        }
 
         // create a listening subject
         val subject = BehaviorSubject.create<DUIAction<PostId>>()

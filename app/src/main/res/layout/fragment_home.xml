@@ -11,6 +11,9 @@
         android:layout_height="wrap_content"
         app:elevation="0dp">
 
+        <!--
+            For waterfall, use:
+            app:layout_scrollFlags="enterAlways|scroll" -->
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -20,9 +23,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
 
-            app:cardElevation="4dp"
-
-            app:layout_scrollFlags="enterAlways|scroll">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,6 +72,8 @@
         android:id="@+id/home_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+        android:scrollbars="vertical"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -227,9 +230,6 @@
                 android:id="@+id/home_update_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
 
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

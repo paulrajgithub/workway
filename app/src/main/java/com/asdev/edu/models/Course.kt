@@ -6,6 +6,7 @@ import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
 import com.asdev.edu.MD_COURSE_COLORS
 import com.asdev.edu.R
+import com.asdev.edu.containsBits
 
 /**
  * An enumeration that represents a course that may be extended.
@@ -63,8 +64,13 @@ enum class DCourse(
         /**
          * Returns the tag as a course object, or null if it is not.
          */
-        fun fromTag(tag: DTag?): DCourse? =
-                tag?.id as? DCourse
+        fun fromTag(tag: DTag?): DCourse? {
+            if(tag == null || tag.id !is String || !(tag.scope containsBits TAG_SCOPE_COURSE)) {
+                return null
+            }
+
+            return valueOf(tag.id)
+        }
 
     }
 
@@ -88,5 +94,5 @@ enum class DCourse(
      * Returns this course object as a matching DTag object.
      */
     fun toTag(context: Context) =
-            DTag(text = resolveTitle(context), id = this, scope = TAG_SCOPE_COURSE)
+            DTag(text = resolveTitle(context), id = name, scope = TAG_SCOPE_COURSE)
 }
