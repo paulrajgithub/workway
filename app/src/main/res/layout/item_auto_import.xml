@@ -8,7 +8,7 @@
 
     app:layout_columnWeight="1"
 
-    android:src="@drawable/work"
+    android:src="@drawable/ic_image_placeholder"
 
     android:clickable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless"

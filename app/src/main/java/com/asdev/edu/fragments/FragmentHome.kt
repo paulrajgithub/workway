@@ -60,10 +60,6 @@ class FragmentHome: Fragment() {
         val autoimport2 = view.findViewById(R.id.autoimport_image2) as ImageView
         val autoimport3 = view.findViewById(R.id.autoimport_image3) as ImageView
 
-        autoimport1.setImageResource(R.drawable.work)
-        autoimport2.setImageResource(R.drawable.work2)
-        autoimport3.setImageResource(R.drawable.work3)
-
         val appbar = view.findViewById(R.id.appbar)
         val content = view.findViewById(R.id.home_content) as NestedScrollView
         // hide the toolbar shadow when the scrollview is at the top

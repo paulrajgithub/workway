@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
 
-        android:src="@drawable/work"
+        android:src="@drawable/ic_image_placeholder"
         android:scaleType="centerCrop"
         android:contentDescription="@string/content_desc_image_update"
 
@@ -98,7 +98,7 @@
         />
 
     <!-- Profile photo view -->
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.asdev.circleimageview.CompatCircleImageView
         android:id="@+id/update_profile_photo"
         android:layout_width="42dp"
         android:layout_height="0dp"
@@ -108,10 +108,13 @@
         android:layout_alignTop="@+id/update_title"
         android:layout_alignBottom="@+id/update_subtitle"
 
-        android:padding="2dp"
+        android:padding="0dp"
 
-        android:src="@drawable/pp1"
+        app:srcCompat="@drawable/ic_person_default"
         android:contentDescription="@string/content_desc_profile_photo"
+
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         />
 
 
