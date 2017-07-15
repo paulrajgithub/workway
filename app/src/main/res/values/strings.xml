@@ -54,5 +54,6 @@
     <string name="title_doc_report">Report</string>
     <string name="title_doc_assignment">Assignment</string>
     <string name="title_doc_solution">Solution</string>
+    <string name="content_description_logo">Vendor logo</string>
 
 </resources>

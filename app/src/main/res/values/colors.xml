@@ -6,4 +6,5 @@
     <color name="colorDivider">#55BDBDBD</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorBackgroundSecondary">#EEEEEE</color>
+    <color name="splash_title_color">#AAAAAA</color>
 </resources>
