@@ -50,7 +50,20 @@ const val TAG_SCOPE_PLACE_ID = 0b100000
 /**
  * A class that represents an associative textual tag.
  */
-data class DTag(val text: String, val id: Any = TAG_ID_NONSTANDARD, val scope: Int = TAG_SCOPE_ALL)
+data class DTag(val text: String, val id: Any = TAG_ID_NONSTANDARD, val scope: Int = TAG_SCOPE_ALL) {
+
+    companion object {
+
+        /**
+         * Creates a new tag for a professor with the
+         * given name.
+         */
+        fun forProfessor(name: String) =
+                DTag(name, name, TAG_SCOPE_PROF)
+
+    }
+
+}
 
 /**
  * Visibility modifier stating that everyone can see this post.
@@ -65,24 +78,15 @@ const val VISIBILITY_FOLLOWING = 1
  */
 const val VISIBILITY_PRIVATE = 2
 
-/**
- * Represents the id of a post.
- */
-typealias PostId = Int
-/**
- * Represents the id of a user.
- */
-typealias UserId = String
-
 data class DUser(
         /**
          * The mongo ID of this user.
          */
-        var _id: Int,
+        var _id: String?,
         /**
          * The firebase id of this user.
          */
-        var uid: UserId,
+        var firebaseId: String,
         /**
          * The URL to the profile picture of this user.
          */
@@ -90,7 +94,7 @@ data class DUser(
         /**
          * The references to the posts of this user.
          */
-        var postRefs: List<PostId>,
+        var postRefs: List<String>,
         /**
          * The posts of this user, nullable to avoid circular dependencies.
          */
@@ -107,7 +111,7 @@ data class DPost(
         /**
          * The mongo ID of this object.
          */
-        var _id: PostId,
+        var _id: String?,
         /**
          * The textual title of this post.
          */
@@ -123,7 +127,7 @@ data class DPost(
         /**
          * The id of the owner of this post.
          */
-        var ownerId: UserId,
+        var ownerId: String,
         /**
          * The owner of this post, nullable to avoid circular dependencies.
          */
