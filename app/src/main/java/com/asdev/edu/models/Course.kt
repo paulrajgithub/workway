@@ -29,36 +29,37 @@ enum class DCourse(
         /**
          * An optional parent of this course. Use for sub-course branching.
          */
-        val parent: DCourse? = null,
-        /**
-         * The background color reference for this course.
-         */
-        @ColorRes
-        val colorRes: Int = MD_COURSE_COLORS[0]) {
+        val parent: DCourse? = null) {
 
-    BIOLOGY(R.string.title_course_biology, null, R.drawable.ic_course_biology, colorRes = MD_COURSE_COLORS[0]),
+    BIOLOGY(R.string.title_course_biology, null, R.drawable.ic_course_biology),
 
-    BUSINESS(R.string.title_course_business, null, R.drawable.ic_course_business_alt, colorRes = MD_COURSE_COLORS[1]),
-        MARKETING(R.string.title_course_marketing, null, R.drawable.ic_course_marketing_alt, BUSINESS, colorRes = MD_COURSE_COLORS[2]),
-        ACCOUNTING(R.string.title_course_accounting, null, R.drawable.ic_course_accounting, BUSINESS, colorRes = MD_COURSE_COLORS[3]),
+    BUSINESS(R.string.title_course_business, null, R.drawable.ic_course_business_alt),
+        MARKETING(R.string.title_course_marketing, null, R.drawable.ic_course_marketing_alt, BUSINESS),
+        ACCOUNTING(R.string.title_course_accounting, null, R.drawable.ic_course_accounting, BUSINESS),
 
-    CHEMISTRY(R.string.title_course_chemistry, null, R.drawable.ic_course_chemistry, colorRes = MD_COURSE_COLORS[4]),
-        ORGANIC_CHEMISTRY(R.string.title_course_organic_chem, null, R.drawable.ic_course_chemistry, CHEMISTRY, colorRes = MD_COURSE_COLORS[5]),
+    CHEMISTRY(R.string.title_course_chemistry, null, R.drawable.ic_course_chemistry),
+        ORGANIC_CHEMISTRY(R.string.title_course_organic_chem, null, R.drawable.ic_course_chemistry, CHEMISTRY),
 
-    ENGLISH(R.string.title_course_english, null, R.drawable.ic_course_english, colorRes = MD_COURSE_COLORS[0]),
-        CREATIVE_WRITING(R.string.title_course_creative_writing, null, R.drawable.ic_course_creative_writing, ENGLISH, colorRes = MD_COURSE_COLORS[1]),
+    ENGLISH(R.string.title_course_english, null, R.drawable.ic_course_english),
+        CREATIVE_WRITING(R.string.title_course_creative_writing, null, R.drawable.ic_course_creative_writing, ENGLISH),
 
-    LAW(R.string.title_course_law, null, R.drawable.ic_course_law_alt, colorRes = MD_COURSE_COLORS[2]),
-        BUSINESS_LAW(R.string.title_course_business_law, null, R.drawable.ic_course_business_law, LAW, colorRes = MD_COURSE_COLORS[3]),
-        CRIMINAL_LAW(R.string.title_course_crim_law, null, R.drawable.ic_course_law, LAW, colorRes = MD_COURSE_COLORS[4]),
+    LAW(R.string.title_course_law, null, R.drawable.ic_course_law_alt),
+        BUSINESS_LAW(R.string.title_course_business_law, null, R.drawable.ic_course_business_law, LAW),
+        CRIMINAL_LAW(R.string.title_course_crim_law, null, R.drawable.ic_course_law, LAW),
 
-    MATH(R.string.title_course_math, null, R.drawable.ic_course_math_alt, colorRes = MD_COURSE_COLORS[5]),
-        CALCULUS(R.string.title_course_calculus, null, R.drawable.ic_course_calculus, MATH, colorRes = MD_COURSE_COLORS[0]),
-        ALGEBRA(R.string.title_course_algebra, null, R.drawable.ic_course_math, MATH, colorRes = MD_COURSE_COLORS[1]),
-        FUNCTIONS(R.string.title_course_functions, null, R.drawable.ic_course_functions, MATH, colorRes = MD_COURSE_COLORS[2]),
+    MATH(R.string.title_course_math, null, R.drawable.ic_course_math_alt),
+        CALCULUS(R.string.title_course_calculus, null, R.drawable.ic_course_calculus, MATH),
+        ALGEBRA(R.string.title_course_algebra, null, R.drawable.ic_course_math, MATH),
+        FUNCTIONS(R.string.title_course_functions, null, R.drawable.ic_course_functions, MATH),
 
-    PHYSICS(R.string.title_course_physics, null, R.drawable.ic_course_physics, colorRes = MD_COURSE_COLORS[3]);
+    PHYSICS(R.string.title_course_physics, null, R.drawable.ic_course_physics);
 
+    /**
+     * The background color reference for this course.
+     */
+    @ColorRes
+    val colorRes: Int = MD_COURSE_COLORS[ordinal % MD_COURSE_COLORS.size]
+    
     companion object {
 
         /**

@@ -98,7 +98,15 @@ data class DUser(
         /**
          * The starred courses for this user. Usually part of the user's timetable.
          */
-        var starredCourses: List<DCourse>)
+        var starredCourses: List<DCourse>,
+        /**
+         * Users that follow this user.
+         */
+        var followers: List<String>,
+        /**
+         * Users that this user follows.
+         */
+        var following: List<String>)
 
 /**
  * A class that represents a user post object with an image, owner, and other attrs.
