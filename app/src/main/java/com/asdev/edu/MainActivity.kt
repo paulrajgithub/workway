@@ -11,6 +11,7 @@ import com.asdev.edu.fragments.FragmentCollections
 import com.asdev.edu.fragments.FragmentCreate
 import com.asdev.edu.fragments.FragmentHome
 import com.asdev.edu.fragments.FragmentProfile
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -53,6 +54,15 @@ class MainActivity : AppCompatActivity() {
 
         // init the network client
         AndroidNetworking.initialize(applicationContext)
+
+        // get the fb auth
+        val auth = FirebaseAuth.getInstance()
+        // we should be signed in already
+        val user = auth.currentUser
+        user?.getToken(true)?.addOnCompleteListener {
+            res ->
+            println("Token: " + res.result.token)
+        }
 
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
 

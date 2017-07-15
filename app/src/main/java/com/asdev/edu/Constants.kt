@@ -17,3 +17,7 @@ val MD_COURSE_COLORS = arrayOf(
  * A convenience random object.
  */
 val RANDOM = Random()
+
+const val DUSER_FILE = "duser.json"
+
+val EXTRA_DUSER = "duser"

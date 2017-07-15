@@ -8,8 +8,6 @@ import android.widget.TextView
 import com.asdev.edu.R
 import com.asdev.edu.models.DPost
 import com.asdev.edu.models.DUIAction
-import com.asdev.edu.models.PostId
-import com.bumptech.glide.Glide
 import io.reactivex.subjects.BehaviorSubject
 
 /**
@@ -23,7 +21,7 @@ class VHUpdateItem(view: View,
                    /**
                     * A handler to post UI events to.
                     */
-                   val actionHandler: BehaviorSubject<DUIAction<PostId>>): RecyclerView.ViewHolder(view) {
+                   val actionHandler: BehaviorSubject<DUIAction<String>>): RecyclerView.ViewHolder(view) {
 
     init {
         // call self set to post if one is provided
@@ -48,11 +46,11 @@ class VHUpdateItem(view: View,
 
         // rebind the button actions
         actionSave.setOnClickListener {
-            actionHandler.onNext(DUIAction(DUIAction.TYPE_POST_SAVE, post._id))
+            actionHandler.onNext(DUIAction(DUIAction.TYPE_POST_SAVE, post._id!!))
         }
 
         actionSend.setOnClickListener {
-            actionHandler.onNext(DUIAction(DUIAction.TYPE_POST_SEND, post._id))
+            actionHandler.onNext(DUIAction(DUIAction.TYPE_POST_SEND, post._id!!))
         }
 
         // update the ui

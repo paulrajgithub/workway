@@ -1,6 +1,7 @@
 package com.asdev.edu.models
 
 import com.asdev.edu.containsBits
+import java.io.Serializable
 
 /**
  * Created by Asdev on 07/04/17. All rights reserved.
@@ -110,7 +111,35 @@ data class DUser(
         /**
          * Users that this user follows.
          */
-        var following: List<String>)
+        var following: List<String>): Serializable {
+
+    companion object {
+
+        /**
+         * Creates a new blank DUser.
+         */
+        fun blank() =
+                DUser(
+                        _id = null,
+                        firebaseId = "",
+                        profilePicRef = null,
+                        postRefs = listOf(),
+                        posts = null,
+                        // default courses
+                        starredCourses = listOf(
+                                DCourse.MATH,
+                                DCourse.ENGLISH,
+                                DCourse.CHEMISTRY,
+                                DCourse.BIOLOGY,
+                                DCourse.PHYSICS
+                        ),
+                        followers = listOf(),
+                        following = listOf()
+                )
+
+    }
+
+}
 
 /**
  * A class that represents a user post object with an image, owner, and other attrs.

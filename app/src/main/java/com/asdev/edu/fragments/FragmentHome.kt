@@ -18,7 +18,6 @@ import com.asdev.edu.RANDOM
 import com.asdev.edu.adapters.AdapterHomeUpdates
 import com.asdev.edu.models.DCourse
 import com.asdev.edu.models.DUIAction
-import com.asdev.edu.models.PostId
 import com.asdev.edu.views.VHCourseSelector
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -39,7 +38,7 @@ class FragmentHome: Fragment() {
     /**
      * Listens to any post action events.
      */
-    private val postActionHandler: (DUIAction<PostId>) -> Unit = {
+    private val postActionHandler: (DUIAction<String>) -> Unit = {
         Log.d("FragmentHome", "Got DUIAction: $it")
         // TODO: this holds an implict reference to this, so memory leaks?
     }
@@ -106,7 +105,7 @@ class FragmentHome: Fragment() {
 //        }
 
         // create a listening subject
-        val subject = BehaviorSubject.create<DUIAction<PostId>>()
+        val subject = BehaviorSubject.create<DUIAction<String>>()
 
         // bind the handler to the subject
         val sub = subject.observeOn(AndroidSchedulers.mainThread())

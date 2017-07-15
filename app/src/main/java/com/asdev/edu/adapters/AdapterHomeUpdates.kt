@@ -60,7 +60,7 @@ val PP_PHOTOS = arrayOf(
 /**
  * A class that supplies update items to the home fragment.
  */
-class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<PostId>>): RecyclerView.Adapter<VHUpdateItem>() {
+class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<String>>): RecyclerView.Adapter<VHUpdateItem>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VHUpdateItem {
         // inflate the layout item
