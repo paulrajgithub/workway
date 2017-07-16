@@ -23,6 +23,7 @@
     <string name="content_desc_action_fullscreen">Fullscreen image</string>
     <string name="content_desc_action_send">Send image</string>
     <string name="content_desc_course">Course icon</string>
+    <string name="content_description_logo">Vendor logo</string>
 
     <string name="title_home">Home</string>
     <string name="title_collections">Collections</string>
@@ -54,6 +55,15 @@
     <string name="title_doc_report">Report</string>
     <string name="title_doc_assignment">Assignment</string>
     <string name="title_doc_solution">Solution</string>
-    <string name="content_description_logo">Vendor logo</string>
+
+    <string name="title_grade_gr9">Grade 9</string>
+    <string name="title_grade_gr10">Grade 10</string>
+    <string name="title_grade_gr11">Grade 11</string>
+    <string name="title_grade_gr12">Grade 12</string>
+    <string name="title_grade_uni1">1st year</string>
+    <string name="title_grade_uni2">2nd year</string>
+    <string name="title_grade_uni3">3rd year</string>
+    <string name="title_grade_uni4">4th year</string>
+    <string name="title_grade_uni5">5th year</string>
 
 </resources>

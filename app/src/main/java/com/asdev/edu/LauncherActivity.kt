@@ -64,7 +64,8 @@ class LauncherActivity : AppCompatActivity() {
             blank.firebaseId = user.uid
             duser = blank
             commitDiskDuser(duser, applicationContext)
-            // TODO: notify new user reg
+            // TODO: notify new user activity
+            // TODO: gather: grade and school
         } else {
             // check that the firebase ids match
             if(duser.firebaseId != user.uid) {
@@ -73,7 +74,8 @@ class LauncherActivity : AppCompatActivity() {
                 blank.firebaseId = user.uid
                 duser = blank
                 commitDiskDuser(duser, applicationContext)
-                // TODO: notify new user reg
+                // TODO: notify new user activity
+                // TODO: gather: grade and school
             }
         }
 

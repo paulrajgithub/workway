@@ -16,7 +16,7 @@ enum class DCourse(
          * The string resource id for the title.
          */
         @StringRes
-        val titleRes: Int?,
+        val titleRes: Int,
         /**
          * The title string itself. Will be preferred over the titleRes.
          */
@@ -70,7 +70,18 @@ enum class DCourse(
                 return null
             }
 
-            return valueOf(tag.id)
+            return byName(tag.id)
+        }
+
+        /**
+         * Returns the associated enum, or null if it is an invalid name.
+         */
+        fun byName(name: String): DCourse? {
+            try {
+                return valueOf(name)
+            } catch (e: Exception) {
+                return null
+            }
         }
 
     }
@@ -86,10 +97,7 @@ enum class DCourse(
      */
     fun resolveTitle(context: Context): String =
             title ?:  // use title if not null
-                if(titleRes != null) // otherwise use title res
-                    context.resources.getString(titleRes)!!
-                else
-                    throw IllegalArgumentException("Both title and titleRes are null for course")
+                    context.resources.getString(titleRes)!! // use title res otherwise
 
     /**
      * Returns this course object as a matching DTag object.

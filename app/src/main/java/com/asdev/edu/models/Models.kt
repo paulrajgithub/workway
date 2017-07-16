@@ -62,6 +62,19 @@ data class DTag(val text: String, val id: Any = TAG_ID_NONSTANDARD, val scope: I
         fun forProfessor(name: String) =
                 DTag(name, name, TAG_SCOPE_PROF)
 
+        /**
+         * Creates a new tag for a school with the
+         * given name.
+         */
+        fun forSchoolName(name: String) =
+                DTag(name, name.toLowerCase(), TAG_SCOPE_SCHOOL)
+
+        /**
+         * Creates a new tag for a school with the
+         * given place id.
+         */
+        fun forSchoolPlaceId(placeId: String) =
+                DTag(placeId, placeId, TAG_SCOPE_PLACE_ID)
     }
 
 }
@@ -111,7 +124,19 @@ data class DUser(
         /**
          * Users that this user follows.
          */
-        var following: List<String>): Serializable {
+        var following: List<String>,
+        /**
+         * The grade of this user
+         */
+        var grade: DGrade,
+        /**
+         * The place id of the school of the user
+         */
+        var schoolPlaceId: String,
+        /**
+         * The name of the school of the user.
+         */
+        var schoolName: String): Serializable {
 
     companion object {
 
@@ -134,7 +159,10 @@ data class DUser(
                                 DCourse.PHYSICS
                         ),
                         followers = listOf(),
-                        following = listOf()
+                        following = listOf(),
+                        grade = DGrade.GRADE_9,
+                        schoolPlaceId = "",
+                        schoolName = ""
                 )
 
     }
@@ -199,6 +227,26 @@ data class DPost(
     fun resolveDocType(): DDocType? =
         DDocType.fromTag(tags.find { it.scope containsBits TAG_SCOPE_TYPE })
 
+    /**
+     * Attempts to find the grade level of this post by taking the first tag
+     * that contains the scope of TAG_SCOPE_GRADE.
+     */
+    fun resolveGrade(): DGrade? =
+            DGrade.fromTag(tags.find { it.scope containsBits TAG_SCOPE_GRADE })
+
+    /**
+     * Attempts to find the school name of this post by taking the first tag
+     * that contains the scope of TAG_SCOPE_SCHOOL and taking the textual value.
+     */
+    fun resolveSchoolName() =
+            tags.find { it.scope containsBits TAG_SCOPE_SCHOOL }?.text
+
+    /**
+     * Attempts to find the school place id of this post by taking the first tag
+     * that contains the scope of TAG_SCOPE_PLACE_ID and taking the textual value.
+     */
+    fun resolveSchoolPlaceId() =
+            tags.find { it.scope containsBits TAG_SCOPE_PLACE_ID }?.text
 }
 
 /**
