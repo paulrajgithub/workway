@@ -3,7 +3,6 @@ package com.asdev.edu
 import android.content.Context
 import android.view.View
 import com.asdev.edu.models.DUser
-import com.google.gson.GsonBuilder
 import java.io.*
 
 /**
@@ -28,8 +27,9 @@ fun readDiskDuser(appContext: Context): DUser? {
     val body = readFile(file)
     try {
         // parse the body as a duser obj
-        return GsonBuilder().create().fromJson(body, DUser::class.java)
+        return GSON.fromJson(body, DUser::class.java)
     } catch (e: Exception) {
+        e.printStackTrace()
         return null
     }
 }
@@ -38,7 +38,7 @@ fun commitDiskDuser(duser: DUser, appContext: Context) {
     val file = File(appContext.filesDir, DUSER_FILE)
 
     // convert duser to json
-    val body = GsonBuilder().create().toJson(duser)
+    val body = GSON.toJson(duser)
     // write out
     writeFile(body, file)
 }
@@ -63,12 +63,13 @@ fun readFile(file: File): String {
     var line: String?
     do {
         line = ins.readLine()
-
-        builder.append(line)
-        builder.append("\n")
+        if(line != null) {
+            builder.append(line)
+            builder.append("\n")
+        }
     } while(line != null)
 
     ins.close()
 
-    return builder.toString()
+    return builder.toString().trim()
 }

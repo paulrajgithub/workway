@@ -43,6 +43,12 @@ enum class DDocType(
     }
 
     /**
+     * Resolves the title of this doc type using the given context.
+     */
+    fun resolveTitle(context: Context): String =
+                    context.resources.getString(titleRef)!!
+
+    /**
      * Converts this DocType to a tag object.
      */
     fun toTag(context: Context)

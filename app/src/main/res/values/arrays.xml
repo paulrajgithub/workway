@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="onboarding_grade_entries">
+        <item>@string/title_grade_gr9</item>
+        <item>@string/title_grade_gr10</item>
+        <item>@string/title_grade_gr11</item>
+        <item>@string/title_grade_gr12</item>
+        <item>@string/title_grade_uni1</item>
+        <item>@string/title_grade_uni2</item>
+        <item>@string/title_grade_uni3</item>
+        <item>@string/title_grade_uni4</item>
+        <item>@string/title_grade_uni5</item>
+    </string-array>
+
+</resources>

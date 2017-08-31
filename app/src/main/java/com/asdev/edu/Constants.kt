@@ -1,5 +1,6 @@
 package com.asdev.edu
 
+import com.google.gson.GsonBuilder
 import java.util.*
 
 /**
@@ -18,6 +19,33 @@ val MD_COURSE_COLORS = arrayOf(
  */
 val RANDOM = Random()
 
+val GSON = GsonBuilder().setLenient().create()
+
+/**
+ * Request code for Firebase sign in.
+ */
+const val RC_FB_SIGNIN = 4001
+
+/**
+ * Request code for Google Maps Place Picker activity.
+ */
+const val RC_PLACE_PICKER = 4002
+
+/**
+ * The file name of the locally cached DUser object.
+ */
 const val DUSER_FILE = "duser.json"
 
-val EXTRA_DUSER = "duser"
+const val NETWORK_TIMEOUT = 7000L
+
+/**
+ * Intent extra key for the DUser object.
+ */
+const val EXTRA_DUSER = "duser"
+
+/**
+ * The name of the locally saved (app settings) preferences.
+ */
+const val LOCAL_PREFS_NAME = "LocalPrefs"
+
+const val PREF_KEY_HAS_SHOWN_ONB = "has_shown_onb"

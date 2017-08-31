@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="resp_error_none">OK</string>
+    <string name="resp_error_internal">An internal app error occurred</string>
+    <string name="resp_error_reg_anon">You must be signed in</string>
+    <string name="resp_error_reg_exists">A user like that already exists</string>
+    <string name="resp_error_no_pp_ref">No profile picture was selected</string>
+    <string name="resp_error_invalid_pp">An invalid profile picture was selected</string>
+    <string name="resp_error_invalid_grade">An invalid grade was selected</string>
+    <string name="resp_error_no_grade">No grade was selected</string>
+    <string name="resp_error_no_courses">No courses were selected</string>
+    <string name="resp_error_no_coll_name">No name was given for the collection</string>
+    <string name="resp_error_no_refs">No posts were selected for the collection</string>
+    <string name="resp_error_coll_name_len">The name of the collection is too long</string>
+    <string name="resp_error_coll_post_num">Too many posts were added to the collection</string>
+    <string name="resp_error_school_name_len">The school name is too long</string>
+    <string name="resp_error_post_view_forb">You aren\'t allowed to see this post</string>
+    <string name="resp_error_invalid_post">Post was not found</string>
+    <string name="resp_error_post_create_miss_props">The post is missing either the title, image, or tags</string>
+    <string name="resp_error_post_bad_title">The title of the post is invalid</string>
+    <string name="resp_error_post_bad_ref">The link to the post is broken</string>
+    <string name="resp_error_tag_num">The post is either missing tags or has too many</string>
+    <string name="resp_error_tags_req">The post is missing certains tags that are required</string>
+    <string name="resp_error_remove_owner">You must be the owner of the post to remove it</string>
+    <string name="resp_error_bad_token">The session has expired, please try again.</string>
+    <string name="resp_error_no_token">You are not signed in</string>
+
+</resources>

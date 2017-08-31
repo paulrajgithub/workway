@@ -27,7 +27,7 @@ class KuuvTest {
         val testFile = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "test.png")
         KuuvService.upload(testFile, {
             uploaded, total ->
-            println((uploaded.toDouble() / total.toDouble()) * 100.0)
+            println("Kuuv uploaded " + (uploaded.toDouble() / total.toDouble()) * 100.0 + "%")
         }).blockingSubscribe({ // on next
             println(it)
         }, { // on error

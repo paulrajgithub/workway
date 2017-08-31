@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/onboarding_tv_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginStart="8dp"
+        android:text="@string/text_onb_grade"
+
+        app:layout_constraintBottom_toBottomOf="@+id/onboarding_spinner_grade"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/onboarding_spinner_grade" />
+
+    <TextView
+        android:id="@+id/onboarding_tv_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:text="@string/text_onb_school"
+        app:layout_constraintBottom_toBottomOf="@+id/onboarding_pick_school"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/onboarding_pick_school" />
+
+    <Spinner
+        android:id="@+id/onboarding_spinner_grade"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+
+        android:layout_marginTop="8dp"
+
+        android:entries="@array/onboarding_grade_entries"
+        app:layout_constraintLeft_toRightOf="@+id/onboarding_tv_grade"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/onboarding_pick_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:onClick="actionPickSchool"
+        android:text="@string/text_onb_pick_school"
+        app:layout_constraintLeft_toRightOf="@+id/onboarding_tv_school"
+        app:layout_constraintTop_toBottomOf="@+id/onboarding_spinner_grade" />
+
+    <Button
+        android:id="@+id/onboarding_next"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:layout_marginRight="8dp"
+        android:onClick="actionNextProfile"
+        android:text="@string/text_onb_next"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/onboarding_skip_profile"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginStart="8dp"
+        android:onClick="actionSkipProfile"
+        android:text="@string/text_onb_skip_profile"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/onboarding_tv_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+
+        android:text="@string/text_onb_signin"
+
+        app:layout_constraintBottom_toTopOf="@+id/onboarding_skip_profile"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starred courses"
+        app:layout_constraintTop_toBottomOf="@+id/onboarding_pick_school"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile picture"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

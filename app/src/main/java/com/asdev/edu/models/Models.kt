@@ -43,10 +43,6 @@ const val TAG_SCOPE_TYPE     = 0b001000
  * Tag scope for professor.
  */
 const val TAG_SCOPE_PROF     = 0b010000
-/**
- * Tag scope for school google maps place id.
- */
-const val TAG_SCOPE_PLACE_ID = 0b100000
 
 /**
  * A class that represents an associative textual tag.
@@ -62,19 +58,6 @@ data class DTag(val text: String, val id: Any = TAG_ID_NONSTANDARD, val scope: I
         fun forProfessor(name: String) =
                 DTag(name, name, TAG_SCOPE_PROF)
 
-        /**
-         * Creates a new tag for a school with the
-         * given name.
-         */
-        fun forSchoolName(name: String) =
-                DTag(name, name.toLowerCase(), TAG_SCOPE_SCHOOL)
-
-        /**
-         * Creates a new tag for a school with the
-         * given place id.
-         */
-        fun forSchoolPlaceId(placeId: String) =
-                DTag(placeId, placeId, TAG_SCOPE_PLACE_ID)
     }
 
 }
@@ -235,18 +218,11 @@ data class DPost(
             DGrade.fromTag(tags.find { it.scope containsBits TAG_SCOPE_GRADE })
 
     /**
-     * Attempts to find the school name of this post by taking the first tag
+     * Attempts to find the school of this post by taking the first tag
      * that contains the scope of TAG_SCOPE_SCHOOL and taking the textual value.
      */
-    fun resolveSchoolName() =
-            tags.find { it.scope containsBits TAG_SCOPE_SCHOOL }?.text
-
-    /**
-     * Attempts to find the school place id of this post by taking the first tag
-     * that contains the scope of TAG_SCOPE_PLACE_ID and taking the textual value.
-     */
-    fun resolveSchoolPlaceId() =
-            tags.find { it.scope containsBits TAG_SCOPE_PLACE_ID }?.text
+    fun resolveSchool(): DSchool? =
+            DSchool.fromTag(tags.find { it.scope containsBits TAG_SCOPE_SCHOOL })
 }
 
 /**
@@ -259,6 +235,7 @@ data class DUIAction<out T>(val type: Int, val payload: T) {
         val TYPE_POST_FULLSCREEN = 1
         val TYPE_POST_SAVE = 2
         val TYPE_POST_SEND = 3
+        val TYPE_POST_COLLECTION = 4
 
     }
 }

@@ -60,8 +60,12 @@ class VHUpdateItem(view: View,
         val course = post.resolveCourse()
         val professor = post.resolveProfessor()
 
-        // try and resolve the course title first, then the professor, then the default blank
-        subtitleView.text = course?.resolveTitle(itemView.context)?:professor?:""
+        subtitleView.text = course?.resolveTitle(itemView.context)?: // try and resolve the course title
+                professor?: // use professor if specified
+                post.resolveDocType()?.resolveTitle(itemView.context)?: // try and use the doc type if given
+                post.resolveSchool()?.name?: // try and use the school if given
+                ""
+
         // TODO: glide fetch post ref
         post.ref
         // user should be already resolved

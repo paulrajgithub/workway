@@ -1,5 +1,6 @@
 package com.asdev.edu
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -14,34 +15,39 @@ class LauncherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
 
-        // init firebase
         FirebaseApp.initializeApp(this)
+
+        // check the local prefs for on boarding sign
+        val prefs = getSharedPreferences(LOCAL_PREFS_NAME, Context.MODE_PRIVATE)
+        if(!prefs.getBoolean(PREF_KEY_HAS_SHOWN_ONB, false)) {
+            // launch on boarding activity and remove this activity
+            launchOnb()
+            return
+        }
+
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
-        // check if signed in or not
-        if(user == null) {
-            // sign in anon
-            val signIn = auth.signInAnonymously()
+        val duser = readDiskDuser(applicationContext)
 
-            signIn.addOnSuccessListener {
-                // use this auth user for sign in
-                val authUser = it.user
-
-                // standard app launch
-                // retrieve the local DUser obj
-                val duser = loadDuser(authUser)
-                launchMain(duser)
-            }
-
-            signIn.addOnFailureListener {
-                // no sign in at all
-                launchMain(null)
-            }
-        } else {
-            val duser = loadDuser(user)
-            // standard app launch
+        // verify the authentication state
+        if(user != null && duser != null && duser.firebaseId == user.uid) {
             launchMain(duser)
+        } else if(user == null && duser == null){
+            // if no auth and no duser, that means the ONB was skipped
+            // launch with no context
+            launchMain(null)
+        } else {
+            // mismatch between auth user and duser
+            // sign out fb user, delete disk duser, and reset state
+            auth.signOut()
+            launchOnb()
         }
+    }
+
+    private fun launchOnb() {
+        finish()
+        startActivity(Intent(this, OnBoardingActivity::class.java))
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     private fun launchMain(duser: DUser?) {
@@ -52,34 +58,6 @@ class LauncherActivity : AppCompatActivity() {
         finish()
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-    }
-
-    private fun loadDuser(user: FirebaseUser): DUser {
-        // retrieve the local DUser obj
-        var duser = readDiskDuser(applicationContext)
-
-        if(duser == null) {
-            val blank = DUser.blank()
-            // set to firebase id
-            blank.firebaseId = user.uid
-            duser = blank
-            commitDiskDuser(duser, applicationContext)
-            // TODO: notify new user activity
-            // TODO: gather: grade and school
-        } else {
-            // check that the firebase ids match
-            if(duser.firebaseId != user.uid) {
-                // blank it and use the new id
-                val blank = DUser.blank()
-                blank.firebaseId = user.uid
-                duser = blank
-                commitDiskDuser(duser, applicationContext)
-                // TODO: notify new user activity
-                // TODO: gather: grade and school
-            }
-        }
-
-        return duser
     }
 
 }

@@ -11,7 +11,11 @@ import com.asdev.edu.fragments.FragmentCollections
 import com.asdev.edu.fragments.FragmentCreate
 import com.asdev.edu.fragments.FragmentHome
 import com.asdev.edu.fragments.FragmentProfile
+import com.asdev.edu.models.DGrade
+import com.asdev.edu.models.DSchool
+import com.asdev.edu.services.RemoteService
 import com.google.firebase.auth.FirebaseAuth
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -55,15 +59,6 @@ class MainActivity : AppCompatActivity() {
         // init the network client
         AndroidNetworking.initialize(applicationContext)
 
-        // get the fb auth
-        val auth = FirebaseAuth.getInstance()
-        // we should be signed in already
-        val user = auth.currentUser
-        user?.getToken(true)?.addOnCompleteListener {
-            res ->
-            println("Token: " + res.result.token)
-        }
-
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
 
         // do the initial fragment
@@ -74,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         val menuView = navigation.getChildAt(0) as BottomNavigationMenuView
 
         // disable shifting
-        for (i in 0..menuView.childCount - 1) {
+        for (i in 0 until menuView.childCount) {
             val child = menuView.getChildAt(i) as BottomNavigationItemView
             child.setShiftingMode(false)
             child.setChecked(false)

@@ -65,5 +65,21 @@
     <string name="title_grade_uni3">3rd year</string>
     <string name="title_grade_uni4">4th year</string>
     <string name="title_grade_uni5">5th year</string>
+    <string name="text_onb_grade">Grade</string>
+    <string name="text_onb_school">School</string>
+    <string name="text_onb_pick_school">Pick School</string>
+    <string name="text_onb_next">Next</string>
+    <string name="text_onb_skip_profile">Skip</string>
+    <string name="text_onb_skip_content">Skip</string>
+    <string name="text_onb_signin">In the next step, you\'ll sign in using either Google, Facebook, or Twitter to finish creating your account.</string>
+    <string name="error_no_network">No internet connection</string>
+    <string name="error_not_school">The selected location is not a school or university</string>
+    <string name="error_no_school_picked">You must choose a school or university</string>
+    <string name="error_sign_in_fail">Unable to sign in. Try again.</string>
+    <string name="resp_error_user_not_found">User not found</string>
+    <string name="resp_error_post_not_found">Post not found</string>
+    <string name="resp_error_collection_not_found">Collection not found</string>
+    <string name="resp_error_request_timeout">Couldn\'t connect</string>
+
 
 </resources>
