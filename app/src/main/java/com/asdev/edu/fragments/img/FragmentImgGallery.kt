@@ -1,4 +1,4 @@
-package com.asdev.edu.fragments
+package com.asdev.edu.fragments.img
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,16 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.asdev.edu.R
 
-const val FRAGMENT_ONB_CONTENT = "FragmentOnbContent"
-
-class FragmentOnbContent: Fragment() {
+class FragmentImgGallery: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if(inflater == null)
-            return null
+        inflater?: return null // assert that the inflater is not null
 
-        val view = inflater.inflate(R.layout.fragment_onb_content, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_img_gallery, container, false)
     }
 
 }

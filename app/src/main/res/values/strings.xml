@@ -2,6 +2,7 @@
     <string name="app_name">Homework Share</string>
     <string name="vendor_name">Asdev</string>
     <string name="vendor_name_full">Asdev Software Development</string>
+    <string name="activity_select_image">Select image</string>
 
     <string name="text_auto_import">Auto-import</string>
     <string name="text_more">More</string>
@@ -24,6 +25,7 @@
     <string name="content_desc_action_send">Send image</string>
     <string name="content_desc_course">Course icon</string>
     <string name="content_description_logo">Vendor logo</string>
+    <string name="content_desc_camera_na">Camera not available</string>
 
     <string name="title_home">Home</string>
     <string name="title_collections">Collections</string>
@@ -72,14 +74,21 @@
     <string name="text_onb_skip_profile">Skip</string>
     <string name="text_onb_skip_content">Skip</string>
     <string name="text_onb_signin">In the next step, you\'ll sign in using either Google, Facebook, or Twitter to finish creating your account.</string>
+
     <string name="error_no_network">No internet connection</string>
     <string name="error_not_school">The selected location is not a school or university</string>
     <string name="error_no_school_picked">You must choose a school or university</string>
     <string name="error_sign_in_fail">Unable to sign in. Try again.</string>
-    <string name="resp_error_user_not_found">User not found</string>
-    <string name="resp_error_post_not_found">Post not found</string>
-    <string name="resp_error_collection_not_found">Collection not found</string>
-    <string name="resp_error_request_timeout">Couldn\'t connect</string>
+    <string name="error_camera_permission">To capture photos, you need to allow access to your camera.</string>
 
+    <string name="tab_gallery">Gallery</string>
+    <string name="tab_photo">Photo</string>
+    <string name="button_allow_camera">Allow camera</string>
+    <string name="content_desc_flash_mode">Flash mode</string>
+    <string name="content_desc_shutter">Shutter button</string>
+    <string name="content_desc_retake_photo">Retake photo</string>
+    <string name="content_desc_submit_photo">Submit photo</string>
+    <string name="content_desc_crop_photo">Crop photo</string>
+    <string name="content_desc_image_preview">Image preview</string>
 
 </resources>

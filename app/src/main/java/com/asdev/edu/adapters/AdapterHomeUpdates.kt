@@ -83,7 +83,7 @@ class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<String>>):
         // use source disk caching as it will be loaded into a larger view
         // later if clicked upon
         Glide
-                .with(imgView.context.applicationContext)
+                .with(imgView.context)
                 .load(SAMPLE_IMGS[position])
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .placeholder(R.drawable.ic_image_placeholder)
@@ -92,7 +92,7 @@ class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<String>>):
 
         // dont animate as the circle image view doesn't like the animation drawable
         Glide
-                .with(imgView.context.applicationContext)
+                .with(imgView.context)
                 .load(PP_PHOTOS[position % PP_PHOTOS.size])
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .placeholder(R.drawable.ic_person_default)

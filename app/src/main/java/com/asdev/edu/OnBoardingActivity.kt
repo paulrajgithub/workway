@@ -9,7 +9,7 @@ import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.asdev.edu.fragments.*
+import com.asdev.edu.fragments.onb.*
 import com.asdev.edu.models.DGrade
 import com.asdev.edu.models.DSchool
 import com.asdev.edu.models.DUser

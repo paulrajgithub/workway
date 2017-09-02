@@ -25,5 +25,9 @@
     <string name="resp_error_remove_owner">You must be the owner of the post to remove it</string>
     <string name="resp_error_bad_token">The session has expired, please try again.</string>
     <string name="resp_error_no_token">You are not signed in</string>
+    <string name="resp_error_user_not_found">User not found</string>
+    <string name="resp_error_post_not_found">Post not found</string>
+    <string name="resp_error_collection_not_found">Collection not found</string>
+    <string name="resp_error_request_timeout">Couldn\'t connect</string>
 
 </resources>

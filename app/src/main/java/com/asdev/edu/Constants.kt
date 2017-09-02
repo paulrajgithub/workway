@@ -31,6 +31,8 @@ const val RC_FB_SIGNIN = 4001
  */
 const val RC_PLACE_PICKER = 4002
 
+const val RC_IMAGE_ACTIVITY = 4003
+
 /**
  * The file name of the locally cached DUser object.
  */

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Base camera content - DEFAULT: VISIBLE -->
+    <LinearLayout
+        android:id="@+id/fragment_img_camera_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- The base camera view -->
+        <com.google.android.cameraview.CameraView
+            android:id="@+id/fragment_img_camera"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#FFF"
+
+            app:aspectRatio="16:9"
+            app:autoFocus="true"
+            app:facing="back"
+            app:flash="auto" />
+
+        <!-- Camera controls -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:background="#000000">
+
+            <ImageView
+                android:id="@+id/fragment_img_flash"
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+
+                android:padding="32dp"
+                app:srcCompat="@drawable/ic_flash_auto_white_24dp"
+                android:contentDescription="@string/content_desc_flash_mode"
+                android:layout_gravity="start"
+                />
+
+            <ImageView
+                android:id="@+id/fragment_img_shutter"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+
+                android:clickable="true"
+
+                android:padding="14dp"
+                app:srcCompat="@drawable/shutter_button"
+                android:contentDescription="@string/content_desc_shutter"
+
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Image edit content - DEFAULT: GONE -->
+    <LinearLayout
+        android:id="@+id/fragment_img_preview_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:visibility="gone">
+
+         <!--Image work area -->
+        <ImageView
+            android:id="@+id/fragment_img_preview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/content_desc_image_preview"
+            />
+
+        <!-- Preview controls -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:background="#000000">
+
+            <ImageView
+                android:id="@+id/fragment_img_preview_clear"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+
+                android:padding="32dp"
+                app:srcCompat="@drawable/ic_clear_white_24dp"
+                android:contentDescription="@string/content_desc_retake_photo"
+                android:layout_gravity="start" />
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+
+                android:padding="32dp"
+                app:srcCompat="@drawable/ic_check_white_24dp"
+                android:contentDescription="@string/content_desc_submit_photo"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+
+                android:padding="32dp"
+                app:srcCompat="@drawable/ic_crop_white_24dp"
+                android:contentDescription="@string/content_desc_crop_photo"
+                android:layout_gravity="end" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Permission missing content - DEFAULT: GONE -->
+    <LinearLayout
+        android:id="@+id/fragment_img_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="?android:colorBackground"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+
+            android:tint="?android:textColorSecondary"
+            app:srcCompat="@drawable/ic_photo_camera_black_24dp"
+            android:contentDescription="@string/content_desc_camera_na"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="42dp"
+            android:paddingRight="42dp"
+            android:layout_marginTop="8dp"
+
+            android:text="@string/error_camera_permission"
+            android:gravity="center"
+            />
+
+        <Button
+            android:id="@+id/fragment_img_perm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:text="@string/button_allow_camera"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

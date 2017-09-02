@@ -10,10 +10,20 @@
         <item name="android:textColorSecondary">#757575</item>
     </style>
 
-    <style name="AppTheme.Toolbar" parent="Theme.AppCompat.Light">
+    <style name="AppTheme.Toolbar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textColorPrimary">#222</item>
+        <item name="android:textColorSecondary">#757575</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#bdbdbd</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlHighlight">#AAAAAA</item>
 
         <item name="android:textColorPrimary">#222</item>
         <item name="android:textColorSecondary">#757575</item>

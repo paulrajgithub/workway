@@ -1,4 +1,4 @@
-package com.asdev.edu.fragments
+package com.asdev.edu.fragments.onb
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
