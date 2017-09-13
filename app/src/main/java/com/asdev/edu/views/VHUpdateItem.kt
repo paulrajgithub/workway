@@ -37,6 +37,7 @@ class VHUpdateItem(view: View,
 
     val actionSave = view.findViewById(R.id.update_action_save) as ImageButton
     val actionSend = view.findViewById(R.id.update_action_send) as ImageButton
+    val actionFullscreen = view.findViewById(R.id.update_action_fullscreen)
 
     /**
      * Sets this update view to the given post.
@@ -51,6 +52,15 @@ class VHUpdateItem(view: View,
 
         actionSend.setOnClickListener {
             actionHandler.onNext(DUIAction(DUIAction.TYPE_POST_SEND, post._id!!))
+        }
+
+        actionFullscreen.setOnClickListener {
+            actionHandler.onNext(DUIAction(DUIAction.TYPE_POST_FULLSCREEN, post._id!!))
+        }
+
+        // same as fullscreening the image
+        itemView.setOnClickListener {
+            actionHandler.onNext(DUIAction(DUIAction.TYPE_POST_FULLSCREEN, post._id!!))
         }
 
         // update the ui

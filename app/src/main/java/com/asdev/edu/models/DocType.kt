@@ -38,7 +38,15 @@ enum class DDocType(
             }
 
             // the tag id is the name of the course
-            return valueOf(tag.id)
+            return byName(tag.id)
+        }
+
+        fun byName(name: String): DDocType? {
+            try {
+                return valueOf(name)
+            } catch (e: Exception) {
+                return null
+            }
         }
     }
 

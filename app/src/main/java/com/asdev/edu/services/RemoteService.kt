@@ -58,7 +58,7 @@ object RemoteService {
                 json.put(KEY_PP_REF, profilePicRef)
             }
             if (starredCourses != null) {
-                json.put(KEY_STARRED_COURSES, JSONArray(starredCourses))
+                json.put(KEY_STARRED_COURSES, JSONArray(starredCourses.map { it.toString() }))
             }
             json.put(KEY_GRADE, grade)
             json.put(KEY_SCHOOL_NAME, school.name)

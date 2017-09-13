@@ -65,14 +65,16 @@ class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<String>>):
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VHUpdateItem {
         // inflate the layout item
         val inflater = LayoutInflater.from(parent?.context)
-        val view = inflater.inflate(if(viewType == VT_NORMAL) R.layout.item_update_alt else R.layout.item_update_alt_flipped, parent, false)
+        // val view = inflater.inflate(if(viewType == VT_NORMAL) R.layout.item_update_alt else R.layout.item_update_alt_flipped, parent, false)
+        val view = inflater.inflate(R.layout.item_update, parent, false)
         // construct a new empty VH
         return VHUpdateItem(view, null, actionHandler)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if(position % 2 == 0) VT_FLIPPED else VT_NORMAL
-    }
+    // for using the alt items
+//    override fun getItemViewType(position: Int): Int {
+//        return if(position % 2 == 0) VT_FLIPPED else VT_NORMAL
+//    }
 
     override fun onBindViewHolder(holder: VHUpdateItem?, position: Int) {
         // set to the post item

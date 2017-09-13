@@ -3,6 +3,7 @@ package com.asdev.edu.views
 import android.graphics.PorterDuff
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayout
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -13,12 +14,13 @@ import com.asdev.edu.models.DCourse
 /**
  * A view holder that represents a course selector object.
  */
-class VHCourseSelector private constructor(val view: View) {
+class VHCourseSelector(view: View): RecyclerView.ViewHolder(view) {
+
+    private val iconView = view.findViewById(R.id.course_icon) as ImageView
+    private val titleView = view.findViewById(R.id.course_title) as TextView
 
     fun setToCourse(course: DCourse) {
-        // customize it
-        val iconView = view.findViewById(R.id.course_icon) as ImageView
-        val titleView = view.findViewById(R.id.course_title) as TextView
+        val view = itemView
 
         // set the title text
         titleView.text = course.resolveTitle(view.context)

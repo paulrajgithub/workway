@@ -1,6 +1,446 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <!-- Toolbar -->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+
+            app:title="@string/title_create_post" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:animateLayoutChanges="true">
+
+            <!--Image select ui-->
+            <FrameLayout
+                android:id="@+id/fragment_create_select_image"
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:background="#EEE"
+                android:clickable="true"
+
+                android:foreground="?attr/selectableItemBackground"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:drawablePadding="8dp"
+                    android:drawableTop="@drawable/ic_add_a_photo_gray_24dp"
+
+                    android:gravity="center"
+                    android:text="@string/button_select_image" />
+
+            </FrameLayout>
+
+            <!--Image preview and controls ui-->
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/fragment_create_preview_image"
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:background="#EEE"
+                android:contentDescription="@string/content_desc_image_preview"
+                android:scaleType="fitCenter"
+
+                android:visibility="gone" />
+
+            <!-- Preview controls UI -->
+            <LinearLayout
+                android:id="@+id/fragment_create_preview_controls"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/fragment_create_preview_clear"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:contentDescription="@string/content_desc_clear_image"
+                    android:padding="8dp"
+                    android:tint="?android:textColorPrimary"
+                    app:srcCompat="@drawable/ic_clear_white_24dp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:contentDescription="@string/content_desc_clear_image"
+                    android:padding="8dp"
+                    android:tint="?android:textColorPrimary"
+                    app:srcCompat="@drawable/ic_crop_white_24dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_add_to_photos_gray_24dp"
+                    android:drawablePadding="8dp"
+                    android:drawableRight="@drawable/ic_add_to_photos_gray_24dp"
+
+                    android:gravity="end|center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/button_select_multiple_images"
+                    android:textColor="?android:textColorPrimary" />
+
+            </LinearLayout>
+
+            <!-- Divider for the controls and form input -->
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginStart="60dp"
+
+                android:background="@color/colorDivider"
+                android:visibility="gone" />
+
+            <!-- Main input form-->
+            <!-- Title item -->
+            <LinearLayout
+                android:id="@+id/fragment_create_edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_title"
+                    android:padding="16dp"
+                    android:tint="?android:textColorSecondary"
+                    app:srcCompat="@drawable/ic_label_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_post_title" />
+
+                    <TextView
+                        android:id="@+id/fragment_create_title_label"
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_none" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Course item -->
+            <LinearLayout
+                android:id="@+id/fragment_create_edit_course"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_course"
+                    android:padding="16dp"
+                    android:tint="?android:textColorSecondary"
+                    app:srcCompat="@drawable/ic_schedule_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_course" />
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_none" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Professor item -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_professor"
+                    android:padding="16dp"
+                    android:tint="?android:textColorSecondary"
+                    app:srcCompat="@drawable/ic_person_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_professor" />
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_none" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Doc type item -->
+            <LinearLayout
+                android:id="@+id/fragment_create_edit_doctype"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_doc_type"
+                    android:padding="16dp"
+                    android:tint="?android:textColorSecondary"
+                    app:srcCompat="@drawable/ic_document_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_doc_type" />
+
+                    <TextView
+                        android:id="@+id/fragment_create_doctype_label"
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/doc_type_default" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Visibility item -->
+            <LinearLayout
+                android:id="@+id/fragment_create_edit_vis"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_visibility"
+                    android:padding="16dp"
+                    android:tint="?android:textColorSecondary"
+                    app:srcCompat="@drawable/ic_public_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_visibility" />
+
+                    <TextView
+                        android:id="@+id/fragment_create_vis_label"
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/visibility_default" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginStart="60dp"
+
+                android:background="@color/colorDivider" />
+
+            <!-- School item -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_school"
+                    android:padding="16dp"
+                    android:tint="?attr/colorAccent"
+                    app:srcCompat="@drawable/ic_school_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_school" />
+
+                    <TextView
+                        android:id="@+id/fragment_create_school_label"
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_none" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Grade item -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_grade"
+                    android:padding="16dp"
+                    android:tint="?attr/colorAccent"
+                    app:srcCompat="@drawable/ic_grade_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_grade" />
+
+                    <TextView
+                        android:id="@+id/fragment_create_grade_label"
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_grade_gr12" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

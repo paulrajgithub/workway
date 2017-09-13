@@ -31,6 +31,15 @@ object SharedData {
     }
 
     /**
+     * Gets the DUser as a read-only object that will be passed in as
+     * a parameter to the given block of code. Any changes made to the
+     * provided object will be discarded.
+     */
+    fun duserRo(appContext: Context, block: (DUser?) -> Unit) {
+        block(duserRo(appContext))
+    }
+
+    /**
      * Takes in a block of code with the param of the DUser object.
      * After the block is executed, the changes to the object
      * will be committed to the disk. THIS WILL NOT UPDATE

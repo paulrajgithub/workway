@@ -6,8 +6,6 @@
 
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
 
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground">
@@ -22,8 +20,7 @@
         android:scaleType="centerCrop"
         android:contentDescription="@string/content_desc_image_update"
 
-        android:layout_alignParentTop="true"
-        />
+        android:layout_alignParentTop="true" />
 
     <LinearLayout
         android:id="@+id/update_actions"
@@ -35,9 +32,22 @@
 
         android:translationX="-9dp"
 
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="4dp"
         android:layout_below="@+id/update_image">
+
+        <ImageButton
+            android:id="@+id/update_action_fullscreen"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            app:srcCompat="@drawable/ic_fullscreen_black_24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+
+            android:contentDescription="@string/content_desc_action_fullscreen"/>
 
         <ImageButton
             android:id="@+id/update_action_save"
@@ -74,6 +84,9 @@
         android:layout_toLeftOf="@+id/update_profile_photo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+
 
         android:layout_marginBottom="2dp"
 
@@ -92,6 +105,8 @@
         android:layout_toLeftOf="@+id/update_profile_photo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
 
         style="@style/AppTheme.TextAppearance.Subtitle"
         android:text="@string/text_update_subtitle"
@@ -109,6 +124,8 @@
         android:layout_alignBottom="@+id/update_subtitle"
 
         android:padding="0dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
 
         app:srcCompat="@drawable/ic_person_default"
         android:contentDescription="@string/content_desc_profile_photo"

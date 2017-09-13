@@ -15,6 +15,14 @@
     <string name="text_search">Search anything</string>
     <string name="text_user_name">User name</string>
     <string name="text_update_desc">Update description</string>
+    <string name="text_visibility">Visibility</string>
+    <string name="text_grade">Grade</string>
+    <string name="text_school">School</string>
+    <string name="text_none">None</string>
+    <string name="text_post_title">Title</string>
+    <string name="text_course">Course</string>
+    <string name="text_doc_type">Type</string>
+    <string name="text_professor">Professor</string>
 
     <string name="content_desc_image_autoimport">Auto import image</string>
     <string name="content_desc_profile_photo">Profile photo</string>
@@ -26,11 +34,25 @@
     <string name="content_desc_course">Course icon</string>
     <string name="content_description_logo">Vendor logo</string>
     <string name="content_desc_camera_na">Camera not available</string>
+    <string name="content_desc_clear_image">Remove photo</string>
+    <string name="content_desc_flash_mode">Flash mode</string>
+    <string name="content_desc_shutter">Shutter button</string>
+    <string name="content_desc_retake_photo">Retake photo</string>
+    <string name="content_desc_submit_photo">Submit photo</string>
+    <string name="content_desc_crop_photo">Crop photo</string>
+    <string name="content_desc_image_preview">Image preview</string>
+    <string name="content_desc_school">School</string>
+    <string name="content_desc_grade">Grade</string>
+    <string name="content_desc_visibility">Visibility</string>
+    <string name="content_desc_title">Post title</string>
+    <string name="content_desc_professor">Professor</string>
+    <string name="content_desc_doc_type">Type of document</string>
 
     <string name="title_home">Home</string>
     <string name="title_collections">Collections</string>
     <string name="title_create">Create</string>
     <string name="title_profile">Profile</string>
+    <string name="title_create_post">Upload a document</string>
 
     <string name="title_course_biology">Biology</string>
     <string name="title_course_business">Business</string>
@@ -56,7 +78,7 @@
     <string name="title_doc_essay">Essay</string>
     <string name="title_doc_report">Report</string>
     <string name="title_doc_assignment">Assignment</string>
-    <string name="title_doc_solution">Solution</string>
+    <string name="doc_type_default">@string/title_doc_homework</string>
 
     <string name="title_grade_gr9">Grade 9</string>
     <string name="title_grade_gr10">Grade 10</string>
@@ -83,12 +105,19 @@
 
     <string name="tab_gallery">Gallery</string>
     <string name="tab_photo">Photo</string>
+
     <string name="button_allow_camera">Allow camera</string>
-    <string name="content_desc_flash_mode">Flash mode</string>
-    <string name="content_desc_shutter">Shutter button</string>
-    <string name="content_desc_retake_photo">Retake photo</string>
-    <string name="content_desc_submit_photo">Submit photo</string>
-    <string name="content_desc_crop_photo">Crop photo</string>
-    <string name="content_desc_image_preview">Image preview</string>
+    <string name="button_select_image">Press to select an image</string>
+    <string name="button_select_multiple_images">Select multiple</string>
+
+    <string name="visibility_default">@string/visibility_public</string>
+    <string name="visibility_public">Public</string>
+    <string name="visibility_following">Followers</string>
+    <string name="visibility_private">Private</string>
+
+    <string name="hint_post_title">Enter the title for your post</string>
+
+    <string name="dialog_ok">Ok</string>
+    <string name="dialog_cancel">Cancel</string>
 
 </resources>

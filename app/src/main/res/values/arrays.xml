@@ -13,4 +13,29 @@
         <item>@string/title_grade_uni5</item>
     </string-array>
 
+    <string-array name="visibilities">
+        <item>@string/visibility_public</item>
+        <item>@string/visibility_following</item>
+        <item>@string/visibility_private</item>
+    </string-array>
+
+    <string-array name="doc_types">
+        <item>@string/title_doc_homework</item>
+        <item>@string/title_doc_assignment</item>
+        <item>@string/title_doc_essay</item>
+        <item>@string/title_doc_lab</item>
+        <item>@string/title_doc_note</item>
+        <item>@string/title_doc_report</item>
+        <item>@string/title_doc_textbook</item>
+    </string-array>
+    <string-array name="doc_types_indices">
+        <item>HOMEWORK</item>
+        <item>ASSIGNMENT</item>
+        <item>ESSAY</item>
+        <item>LAB</item>
+        <item>NOTE</item>
+        <item>REPORT</item>
+        <item>TEXTBOOK</item>
+    </string-array>
+
 </resources>

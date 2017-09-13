@@ -23,7 +23,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
 
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:layout_scrollFlags="enterAlways|scroll">
 
             <LinearLayout
                 android:layout_width="match_parent"
