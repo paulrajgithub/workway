@@ -7,6 +7,10 @@ import com.asdev.edu.R
 import com.asdev.edu.models.DCourse
 import com.asdev.edu.views.VHCourseSelector
 
+/**
+ * A [RecyclerView] adapter which binds the given list of [DCourse]s as [VHCourseSelector]
+ * items.
+ */
 class CoursesAdapter(private val courses: List<DCourse>): RecyclerView.Adapter<VHCourseSelector>() {
 
     /**

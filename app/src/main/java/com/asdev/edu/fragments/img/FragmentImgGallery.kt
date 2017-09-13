@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.asdev.edu.R
 
+/**
+ * The fragment for the image picker which loads and displays the local phone
+ * gallery photos.
+ */
 class FragmentImgGallery: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

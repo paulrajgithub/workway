@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import com.asdev.edu.R
 import com.asdev.edu.models.SelectableFragment
 
+/**
+ * A fragment for the [MainActivity] which displays the user's collections.
+ */
 class FragmentCollections: SelectableFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -15,9 +15,17 @@ import io.reactivex.subjects.BehaviorSubject
  */
 typealias PostId = Int
 
+/**
+ * View type for the AdapterHomeContent update item.
+ */
 const val VT_NORMAL = 0
+/**
+ * View type for the AdapterHomeContent update item. Denotes
+ * the item as being flipped.
+ */
 const val VT_FLIPPED = 1
 
+// TODO: these are temporary
 val SAMPLE_IMGS = arrayOf(
         "http://kuuv.io/i/WkWLSzG.jpg",
         "http://kuuv.io/i/pNrneD6.jpg",

@@ -15,8 +15,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_img_photo.*
 
+/**
+ * A fragment for the image picker which displays a camera UI and allows
+ * the user to take a photo in the app itself.
+ */
 class FragmentImgPhoto: Fragment(), CameraView.PictureReceiver {
 
+    /**
+     * Request code for the camera permission request.
+     */
     private val RC_REQUEST_CAMERA_PERM = 54643
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

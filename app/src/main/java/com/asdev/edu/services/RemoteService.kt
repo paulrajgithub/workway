@@ -10,6 +10,10 @@ import io.reactivex.rxkotlin.subscribeBy
 import org.json.JSONArray
 import org.json.JSONObject
 
+/**
+ * A singleton which acts as an API transport between the edu-backend server and the Android client.
+ * All methods are concurrent and the concurrency is implemented using RxJava's [Observable]s.
+ */
 object RemoteService {
 
     private const val REMOTE_BASE_URL = "http://192.168.2.250/api"
@@ -112,9 +116,15 @@ object RemoteService {
      * occurs during execution.
      */
     @JvmStatic
-    fun feed(authToken: String?): Observable<DPost> {
+    fun feed(authToken: String?): Observable<List<DPost>> {
         TODO()
     }
 }
 
+/**
+ * A data class which holds a server API response. If an error occurred,
+ * error != null, and the detailed error will be stored as the response.
+ * If the request was successful, payload != null, and will contain the
+ * type of request data.
+ */
 data class RemoteResponse<out T>(val payload: T?, val error: Response?)

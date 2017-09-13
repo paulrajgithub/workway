@@ -38,7 +38,16 @@ const val RC_IMAGE_ACTIVITY = 4003
  */
 const val DUSER_FILE = "duser.json"
 
+/**
+ * The amount of time in ms that qualifies as a network timeout.
+ */
 const val NETWORK_TIMEOUT = 7000L
+
+/**
+ * The quality of the JPEG image to export and upload
+ * to the servers.
+ */
+const val EXPORT_JPEG_QUALITY = 90
 
 /**
  * Intent extra key for the DUser object.
@@ -50,4 +59,7 @@ const val EXTRA_DUSER = "duser"
  */
 const val LOCAL_PREFS_NAME = "LocalPrefs"
 
+/**
+ * The preference key denoting whether or not the onb has been shown.
+ */
 const val PREF_KEY_HAS_SHOWN_ONB = "has_shown_onb"

@@ -24,6 +24,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_home.*
 
+/**
+ * A fragment for the [MainActivity] which displays the home landing content.
+ */
 class FragmentHome: SelectableFragment() {
 
     /**

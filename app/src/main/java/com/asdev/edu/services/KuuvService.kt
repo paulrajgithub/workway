@@ -15,7 +15,8 @@ const val KUUV_KEY_IMG = "upl"
 const val KUUV_UPLOAD_TAG = "kuuv_img_upl"
 
 /**
- * An object to interact with the Kuuv.io service.
+ * A single to interact with the Kuuv.io service. Acts as a transport bridge and is fully concurrent,
+ * using RxJava's [Observable]s.
  */
 object KuuvService {
 
@@ -31,9 +32,13 @@ object KuuvService {
                 .setTag(KUUV_UPLOAD_TAG)
                 .build()
                 .setUploadProgressListener(listener)
+                // will return a string containing the image URL
                 .stringObservable
+                // run on a dedicated io thread
                 .subscribeOn(Schedulers.io())
+                // join on main thread
                 .observeOn(AndroidSchedulers.mainThread())
+                // set the standard network timeout
                 .timeout(NETWORK_TIMEOUT, TimeUnit.MILLISECONDS)
     }
 

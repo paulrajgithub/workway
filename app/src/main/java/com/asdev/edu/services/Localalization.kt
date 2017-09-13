@@ -5,6 +5,9 @@ import com.asdev.edu.R
 import com.asdev.edu.models.ErrorCodes
 import com.asdev.edu.models.Response
 
+/**
+ * A singleton which provides various localized message @StringRes codes.
+ */
 object Localization {
 
     /**
@@ -13,11 +16,11 @@ object Localization {
      */
     @StringRes
     fun getResponseMsg(response: Response): Int {
-        if(response.code == Response.USER_NOT_FOUND.code) {
+        if (response.code == Response.USER_NOT_FOUND.code) {
             return R.string.resp_error_user_not_found
-        } else if(response.code == Response.POST_NOT_FOUND.code) {
+        } else if (response.code == Response.POST_NOT_FOUND.code) {
             return R.string.resp_error_post_not_found
-        } else if(response.code == Response.COLLECTION_NOT_FOUND.code) {
+        } else if (response.code == Response.COLLECTION_NOT_FOUND.code) {
             return R.string.resp_error_collection_not_found
         }
 

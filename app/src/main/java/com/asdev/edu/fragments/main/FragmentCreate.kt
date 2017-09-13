@@ -18,6 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
+import com.asdev.edu.EXPORT_JPEG_QUALITY
 import com.asdev.edu.R
 import com.asdev.edu.adapters.CoursesAdapter
 import com.asdev.edu.models.*
@@ -25,6 +26,9 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_create.*
 
+/**
+ * A fragment for the [MainActivity] which displays a post creation UI.
+ */
 class FragmentCreate : SelectableFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,8 +41,8 @@ class FragmentCreate : SelectableFragment() {
         val view = inflater.cloneInContext(ctw).inflate(R.layout.fragment_create, container, false)
 
         val toolbar = view.findViewById(R.id.toolbar) as Toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_replay_black_24dp)
-        toolbar.setNavigationOnClickListener { actionReset() }
+        toolbar.setNavigationIcon(R.drawable.ic_delete_black_24dp)
+        toolbar.setNavigationOnClickListener(this::actionReset)
 
         // setup the form buttons
         // title button
@@ -90,7 +94,7 @@ class FragmentCreate : SelectableFragment() {
                 .setAllowFlipping(false)
                 .setCropShape(CropImageView.CropShape.RECTANGLE)
                 .setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
-                .setOutputCompressQuality(90)
+                .setOutputCompressQuality(EXPORT_JPEG_QUALITY)
                 .setBackgroundColor(Color.parseColor("#55EEEEEE"))
                 .setActivityMenuIconColor(Color.parseColor("#202020"))
                 .start(context, this)
@@ -163,7 +167,7 @@ class FragmentCreate : SelectableFragment() {
         }.show()
     }
 
-    private fun actionReset() {
+    private fun actionReset(@Suppress("UNUSED_PARAMETER") v: View?) {
 
     }
 

@@ -4,6 +4,11 @@ import android.content.Context
 import com.asdev.edu.commitDiskDuser
 import com.asdev.edu.readDiskDuser
 
+/**
+ * A singleton which holds common data between the entire
+ * app lifecycle.
+ * TODO: defer to architecture components ViewModel
+ */
 object SharedData {
 
     private var duser: DUser? = null

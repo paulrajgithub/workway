@@ -7,8 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.asdev.edu.R
 
+/**
+ * The tag associated with the [FragmentOnbContent] fragment.
+ */
 const val FRAGMENT_ONB_CONTENT = "FragmentOnbContent"
 
+/**
+ * A fragment for the [OnBoardingActivity] which displays the main onb content.
+ */
 class FragmentOnbContent: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

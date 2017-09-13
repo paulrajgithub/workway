@@ -2,9 +2,12 @@ package com.asdev.edu.services
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GetTokenResult
 import io.reactivex.Observable
 
+/**
+ * A singleton which integrates [FirebaseAuth] capabilities into a [Observable] friendly
+ * RxJava async API.
+ */
 object RxFirebaseAuth {
 
     fun getToken() =
@@ -48,7 +51,8 @@ object RxFirebaseAuth {
 
 }
 
-fun <T> Task<T>.await(lock: java.lang.Object) {
+// the object class is needed as the Any class doesnt support locking or notifying
+fun <T> Task<T>.await(@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") lock: java.lang.Object) {
 
     addOnCompleteListener {
         // notify the thread of the lock release

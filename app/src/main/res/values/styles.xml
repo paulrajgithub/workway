@@ -30,7 +30,8 @@
     
     <style name="AppTheme.Light.ActionBar" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">#FFFFFF</item>
-        <item name="colorPrimaryDark">#bdbdbd</item>
+        <!--Cool status bar color to match accent-->
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
 
         <item name="titleTextColor">#222</item>
