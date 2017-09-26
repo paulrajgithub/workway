@@ -2,11 +2,7 @@ package com.asdev.edu.fragments.main
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.view.ViewCompat
-import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.GridLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -64,11 +60,11 @@ class FragmentHome: SelectableFragment() {
         val autoimport3 = view.findViewById(R.id.autoimport_image3) as ImageView
 
         // configure the recycler
-        val updateRecycler = view.findViewById(R.id.home_update_recycler) as RecyclerView
+        // val updateRecycler = view.findViewById(R.id.home_update_recycler) as RecyclerView
         // disable nested scrolling for smooth scroll
-        ViewCompat.setNestedScrollingEnabled(updateRecycler, false)
-        updateRecycler.layoutManager = LinearLayoutManager(context)
-        updateRecycler.setHasFixedSize(true)
+        // ViewCompat.setNestedScrollingEnabled(updateRecycler, false)
+        // updateRecycler.layoutManager = LinearLayoutManager(context)
+        // updateRecycler.setHasFixedSize(true)
 
         // create a listening subject
         val subject = BehaviorSubject.create<DUIAction<String>>()
@@ -81,7 +77,7 @@ class FragmentHome: SelectableFragment() {
 
         // set the adapter
         updateAdapter = AdapterHomeUpdates(subject)
-        updateRecycler.adapter = updateAdapter
+        // updateRecycler.adapter = updateAdapter
 
         // add course items
         val courseGrid = view.findViewById(R.id.home_grid_courses) as GridLayout

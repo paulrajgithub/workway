@@ -60,8 +60,9 @@ class FragmentCreate : SelectableFragment() {
         val gradeLabel = view.findViewById(R.id.fragment_create_grade_label) as TextView
 
         SharedData.duserRo(context) {
-            schoolLabel.text = it?.schoolName?: context.getText(R.string.text_none)
-            gradeLabel.text = it?.grade?.resolveTitle(context)?: context.getText(R.string.text_none)
+            it?: return@duserRo
+            schoolLabel.text = it.schoolName
+            gradeLabel.text = it.grade.resolveTitle(context)
         }
 
         return view

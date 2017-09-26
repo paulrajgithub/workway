@@ -3,5 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="gutter_size">12dp</dimen>
-    <dimen name="course_item_padding_horiz">4dp</dimen>
+    <dimen name="course_item_padding">4dp</dimen>
+    <dimen name="cutout">38dp</dimen>
 </resources>

@@ -5,8 +5,6 @@
     android:layout_width="0dp"
     android:layout_height="wrap_content"
 
-    android:paddingLeft="@dimen/course_item_padding_horiz"
-    android:paddingRight="@dimen/course_item_padding_horiz"
     android:paddingTop="4dp"
     android:paddingBottom="4dp"
 
@@ -18,15 +16,18 @@
 
     <ImageView
         android:id="@+id/course_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_gravity="center_horizontal"
 
         android:background="@drawable/circle"
+        android:foreground="@drawable/course_starred_circle"
+        android:foregroundGravity="right|top"
 
         app:srcCompat="@drawable/ic_course_physics"
         android:scaleType="centerInside"
         android:tint="#FFF"
+
         android:padding="10dp"
 
         android:contentDescription="@string/content_desc_course" />
@@ -35,6 +36,8 @@
         android:id="@+id/course_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:paddingTop="6dp"
 
         style="@style/AppTheme.TextAppearance.Subtitle"
         android:text="@string/text_course_title"
