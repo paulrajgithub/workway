@@ -92,6 +92,7 @@ class FragmentCreate : SelectableFragment() {
         // launch the crop activity which will also ask for an image source
         CropImage.activity()
                 .setAllowFlipping(false)
+                .setAllowRotation(true)
                 .setCropShape(CropImageView.CropShape.RECTANGLE)
                 .setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
                 .setOutputCompressQuality(EXPORT_JPEG_QUALITY)

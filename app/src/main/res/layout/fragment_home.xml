@@ -5,16 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation="0dp">
-
-        <!--
-            For waterfall, use:
-            app:layout_scrollFlags="enterAlways|scroll" -->
-        <android.support.v7.widget.CardView
+    <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="48dp"
 
@@ -65,9 +56,7 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-
-    </android.support.design.widget.AppBarLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/home_content"
@@ -81,29 +70,55 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#eeeeee">
 
-            <TextView
+            <!--Spacer -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="72dp" />
+
+            <!--Recently taken header-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                style="@style/AppTheme.TextAppearance.Header"
-                android:text="@string/text_auto_import"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
 
-                android:background="@color/colorAccent"
-                android:textColor="#FFF"
+                    style="@style/AppTheme.TextAppearance.Header"
+                    android:text="@string/text_auto_import"
 
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"/>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:text="@string/text_more"
+                    android:textAllCaps="false"
+                    android:gravity="center_vertical|start"
+                    />
+
+            </LinearLayout>
+
+            <!--The auto import items-->
             <android.support.v7.widget.GridLayout
                 android:id="@+id/home_grid_autoimport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:background="@drawable/half_accent"
 
                 app:columnCount="3"
 
@@ -127,6 +142,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
 
+                    app:riv_corner_radius="4dp"
+
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/content_desc_image_autoimport"/>
 
@@ -145,6 +162,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
 
+                    app:riv_corner_radius="4dp"
+
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/content_desc_image_autoimport"/>
 
@@ -160,60 +179,58 @@
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
 
+                    app:riv_corner_radius="4dp"
+
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/content_desc_image_autoimport"/>
 
             </android.support.v7.widget.GridLayout>
 
-            <Button
+            <!--Recently taken header-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
 
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:text="@string/text_more"
-                android:gravity="center_vertical|start"
-                />
+                    style="@style/AppTheme.TextAppearance.Header"
+                    android:text="@string/text_find_by_course"
 
-            <include layout="@layout/item_divider" />
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
 
-                style="@style/AppTheme.TextAppearance.Header"
-                android:text="@string/text_find_by_course"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
 
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:text="@string/text_more"
+                    android:textAllCaps="false"
+                    android:gravity="center_vertical|start"
+                    />
+
+            </LinearLayout>
 
             <android.support.v7.widget.GridLayout
                 android:id="@+id/home_grid_courses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
 
                 app:columnCount="4" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:text="@string/text_more"
-                android:gravity="center_vertical|start"
-                />
-
-            <include layout="@layout/item_divider" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -63,19 +63,6 @@ class FragmentHome: SelectableFragment() {
         val autoimport2 = view.findViewById(R.id.autoimport_image2) as ImageView
         val autoimport3 = view.findViewById(R.id.autoimport_image3) as ImageView
 
-        val appbar = view.findViewById(R.id.appbar)
-        val content = view.findViewById(R.id.home_content) as NestedScrollView
-        // hide the toolbar shadow when the scrollview is at the top
-        content.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
-            if(scrollY == 0) {
-                // hide shadow
-                ViewCompat.setElevation(appbar, 0f)
-            } else {
-                // show shadow
-                ViewCompat.setElevation(appbar, 12f)
-            }
-        }
-
         // configure the recycler
         val updateRecycler = view.findViewById(R.id.home_update_recycler) as RecyclerView
         // disable nested scrolling for smooth scroll
