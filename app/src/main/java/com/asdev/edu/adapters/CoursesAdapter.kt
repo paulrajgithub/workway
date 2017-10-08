@@ -11,7 +11,7 @@ import com.asdev.edu.views.VHCourseSelector
  * A [RecyclerView] adapter which binds the given list of [DCourse]s as [VHCourseSelector]
  * items.
  */
-class CoursesAdapter(private val courses: List<DCourse>): RecyclerView.Adapter<VHCourseSelector>() {
+class CoursesAdapter(private val courses: List<DCourse>, private val onClickListener: ((DCourse) -> Unit)?): RecyclerView.Adapter<VHCourseSelector>() {
 
     /**
      * The bound courses to this adapter.
@@ -19,6 +19,7 @@ class CoursesAdapter(private val courses: List<DCourse>): RecyclerView.Adapter<V
     override fun onBindViewHolder(holder: VHCourseSelector?, position: Int) {
         holder?: return
         holder.setToCourse(courses[position])
+        holder.onClickListener = onClickListener
     }
 
     override fun getItemCount() = courses.size

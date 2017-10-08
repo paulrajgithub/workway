@@ -10,10 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.asdev.edu.R
 import com.asdev.edu.adapters.AdapterHomeUpdates
-import com.asdev.edu.models.DUIAction
-import com.asdev.edu.models.DUser
-import com.asdev.edu.models.SelectableFragment
-import com.asdev.edu.models.SharedData
+import com.asdev.edu.getCoursesInPriority
+import com.asdev.edu.models.*
 import com.asdev.edu.views.VHCourseSelector
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -24,6 +22,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * A fragment for the [MainActivity] which displays the home landing content.
  */
 class FragmentHome: SelectableFragment() {
+
+    private val COURSE_SHOW_COUNT_MIN = 8
 
     /**
      * The adapter for the home updates content.
@@ -83,8 +83,9 @@ class FragmentHome: SelectableFragment() {
         val courseGrid = view.findViewById(R.id.home_grid_courses) as GridLayout
 
         val duser = SharedData.duserRo(context)
-        // try and use the duser courses, otherwise the default courses
-        val courses = duser?.starredCourses ?: DUser.blank().starredCourses
+
+        // show at least 8 courses or at least the total number of starred courses, with the starred courses being first priority
+        val courses = getCoursesInPriority(duser).take(maxOf(COURSE_SHOW_COUNT_MIN, duser?.starredCourses?.size?: 0))
 
         for(course in courses) {
             VHCourseSelector.inflate(course, courseGrid)

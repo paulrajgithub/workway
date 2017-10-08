@@ -89,7 +89,6 @@ class FragmentImgPhoto: Fragment(), CameraView.PictureReceiver {
 
             fragment_img_flash.setOnClickListener(this::actionFlash)
             fragment_img_shutter.setOnClickListener(this::actionShutter)
-
         } else {
             // show no camera ui
             fragment_img_overlay.visibility = View.VISIBLE

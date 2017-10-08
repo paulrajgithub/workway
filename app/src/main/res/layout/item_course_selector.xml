@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
 
     app:layout_columnWeight="1"
     app:layout_rowWeight="1"
@@ -21,10 +21,8 @@
         android:layout_gravity="center_horizontal"
 
         android:background="@drawable/circle"
-        android:foreground="@drawable/course_starred_circle"
         android:foregroundGravity="right|top"
 
-        app:srcCompat="@drawable/ic_course_physics"
         android:scaleType="centerInside"
         android:tint="#FFF"
 

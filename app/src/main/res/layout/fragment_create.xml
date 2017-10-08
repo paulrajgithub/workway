@@ -19,6 +19,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!--Scroll wrapper for the inner form-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +36,7 @@
                 android:id="@+id/fragment_create_select_image"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
-                android:background="#EEE"
+                android:background="@color/colorBackgroundSecondary"
                 android:clickable="true"
 
                 android:foreground="?attr/selectableItemBackground"
@@ -55,11 +56,11 @@
             </FrameLayout>
 
             <!--Image preview and controls ui-->
-            <com.github.chrisbanes.photoview.PhotoView
+            <ImageView
                 android:id="@+id/fragment_create_preview_image"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
-                android:background="#EEE"
+                android:background="@color/colorBackgroundSecondary"
                 android:contentDescription="@string/content_desc_image_preview"
                 android:scaleType="fitCenter"
 
@@ -87,6 +88,7 @@
                     app:srcCompat="@drawable/ic_clear_white_24dp" />
 
                 <ImageView
+                    android:id="@+id/fragment_create_preview_recrop"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
 
@@ -98,6 +100,7 @@
                     app:srcCompat="@drawable/ic_crop_white_24dp" />
 
                 <TextView
+                    android:id="@+id/fragment_create_preview_add_img"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -191,7 +194,7 @@
                     android:contentDescription="@string/content_desc_course"
                     android:padding="16dp"
                     android:tint="?android:textColorSecondary"
-                    app:srcCompat="@drawable/ic_schedule_black_24dp" />
+                    app:srcCompat="@drawable/ic_class_black_24dp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -209,6 +212,7 @@
                         android:text="@string/text_course" />
 
                     <TextView
+                        android:id="@+id/fragment_create_course_label"
                         style="@style/AppTheme.TextAppearance.Subtitle"
                         android:layout_width="match_parent"
 
@@ -349,6 +353,7 @@
 
             </LinearLayout>
 
+            <!--Divider-->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -440,6 +445,13 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/custom_ip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Launch OG image picker"/>
 
         </LinearLayout>
     </ScrollView>

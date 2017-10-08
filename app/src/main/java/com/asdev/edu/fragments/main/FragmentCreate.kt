@@ -8,20 +8,22 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.view.ContextThemeWrapper
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.Toolbar
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
-import com.asdev.edu.EXPORT_JPEG_QUALITY
-import com.asdev.edu.R
+import com.asdev.edu.*
 import com.asdev.edu.adapters.CoursesAdapter
 import com.asdev.edu.models.*
+import com.github.florent37.viewtooltip.ViewTooltip
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_create.*
@@ -30,6 +32,8 @@ import kotlinx.android.synthetic.main.fragment_create.*
  * A fragment for the [MainActivity] which displays a post creation UI.
  */
 class FragmentCreate : SelectableFragment() {
+
+    private val COURSE_ITEMS_NUM = 3
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // inflate the home layout
@@ -43,6 +47,8 @@ class FragmentCreate : SelectableFragment() {
         val toolbar = view.findViewById(R.id.toolbar) as Toolbar
         toolbar.setNavigationIcon(R.drawable.ic_delete_black_24dp)
         toolbar.setNavigationOnClickListener(this::actionReset)
+        toolbar.inflateMenu(R.menu.fragment_create)
+        toolbar.setOnMenuItemClickListener(this::onMenuItemClicked)
 
         // setup the form buttons
         // title button
@@ -81,12 +87,37 @@ class FragmentCreate : SelectableFragment() {
 
         fragment_create_select_image.setOnClickListener(this::actionSelectImage)
         fragment_create_preview_clear.setOnClickListener(this::actionClearPreview)
+        fragment_create_preview_add_img.setOnClickListener(this::actionSelectAdditionalImage)
+        fragment_create_preview_recrop.setOnClickListener(this::actionRecrop)
+
+        ///// TODO: temp /////
+        custom_ip.setOnClickListener {
+            startActivity(Intent(context, ImageActivity::class.java))
+        }
+    }
+
+    private fun onMenuItemClicked(item: MenuItem): Boolean = when(item.itemId) {
+        R.id.menu_upload -> {
+            actionUpload()
+            true
+        }
+
+        else -> false
     }
 
     //// Button/action recievers ////
 
+    private fun actionUpload() {
+        Log.d("FragmentCreate", "Will upload the current post!")
+    }
+
     private fun actionClearPreview(@Suppress("UNUSED_PARAMETER") v: View?) {
         clearPreview()
+    }
+
+    private fun actionFullscreenPreview(@Suppress("UNUSED_PARAMETER") v: View?) {
+        // TODO: shared element transition into a full screen image view activity
+        // pass image uri(s) as extra data
     }
 
     private fun actionSelectImage(@Suppress("UNUSED_PARAMETER") v: View?) {
@@ -100,6 +131,20 @@ class FragmentCreate : SelectableFragment() {
                 .setBackgroundColor(Color.parseColor("#55EEEEEE"))
                 .setActivityMenuIconColor(Color.parseColor("#202020"))
                 .start(context, this)
+    }
+
+    private fun actionSelectAdditionalImage(@Suppress("UNUSED_PARAMETER") v: View?) {
+        val intent = CropImage.activity()
+                .setAllowFlipping(false)
+                .setAllowRotation(true)
+                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                .setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
+                .setOutputCompressQuality(EXPORT_JPEG_QUALITY)
+                .setBackgroundColor(Color.parseColor("#55EEEEEE"))
+                .setActivityMenuIconColor(Color.parseColor("#202020"))
+                .getIntent(context)
+
+        startActivityForResult(intent, RC_ADDITIONAL_IMAGE_PICKER)
     }
 
     private fun actionEditTitle(@Suppress("UNUSED_PARAMETER") v: View?) {
@@ -118,21 +163,18 @@ class FragmentCreate : SelectableFragment() {
         }.show()
     }
 
+    private var courseDialog: MaterialDialog? = null
     private fun actionEditCourse(@Suppress("UNUSED_PARAMETER") v: View?) {
-        MaterialDialog.Builder(context).apply {
+        courseDialog = MaterialDialog.Builder(context).apply {
             title(R.string.text_course)
-            positiveText(R.string.dialog_ok)
-            positiveColorAttr(R.attr.colorAccent)
             negativeText(R.string.dialog_cancel)
 
+            // set the adapter to the courses
             SharedData.duserRo(context) {
-                var courses = it?.starredCourses?: DUser.blank().starredCourses
-                if(courses.isEmpty())
-                    courses = DUser.blank().starredCourses
-
-                // TODO: this is broke
-                adapter(CoursesAdapter(courses), GridLayoutManager(context, 2))
+                adapter(CoursesAdapter(getCoursesInPriority(it), this@FragmentCreate::setCourse), GridLayoutManager(context, COURSE_ITEMS_NUM))
             }
+
+            backgroundColorRes(R.color.colorBackgroundSecondary)
 
         }.show()
     }
@@ -170,7 +212,20 @@ class FragmentCreate : SelectableFragment() {
     }
 
     private fun actionReset(@Suppress("UNUSED_PARAMETER") v: View?) {
+        // TODO: clear local bitmap copy cache
+    }
 
+    private fun actionRecrop(@Suppress("UNUSED_PARAMETER") v: View?) {
+        // relaunch crop activity with the original image uri
+        CropImage.activity(imageUri) // TODO: this does not recrop the original
+                .setAllowFlipping(false)
+                .setAllowRotation(true)
+                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                .setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
+                .setOutputCompressQuality(EXPORT_JPEG_QUALITY)
+                .setBackgroundColor(Color.parseColor("#55EEEEEE"))
+                .setActivityMenuIconColor(Color.parseColor("#202020"))
+                .start(context, this)
     }
 
     //// Actual post modification methods ////
@@ -182,15 +237,13 @@ class FragmentCreate : SelectableFragment() {
         this.imageUri = uri
         this.sourceUri = sourceUri
 
+        val previewIv = fragment_create_preview_image
+
         // hide the select image view
         fragment_create_select_image.visibility = View.GONE
         fragment_create_preview_controls.visibility = View.VISIBLE
-        fragment_create_preview_image.visibility = View.VISIBLE
+        previewIv.visibility = View.VISIBLE
         divider.visibility = View.VISIBLE
-
-        // show the preview image
-        val previewView = fragment_create_preview_image
-        previewView.maximumScale = 3f
 
         val input = activity.contentResolver.openInputStream(uri)
 
@@ -206,7 +259,21 @@ class FragmentCreate : SelectableFragment() {
         Log.d("BitmapScaler", "Using a sample size of ${options.inSampleSize} for PhotoView")
         options.inPreferredConfig = Bitmap.Config.ARGB_8888
         val bitmap = BitmapFactory.decodeStream(activity.contentResolver.openInputStream(uri), null, options)
-        previewView.setImageBitmap(bitmap)
+        previewIv.setImageBitmap(bitmap)
+
+        // show the tooltip
+        // TODO: only if necessary
+        ViewTooltip.on(previewIv).apply {
+            autoHide(true, 2500)
+            clickToHide(true)
+            align(ViewTooltip.ALIGN.CENTER)
+            position(ViewTooltip.Position.BOTTOM)
+            text(getString(R.string.tooltip_tap_to_fullscreen))
+            color(ContextCompat.getColor(context, R.color.colorAccent))
+            textColor(Color.parseColor("#FFFFFF"))
+        }.show()
+
+        previewIv.setOnClickListener(this::actionFullscreenPreview)
     }
 
     private fun calculateInSampleSize(options: BitmapFactory.Options) =
@@ -240,15 +307,33 @@ class FragmentCreate : SelectableFragment() {
         // TODO: set the drawable tint color?
     }
 
+    private var course: DCourse? = null
+    private fun setCourse(course: DCourse) {
+        // dimiss course dialog if shown
+        courseDialog?.apply {
+            if(isShowing) {
+                dismiss()
+            }
+
+            this@FragmentCreate.course = course
+        }
+
+        // update the ui
+        fragment_create_course_label.text = course.resolveTitle(context)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             val result = CropImage.getActivityResult(data)
             // pass on to the create fragment
             if(resultCode == Activity.RESULT_OK) {
-                setPreview(result.uri, result.originalUri)
+                // trash intent data
                 result.bitmap?.recycle()
                 result.originalBitmap?.recycle()
+                setPreview(result.uri, result.originalUri)
             }
+        } else if(requestCode == RC_ADDITIONAL_IMAGE_PICKER) {
+            // TODO: process additional image
         }
     }
 

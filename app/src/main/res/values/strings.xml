@@ -6,7 +6,7 @@
 
     <string name="text_auto_import">Recently taken</string>
     <string name="text_more">View all</string>
-    <string name="text_updates">Updates</string>
+    <string name="text_updates">From your school</string>
     <string name="text_update_title">Update title</string>
     <string name="text_update_subtitle">Update subtitle</string>
     <string name="text_header">Header</string>
@@ -121,4 +121,7 @@
     <string name="dialog_cancel">Cancel</string>
 
     <string name="crop_image_activity_title">Crop image</string>
+    <string name="tooltip_tap_to_fullscreen">Tap to fullscreen</string>
+    <string name="title_upload">Upload</string>
+    <string name="text_quick_save_collection">Quick saved</string>
 </resources>

@@ -42,6 +42,13 @@
 
     <!--Text themes-->
     <style name="AppTheme.TextAppearance" />
+
+    <style name="AppTheme.TextAppearance.SuperHeader">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="AppTheme.TextAppearance.Header">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>

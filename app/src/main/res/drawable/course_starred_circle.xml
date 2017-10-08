@@ -2,6 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@drawable/circle_bg_color"  />
-    <item android:drawable="@drawable/course_icon_star" />
+    <item android:drawable="@drawable/course_icon_star" android:left="1dp"
+        android:bottom="1dp"/>
 
 </layer-list>

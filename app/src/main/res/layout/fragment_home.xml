@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee">
+    android:background="@color/colorBackgroundSecondary">
 
     <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -76,13 +76,15 @@
             <!--Spacer -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="72dp" />
+                android:layout_height="72dp"/>
 
             <!--Recently taken header-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="0dp"
@@ -90,17 +92,17 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
 
-                    style="@style/AppTheme.TextAppearance.Header"
+                    style="@style/AppTheme.TextAppearance.SuperHeader"
                     android:text="@string/text_auto_import"
 
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"/>
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"/>
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
 
                     android:paddingLeft="16dp"
@@ -114,6 +116,17 @@
 
             </LinearLayout>
 
+            <!--Colored line-->
+            <View
+                android:layout_width="48dp"
+                android:layout_height="2dp"
+
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="12dp"
+
+                android:background="@color/md_red_500"/>
+
             <!--The auto import items-->
             <android.support.v7.widget.GridLayout
                 android:id="@+id/home_grid_autoimport"
@@ -122,6 +135,7 @@
 
                 app:columnCount="3"
 
+                android:paddingTop="8dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
 
@@ -186,11 +200,14 @@
 
             </android.support.v7.widget.GridLayout>
 
-            <!--Recently taken header-->
+            <!--By course header-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="0dp"
@@ -206,7 +223,7 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"/>
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

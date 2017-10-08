@@ -1,6 +1,7 @@
 package com.asdev.edu.views
 
 import android.graphics.PorterDuff
+import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayout
 import android.support.v7.widget.RecyclerView
@@ -19,14 +20,36 @@ class VHCourseSelector(view: View): RecyclerView.ViewHolder(view) {
     private val iconView = view.findViewById(R.id.course_icon) as ImageView
     private val titleView = view.findViewById(R.id.course_title) as TextView
 
+    private var course: DCourse? = null
+
+    var onClickListener: ((DCourse) -> Unit)? = null
+        set(value) {
+            field = value
+            itemView.setOnClickListener {
+                course?.let {
+                    onClickListener?.invoke(it)
+                }
+            }
+        }
+
     fun setToCourse(course: DCourse) {
         val view = itemView
+        this.course = course
 
         // set the title text
         titleView.text = course.resolveTitle(view.context)
         // set the circle color
         iconView.background.setColorFilter(ContextCompat.getColor(view.context, course.colorRes), PorterDuff.Mode.SRC_ATOP)
         iconView.setImageResource(course.iconRes)
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // check if starred
+            if (!course.isStarred) {
+                iconView.foreground = null // da faq?? api 23 min sdk?
+            } else {
+                iconView.foreground = ContextCompat.getDrawable(iconView.context, R.drawable.course_starred_circle)
+            }
+        }
     }
 
     companion object {
@@ -43,6 +66,7 @@ class VHCourseSelector(view: View): RecyclerView.ViewHolder(view) {
             val params = v.layoutParams as GridLayout.LayoutParams
             // set to column weight of 1
             params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, GridLayout.FILL, 1f)
+            params.width = 0 // auto adjust width
 
             val holder = VHCourseSelector(v)
             holder.setToCourse(course)

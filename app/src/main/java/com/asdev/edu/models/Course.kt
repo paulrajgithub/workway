@@ -16,11 +16,11 @@ enum class DCourse(
          * The string resource id for the title.
          */
         @StringRes
-        val titleRes: Int,
+        private val titleRes: Int,
         /**
          * The title string itself. Will be preferred over the titleRes.
          */
-        val title: String?,
+        private val title: String?,
         /**
          * The drawable reference for the icon of this course.
          */
@@ -29,7 +29,11 @@ enum class DCourse(
         /**
          * An optional parent of this course. Use for sub-course branching.
          */
-        val parent: DCourse? = null) {
+        val parent: DCourse? = null,
+        /**
+         * Whether or not this course is starred.
+         */
+        var isStarred: Boolean = false) {
 
     BIOLOGY(R.string.title_course_biology, null, R.drawable.ic_course_biology),
 

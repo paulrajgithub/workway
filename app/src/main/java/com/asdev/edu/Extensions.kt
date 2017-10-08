@@ -1,6 +1,7 @@
 package com.asdev.edu
 
 import android.content.Context
+import com.asdev.edu.models.DCourse
 import com.asdev.edu.models.DUser
 import java.io.*
 
@@ -65,4 +66,27 @@ fun readFile(file: File): String {
     ins.close()
 
     return builder.toString().trim()
+}
+
+/**
+ * Returns all the courses in order of priority, determined
+ * by whether or not it is starred.
+ */
+fun getCoursesInPriority(duser: DUser?): List<DCourse> {
+    if(duser == null) {
+        for(c in DCourse.values())
+            c.isStarred = false
+        return DCourse.values().asList()
+    }
+
+    val first = duser.starredCourses
+    val distinct = DCourse.values().filterNot { first.contains(it) }
+
+    // reset starred global states
+    for(c in DCourse.values())
+        c.isStarred = false
+    for(c in first)
+        c.isStarred = true
+
+    return first + distinct
 }

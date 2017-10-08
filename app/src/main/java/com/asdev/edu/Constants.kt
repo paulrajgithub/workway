@@ -33,6 +33,8 @@ const val RC_PLACE_PICKER = 4002
 
 const val RC_IMAGE_ACTIVITY = 4003
 
+const val RC_ADDITIONAL_IMAGE_PICKER = 4004
+
 /**
  * The file name of the locally cached DUser object.
  */
