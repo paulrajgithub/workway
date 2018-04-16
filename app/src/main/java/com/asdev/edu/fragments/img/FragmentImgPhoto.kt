@@ -26,7 +26,7 @@ class FragmentImgPhoto: Fragment(), CameraView.PictureReceiver {
      */
     private val RC_REQUEST_CAMERA_PERM = 54643
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         inflater?: return null // assert that the inflater is not null
 
         return inflater.inflate(R.layout.fragment_img_photo, container, false)
@@ -71,7 +71,8 @@ class FragmentImgPhoto: Fragment(), CameraView.PictureReceiver {
     private var previewState = false
 
     private fun setupCamera() {
-        if(PermissionChecker.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PermissionChecker.PERMISSION_GRANTED) {
+        // TODO: hacky null fix
+        if(PermissionChecker.checkSelfPermission(context!!, android.Manifest.permission.CAMERA) == PermissionChecker.PERMISSION_GRANTED) {
             fragment_img_overlay.visibility = View.GONE
             fragment_img_camera_content.visibility = View.VISIBLE
             fragment_img_preview_content.visibility = View.GONE

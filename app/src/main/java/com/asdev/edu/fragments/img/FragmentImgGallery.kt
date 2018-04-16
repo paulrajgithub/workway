@@ -13,9 +13,7 @@ import com.asdev.edu.R
  */
 class FragmentImgGallery: Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        inflater?: return null // assert that the inflater is not null
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_img_gallery, container, false)
     }
 

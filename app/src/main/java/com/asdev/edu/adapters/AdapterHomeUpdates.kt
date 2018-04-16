@@ -70,9 +70,9 @@ val PP_PHOTOS = arrayOf(
  */
 class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<String>>): RecyclerView.Adapter<VHUpdateItem>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VHUpdateItem {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHUpdateItem {
         // inflate the layout item
-        val inflater = LayoutInflater.from(parent?.context)
+        val inflater = LayoutInflater.from(parent.context)
         // val view = inflater.inflate(if(viewType == VT_NORMAL) R.layout.item_update_alt else R.layout.item_update_alt_flipped, parent, false)
         val view = inflater.inflate(R.layout.item_update, parent, false)
         // construct a new empty VH
@@ -84,10 +84,10 @@ class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<String>>):
 //        return if(position % 2 == 0) VT_FLIPPED else VT_NORMAL
 //    }
 
-    override fun onBindViewHolder(holder: VHUpdateItem?, position: Int) {
+    override fun onBindViewHolder(holder: VHUpdateItem, position: Int) {
         // set to the post item
         // TODO: bind to item
-        val imgView = holder?.imgView ?: return
+        val imgView = holder.imgView
         val ppView = holder.ppView
 
         // use source disk caching as it will be loaded into a larger view
@@ -110,10 +110,10 @@ class AdapterHomeUpdates(val actionHandler: BehaviorSubject<DUIAction<String>>):
                 .into(ppView)
     }
 
-    override fun onViewRecycled(holder: VHUpdateItem?) {
+    override fun onViewRecycled(holder: VHUpdateItem) {
         super.onViewRecycled(holder)
 
-        val imgView = holder?.imgView?: return
+        val imgView = holder.imgView
         // release any resources on this view
         Glide.clear(imgView)
         Glide.clear(holder.ppView)

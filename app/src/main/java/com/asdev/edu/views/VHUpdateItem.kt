@@ -37,7 +37,7 @@ class VHUpdateItem(view: View,
 
     val actionSave = view.findViewById(R.id.update_action_save) as ImageButton
     val actionSend = view.findViewById(R.id.update_action_send) as ImageButton
-    val actionFullscreen = view.findViewById(R.id.update_action_fullscreen)
+    val actionFullscreen = view.findViewById(R.id.update_action_fullscreen) as ImageButton
 
     /**
      * Sets this update view to the given post.

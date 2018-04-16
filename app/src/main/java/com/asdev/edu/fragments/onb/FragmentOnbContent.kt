@@ -17,10 +17,7 @@ const val FRAGMENT_ONB_CONTENT = "FragmentOnbContent"
  */
 class FragmentOnbContent: Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if(inflater == null)
-            return null
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_onb_content, container, false)
         return view
     }

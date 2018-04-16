@@ -17,10 +17,7 @@ const val FRAGMENT_ONB_LOADING = "FragmentOnbLoading"
  */
 class FragmentOnbLoading: Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if(inflater == null)
-            return null
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_onb_loading, container, false)
     }
 

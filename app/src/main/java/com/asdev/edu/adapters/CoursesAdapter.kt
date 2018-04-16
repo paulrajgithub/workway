@@ -16,17 +16,16 @@ class CoursesAdapter(private val courses: List<DCourse>, private val onClickList
     /**
      * The bound courses to this adapter.
      */
-    override fun onBindViewHolder(holder: VHCourseSelector?, position: Int) {
-        holder?: return
+    override fun onBindViewHolder(holder: VHCourseSelector, position: Int) {
         holder.setToCourse(courses[position])
         holder.onClickListener = onClickListener
     }
 
     override fun getItemCount() = courses.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VHCourseSelector {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHCourseSelector {
         // create a VHCourse selector layout
-        val layoutInflater = LayoutInflater.from(parent?.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_course_selector, parent, false)
         return VHCourseSelector(view)
     }

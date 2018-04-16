@@ -12,11 +12,7 @@ import com.asdev.edu.models.SelectableFragment
  */
 class FragmentProfile: SelectableFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // inflate the home layout
-        if(inflater == null)
-            return null
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 

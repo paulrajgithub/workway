@@ -11,11 +11,8 @@ import kotlinx.android.synthetic.main.fragment_collections.*
  */
 class FragmentCollections: SelectableFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // inflate the home layout
-        if(inflater == null)
-            return null
-
         return inflater.inflate(R.layout.fragment_collections, container, false)
     }
 

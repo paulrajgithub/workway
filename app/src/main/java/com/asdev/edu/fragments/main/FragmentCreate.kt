@@ -18,6 +18,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.asdev.edu.*
@@ -35,11 +36,8 @@ class FragmentCreate : SelectableFragment() {
 
     private val COURSE_ITEMS_NUM = 3
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // inflate the home layout
-        if(inflater == null)
-            return null
-
         val ctw = ContextThemeWrapper(context, R.style.AppTheme_Light)
 
         val view = inflater.cloneInContext(ctw).inflate(R.layout.fragment_create, container, false)
@@ -52,23 +50,23 @@ class FragmentCreate : SelectableFragment() {
 
         // setup the form buttons
         // title button
-        val titleLayout = view.findViewById(R.id.fragment_create_edit_title)
+        val titleLayout = view.findViewById(R.id.fragment_create_edit_title) as LinearLayout
         titleLayout.setOnClickListener(this::actionEditTitle)
-        val courseLayout = view.findViewById(R.id.fragment_create_edit_course)
+        val courseLayout = view.findViewById(R.id.fragment_create_edit_course) as LinearLayout
         courseLayout.setOnClickListener(this::actionEditCourse)
-        val visLayout = view.findViewById(R.id.fragment_create_edit_vis)
+        val visLayout = view.findViewById(R.id.fragment_create_edit_vis) as LinearLayout
         visLayout.setOnClickListener(this::actionEditVisibility)
-        val docLayout = view.findViewById(R.id.fragment_create_edit_doctype)
+        val docLayout = view.findViewById(R.id.fragment_create_edit_doctype) as LinearLayout
         docLayout.setOnClickListener(this::actionEditDocType)
 
         // set school and grade ui labels
         val schoolLabel = view.findViewById(R.id.fragment_create_school_label) as TextView
         val gradeLabel = view.findViewById(R.id.fragment_create_grade_label) as TextView
 
-        SharedData.duserRo(context) {
+        SharedData.duserRo(context!!) {
             it?: return@duserRo
             schoolLabel.text = it.schoolName
-            gradeLabel.text = it.grade.resolveTitle(context)
+            gradeLabel.text = it.grade.resolveTitle(context!!)
         }
 
         return view
@@ -130,7 +128,7 @@ class FragmentCreate : SelectableFragment() {
                 .setOutputCompressQuality(EXPORT_JPEG_QUALITY)
                 .setBackgroundColor(Color.parseColor("#55EEEEEE"))
                 .setActivityMenuIconColor(Color.parseColor("#202020"))
-                .start(context, this)
+                .start(context!!, this)
     }
 
     private fun actionSelectAdditionalImage(@Suppress("UNUSED_PARAMETER") v: View?) {
@@ -142,13 +140,13 @@ class FragmentCreate : SelectableFragment() {
                 .setOutputCompressQuality(EXPORT_JPEG_QUALITY)
                 .setBackgroundColor(Color.parseColor("#55EEEEEE"))
                 .setActivityMenuIconColor(Color.parseColor("#202020"))
-                .getIntent(context)
+                .getIntent(context!!)
 
         startActivityForResult(intent, RC_ADDITIONAL_IMAGE_PICKER)
     }
 
     private fun actionEditTitle(@Suppress("UNUSED_PARAMETER") v: View?) {
-        MaterialDialog.Builder(context).apply {
+        MaterialDialog.Builder(context!!).apply {
             title(R.string.text_post_title)
 
             input(getString(R.string.hint_post_title), postTitle, false) {
@@ -165,7 +163,7 @@ class FragmentCreate : SelectableFragment() {
 
     private var courseDialog: MaterialDialog? = null
     private fun actionEditCourse(@Suppress("UNUSED_PARAMETER") v: View?) {
-        courseDialog = MaterialDialog.Builder(context).apply {
+        courseDialog = MaterialDialog.Builder(context!!).apply {
             title(R.string.text_course)
             negativeText(R.string.dialog_cancel)
 
@@ -181,7 +179,7 @@ class FragmentCreate : SelectableFragment() {
 
     private var docType = DDocType.HOMEWORK
     private fun actionEditDocType(@Suppress("UNUSED_PARAMETER") v: View?) {
-        MaterialDialog.Builder(context).apply {
+        MaterialDialog.Builder(context!!).apply {
             title(R.string.text_doc_type)
             items(R.array.doc_types)
             itemsCallback {
@@ -198,7 +196,7 @@ class FragmentCreate : SelectableFragment() {
 
     private var visibility = VISIBILITY_PUBLIC
     private fun actionEditVisibility(@Suppress("UNUSED_PARAMETER") v: View?) {
-        MaterialDialog.Builder(context).apply {
+        MaterialDialog.Builder(context!!).apply {
             title(R.string.text_visibility)
             items(R.array.visibilities)
             itemsCallback {
@@ -225,7 +223,7 @@ class FragmentCreate : SelectableFragment() {
                 .setOutputCompressQuality(EXPORT_JPEG_QUALITY)
                 .setBackgroundColor(Color.parseColor("#55EEEEEE"))
                 .setActivityMenuIconColor(Color.parseColor("#202020"))
-                .start(context, this)
+                .start(context!!, this)
     }
 
     //// Actual post modification methods ////
@@ -245,7 +243,7 @@ class FragmentCreate : SelectableFragment() {
         previewIv.visibility = View.VISIBLE
         divider.visibility = View.VISIBLE
 
-        val input = activity.contentResolver.openInputStream(uri)
+        val input = activity!!.contentResolver.openInputStream(uri)
 
         // first decode size
         val boundsOptions = BitmapFactory.Options().apply {
@@ -258,7 +256,7 @@ class FragmentCreate : SelectableFragment() {
         options.inSampleSize = calculateInSampleSize(boundsOptions)
         Log.d("BitmapScaler", "Using a sample size of ${options.inSampleSize} for PhotoView")
         options.inPreferredConfig = Bitmap.Config.ARGB_8888
-        val bitmap = BitmapFactory.decodeStream(activity.contentResolver.openInputStream(uri), null, options)
+        val bitmap = BitmapFactory.decodeStream(activity!!.contentResolver.openInputStream(uri), null, options)
         previewIv.setImageBitmap(bitmap)
 
         // show the tooltip
@@ -269,7 +267,7 @@ class FragmentCreate : SelectableFragment() {
             align(ViewTooltip.ALIGN.CENTER)
             position(ViewTooltip.Position.BOTTOM)
             text(getString(R.string.tooltip_tap_to_fullscreen))
-            color(ContextCompat.getColor(context, R.color.colorAccent))
+            color(ContextCompat.getColor(context!!, R.color.colorAccent))
             textColor(Color.parseColor("#FFFFFF"))
         }.show()
 
@@ -319,7 +317,7 @@ class FragmentCreate : SelectableFragment() {
         }
 
         // update the ui
-        fragment_create_course_label.text = course.resolveTitle(context)
+        fragment_create_course_label.text = course.resolveTitle(context!!)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

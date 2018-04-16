@@ -45,10 +45,8 @@ class FragmentHome: SelectableFragment() {
         // TODO: request the feed from the server
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // inflate the home layout
-        if(inflater == null)
-            return null
 
         subscriptions.dispose()
         subscriptions = CompositeDisposable()
@@ -82,7 +80,7 @@ class FragmentHome: SelectableFragment() {
         // add course items
         val courseGrid = view.findViewById(R.id.home_grid_courses) as GridLayout
 
-        val duser = SharedData.duserRo(context)
+        val duser = SharedData.duserRo(context!!)
 
         // show at least 8 courses or at least the total number of starred courses, with the starred courses being first priority
         val courses = getCoursesInPriority(duser).take(maxOf(COURSE_SHOW_COUNT_MIN, duser?.starredCourses?.size?: 0))
