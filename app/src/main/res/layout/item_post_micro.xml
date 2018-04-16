@@ -16,107 +16,40 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <FrameLayout
+        <com.asdev.edu.views.SquareImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
 
-            <com.asdev.edu.views.SquareImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-
-                android:src="@drawable/ic_image_placeholder"
-                />
-
-            <TextView
-                style="@style/AppTheme.TextAppearance.Subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|start"
-
-                android:background="@color/colorAccentAlt"
-                android:padding="6dp"
-                android:text="Shahbaz Momi"
-
-                android:textColor="#FFF" />
-
-        </FrameLayout>
+            android:src="@drawable/ic_image_placeholder"
+            />
 
         <!--Title text view-->
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:text="Unit 1 Test"-->
+            <!--style="@style/AppTheme.TextAppearance.Title"-->
+
+            <!--android:paddingTop="12dp"-->
+            <!--android:paddingLeft="12dp"-->
+            <!--android:paddingRight="12dp"-->
+            <!--/>-->
+
+        <!-- Post subtitle -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:text="Unit 1 Test"
-            style="@style/AppTheme.TextAppearance.Title"
-
-            android:paddingTop="12dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            />
-
-        <!-- Post title -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Chemistry"
             style="@style/AppTheme.TextAppearance.Subtitle"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
-            android:paddingTop="2dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             />
 
-        <!-- Post Actions -->
-        <LinearLayout
-            android:id="@+id/update_actions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            android:visibility="visible"
-
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="6dp"
-            android:paddingTop="4dp"
-            android:layout_below="@+id/update_image">
-
-            <ImageButton
-                android:id="@+id/update_action_fullscreen"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="36dp"
-
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                app:srcCompat="@drawable/ic_fullscreen_black_24dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-
-                android:contentDescription="@string/content_desc_action_fullscreen"/>
-
-            <ImageButton
-                android:id="@+id/update_action_save"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="36dp"
-
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                app:srcCompat="@drawable/ic_save_black_24dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-
-                android:contentDescription="@string/content_desc_action_save"/>
-
-            <ImageButton
-                android:id="@+id/update_action_send"
-                android:layout_width="0dp"
-                android:layout_weight="1"                android:layout_height="36dp"
-
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                app:srcCompat="@drawable/ic_send_black_24dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-
-                android:contentDescription="@string/content_desc_action_send"/>
-
-        </LinearLayout>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

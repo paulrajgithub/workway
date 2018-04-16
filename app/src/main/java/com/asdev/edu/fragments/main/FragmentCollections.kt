@@ -1,11 +1,10 @@
 package com.asdev.edu.fragments.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.asdev.edu.R
 import com.asdev.edu.models.SelectableFragment
+import kotlinx.android.synthetic.main.fragment_collections.*
 
 /**
  * A fragment for the [MainActivity] which displays the user's collections.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -73,6 +73,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="72dp" />
+
             <!--Collections header-->
             <TextView
                 style="@style/AppTheme.TextAppearance.SuperHeader"
@@ -94,11 +98,11 @@
 
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="2dp"
 
                 android:background="@color/colorAccentAlt"/>
 
-            <!--Quick save items-->
+            <!--Quick save title-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,7 +141,7 @@
 
             </LinearLayout>
 
-            <!-- TODO: build these into full item cards as we have qualified info -->
+            <!--Quick saved layout-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -145,13 +149,74 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp">
 
-                <include layout="@layout/item_post_micro" />
-                <include layout="@layout/item_post_micro" />
+                <include layout="@layout/item_post_mini" />
+                <include layout="@layout/item_post_mini" />
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDivider"
+
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
+
+            <!--Temporary named collections - replace with a recycler view-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+
+                    style="@style/AppTheme.TextAppearance.Header"
+                    android:text="Named collection 1"
+
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+
+                    style="@style/AppTheme.Widget.Button.Borderless.Colored"
+                    android:text="@string/text_more"
+                    android:textAllCaps="false"
+                    android:gravity="center_vertical|start"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_gravity="center">
+
+                    <include layout="@layout/item_post_micro" />
+                    <include layout="@layout/item_post_micro" />
+                    <include layout="@layout/item_post_micro" />
+
+                </LinearLayout>
 
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

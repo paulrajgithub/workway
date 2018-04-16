@@ -128,77 +128,106 @@
                 android:background="@color/md_red_500"/>
 
             <!--The auto import items-->
-            <android.support.v7.widget.GridLayout
-                android:id="@+id/home_grid_autoimport"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
 
-                app:columnCount="3"
-
-                android:paddingTop="8dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-
-                app:orientation="horizontal">
-
-                <com.asdev.edu.views.SquareImageView
-                    android:id="@+id/autoimport_image1"
+                <android.support.v7.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
 
-                    app:layout_columnWeight="1"
+                    app:cardElevation="2dp"
 
-                    android:src="@drawable/ic_image_placeholder"
-
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginRight="4dp">
 
-                    app:riv_corner_radius="4dp"
+                    <com.asdev.edu.views.SquareImageView
+                        android:id="@+id/autoimport_image1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
 
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/content_desc_image_autoimport"/>
+                        android:layout_weight="1"
 
-                <com.asdev.edu.views.SquareImageView
-                    android:id="@+id/autoimport_image2"
+                        android:src="@drawable/ic_image_placeholder"
+
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+
+
+                        app:riv_corner_radius="4dp"
+
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/content_desc_image_autoimport"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
 
-                    app:layout_columnWeight="1"
-
-                    android:src="@drawable/ic_image_placeholder"
-
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginRight="4dp">
 
-                    app:riv_corner_radius="4dp"
+                    <com.asdev.edu.views.SquareImageView
+                        android:id="@+id/autoimport_image2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
 
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/content_desc_image_autoimport"/>
+                        android:layout_weight="1"
 
-                <com.asdev.edu.views.SquareImageView
-                    android:id="@+id/autoimport_image3"
+                        android:src="@drawable/ic_image_placeholder"
+
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+
+
+                        app:riv_corner_radius="4dp"
+
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/content_desc_image_autoimport"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
 
-                    app:layout_columnWeight="1"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp">
 
-                    android:src="@drawable/ic_image_placeholder"
+                    <com.asdev.edu.views.SquareImageView
+                        android:id="@+id/autoimport_image3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
 
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:layout_weight="1"
 
-                    app:riv_corner_radius="4dp"
+                        android:src="@drawable/ic_image_placeholder"
 
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/content_desc_image_autoimport"/>
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
 
-            </android.support.v7.widget.GridLayout>
+
+                        app:riv_corner_radius="4dp"
+
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/content_desc_image_autoimport"/>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
 
             <!--By course header-->
             <LinearLayout

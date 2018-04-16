@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-const val KUUV_UPLOAD_URL = "http://kuuv.io/upload.php"
+const val KUUV_UPLOAD_URL = "http://uploadpicture.org/upload.php"
 const val KUUV_KEY_IMG = "upl"
 const val KUUV_UPLOAD_TAG = "kuuv_img_upl"
 
