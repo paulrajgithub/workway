@@ -5,13 +5,13 @@
     <string name="activity_select_image">Select image</string>
 
     <string name="text_auto_import">Recently taken</string>
-    <string name="text_more">View all</string>
+    <string name="text_more">View More</string>
     <string name="text_updates">From your school</string>
     <string name="text_update_title">Update title</string>
     <string name="text_update_subtitle">Update subtitle</string>
     <string name="text_header">Header</string>
     <string name="text_course_title">Course title</string>
-    <string name="text_find_by_course">By course</string>
+    <string name="text_find_by_course">Discover by course</string>
     <string name="text_search">Search anything</string>
     <string name="text_user_name">User name</string>
     <string name="text_update_desc">Update description</string>
@@ -109,6 +109,7 @@
     <string name="button_allow_camera">Allow camera</string>
     <string name="button_select_image">Press to select an image</string>
     <string name="button_select_multiple_images">Select multiple</string>
+    <string name="button_rewards_default">R0</string>
 
     <string name="visibility_default">@string/visibility_public</string>
     <string name="visibility_public">Public</string>
@@ -124,4 +125,13 @@
     <string name="tooltip_tap_to_fullscreen">Tap to fullscreen</string>
     <string name="title_upload">Upload</string>
     <string name="text_quick_save_collection">Quick saved</string>
+    <string name="content_desc_search_by_school">Search by school</string>
+    <string name="content_desc_banner">Banner</string>
+    <string name="text_recent_people">Recents</string>
+    <string name="content_desc_no_users">Like some photos or follow some people to see frequents</string>
+    <string name="content_desc_like_post">Like post</string>
+    <string name="text_from_recent">From people you follow</string>
+    <string name="text_from_school">From your school</string>
+    <string name="content_desc_collection">Collection</string>
+    <string name="text_cool_collections">Cool collections</string>
 </resources>

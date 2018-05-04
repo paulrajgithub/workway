@@ -12,7 +12,8 @@
     app:layout_rowWeight="1"
 
     android:foreground="?attr/selectableItemBackgroundBorderless"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/course_icon"
@@ -37,7 +38,7 @@
 
         android:paddingTop="6dp"
 
-        style="@style/AppTheme.TextAppearance.Subtitle"
+        style="@style/AppTheme.TextAppearance.Normal.Secondary"
         android:text="@string/text_course_title"
         android:gravity="center"
         />

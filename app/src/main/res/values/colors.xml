@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#2196F3</color>
-    <color name="colorAccent">#2196F3</color>
-    <color name="colorAccentAlt">@color/md_red_500</color>
+    <color name="colorPrimary">@color/vibrant_teal</color>
+    <color name="colorPrimaryDark">@color/vibrant_teal</color>
+    <color name="colorAccent">@color/vibrant_teal</color>
+    <color name="colorAccentAlt">@color/vibrant_purple</color>
     <color name="colorDivider">#55BDBDBD</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorBackgroundSecondary">#EEEEEE</color>
     <color name="splash_title_color">#AAAAAA</color>
+    <color name="color_search_bar">#F0F0F0</color>
 </resources>

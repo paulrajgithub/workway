@@ -7,15 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.LinearLayout
 import com.asdev.edu.R
 import com.asdev.edu.adapters.AdapterHomeUpdates
 import com.asdev.edu.getCoursesInPriority
-import com.asdev.edu.models.*
+import com.asdev.edu.models.DUIAction
+import com.asdev.edu.models.SelectableFragment
+import com.asdev.edu.models.SharedData
 import com.asdev.edu.views.VHCourseSelector
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -53,31 +53,29 @@ class FragmentHome: SelectableFragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val autoimport1 = view.findViewById(R.id.autoimport_image1) as ImageView
-        val autoimport2 = view.findViewById(R.id.autoimport_image2) as ImageView
-        val autoimport3 = view.findViewById(R.id.autoimport_image3) as ImageView
+        (view.findViewById(R.id.header) as LinearLayout).bringToFront()
 
-        // configure the recycler
-        // val updateRecycler = view.findViewById(R.id.home_update_recycler) as RecyclerView
-        // disable nested scrolling for smooth scroll
-        // ViewCompat.setNestedScrollingEnabled(updateRecycler, false)
-        // updateRecycler.layoutManager = LinearLayoutManager(context)
-        // updateRecycler.setHasFixedSize(true)
-
-        // create a listening subject
-        val subject = BehaviorSubject.create<DUIAction<String>>()
-
-        // bind the handler to the subject
-        val sub = subject.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(postActionHandler)
-
-        subscriptions.add(sub)
-
-        // set the adapter
-        updateAdapter = AdapterHomeUpdates(subject)
-        // updateRecycler.adapter = updateAdapter
-
-        // add course items
+//        // configure the recycler
+//        // val updateRecycler = view.findViewById(R.id.home_update_recycler) as RecyclerView
+//        // disable nested scrolling for smooth scroll
+//        // ViewCompat.setNestedScrollingEnabled(updateRecycler, false)
+//        // updateRecycler.layoutManager = LinearLayoutManager(context)
+//        // updateRecycler.setHasFixedSize(true)
+//
+//        // create a listening subject
+//        val subject = BehaviorSubject.create<DUIAction<String>>()
+//
+//        // bind the handler to the subject
+//        val sub = subject.observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(postActionHandler)
+//
+//        subscriptions.add(sub)
+//
+//        // set the adapter
+//        updateAdapter = AdapterHomeUpdates(subject)
+//        // updateRecycler.adapter = updateAdapter
+//
+//        // add course items
         val courseGrid = view.findViewById(R.id.home_grid_courses) as GridLayout
 
         val duser = SharedData.duserRo(context!!)

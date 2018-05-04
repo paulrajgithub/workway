@@ -1,48 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackgroundSecondary">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
-
-        app:layout_scrollFlags="enterAlways|scroll">
-
-        <TextView
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-
-            style="@style/AppTheme.TextAppearance.Header"
-            android:text="R0"
-            android:gravity="center"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:background="@drawable/pill"
-            >
-
-        </LinearLayout>
-
-    </LinearLayout>
-
+    <!-- Scrollable content -->
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/home_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:scrollbars="vertical"
-
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,200 +19,29 @@
             android:orientation="vertical">
 
             <!--Spacer -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="72dp"/>
-
-            <!--Recently taken header-->
-            <LinearLayout
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground">
+                android:adjustViewBounds="true"
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/content_desc_banner"
+                app:srcCompat="@drawable/banner_intro"/>
 
-                    style="@style/AppTheme.TextAppearance.SuperHeader"
-                    android:text="@string/text_auto_import"
-
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-
-                    style="@style/AppTheme.Widget.Button.Borderless.Colored"
-                    android:text="@string/text_more"
-                    android:textAllCaps="false"
-                    android:gravity="center_vertical|start"
-                    />
-
-            </LinearLayout>
-
-            <!--Colored line-->
-            <View
-                android:layout_width="48dp"
-                android:layout_height="2dp"
-
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="12dp"
-
-                android:background="@color/md_red_500"/>
-
-            <!--The auto import items-->
-            <LinearLayout
+            <!-- Courses header -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp">
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                android:text="@string/text_find_by_course"
+                style="@style/AppTheme.TextAppearance.Header"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
 
-                    app:cardElevation="2dp"
+                />
 
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp">
-
-                    <com.asdev.edu.views.SquareImageView
-                        android:id="@+id/autoimport_image1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-
-                        android:layout_weight="1"
-
-                        android:src="@drawable/ic_image_placeholder"
-
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-
-
-                        app:riv_corner_radius="4dp"
-
-                        android:scaleType="centerCrop"
-                        android:contentDescription="@string/content_desc_image_autoimport"/>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp">
-
-                    <com.asdev.edu.views.SquareImageView
-                        android:id="@+id/autoimport_image2"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-
-                        android:layout_weight="1"
-
-                        android:src="@drawable/ic_image_placeholder"
-
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-
-
-                        app:riv_corner_radius="4dp"
-
-                        android:scaleType="centerCrop"
-                        android:contentDescription="@string/content_desc_image_autoimport"/>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp">
-
-                    <com.asdev.edu.views.SquareImageView
-                        android:id="@+id/autoimport_image3"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-
-                        android:layout_weight="1"
-
-                        android:src="@drawable/ic_image_placeholder"
-
-                        android:clickable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-
-
-                        app:riv_corner_radius="4dp"
-
-                        android:scaleType="centerCrop"
-                        android:contentDescription="@string/content_desc_image_autoimport"/>
-
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-            <!--By course header-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-
-                    style="@style/AppTheme.TextAppearance.Header"
-                    android:text="@string/text_find_by_course"
-
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-
-                    style="@style/AppTheme.Widget.Button.Borderless.Colored"
-                    android:text="@string/text_more"
-                    android:textAllCaps="false"
-                    android:gravity="center_vertical|start"
-                    />
-
-            </LinearLayout>
-
+            <!--Courses selector-->
             <android.support.v7.widget.GridLayout
                 android:id="@+id/home_grid_courses"
                 android:layout_width="match_parent"
@@ -254,20 +52,175 @@
 
                 app:columnCount="4" />
 
+            <!--View More Button-->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+
+                android:text="@string/text_more"
+                style="@style/AppTheme.Widget.Button.Special"
+
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp" />
+
+            <!-- TODO: maybe add a small line divider here -->
+
+            <!-- By person header -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:text="@string/text_recent_people"
                 style="@style/AppTheme.TextAppearance.Header"
-                android:text="@string/text_updates"
-
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
+                android:paddingBottom="16dp"
+
+                />
+
+            <include android:id="@+id/fragment_home_friends_blank" layout="@layout/item_no_friends" />
+
+            <!-- Content headers for posts -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/text_from_recent"
+                style="@style/AppTheme.TextAppearance.Header"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
+
+                />
+
+            <include layout="@layout/item_post_home" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/text_from_school"
+                style="@style/AppTheme.TextAppearance.Header"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="8dp"
+
+                />
+
+            <include layout="@layout/item_post_home" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/text_cool_collections"
+                style="@style/AppTheme.TextAppearance.Header"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="8dp"
+
+                />
+
+            <include layout="@layout/item_collection" />
 
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="top|center_horizontal">
+
+        <!--Reward balance-->
+        <Button
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+
+            style="@style/AppTheme.Widget.Button.Borderless.Special"
+            android:text="@string/button_rewards_default"
+            android:gravity="center"
+            />
+
+        <!--Search bar-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+
+            android:background="@drawable/search_pill">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                style="@style/AppTheme.TextAppearance.Subtitle"
+                android:text="@string/text_search"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                />
+
+            <!--TODO: Change image content descriptions-->
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:background="?android:selectableItemBackground"
+                app:srcCompat="@drawable/ic_bookmark_black_28dp"
+                android:contentDescription="@string/content_desc_search_by_school"
+                android:tint="?android:textColorSecondary"
+
+                android:scaleType="fitCenter"
+                android:padding="6dp"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:background="?android:selectableItemBackground"
+                app:srcCompat="@drawable/ic_person_black_24dp"
+                android:contentDescription="@string/content_desc_search_by_school"
+                android:tint="?android:textColorSecondary"
+
+                android:scaleType="fitCenter"
+                android:padding="6dp"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:background="?android:selectableItemBackground"
+                app:srcCompat="@drawable/ic_building_black_24dp"
+                android:contentDescription="@string/content_desc_search_by_school"
+                android:tint="?android:textColorSecondary"
+
+                android:scaleType="fitCenter"
+                android:padding="6dp"
+
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

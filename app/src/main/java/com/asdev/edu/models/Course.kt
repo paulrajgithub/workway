@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
+import com.asdev.edu.COURSE_COLORS
 import com.asdev.edu.MD_COURSE_COLORS
 import com.asdev.edu.R
 import com.asdev.edu.containsBits
@@ -62,7 +63,7 @@ enum class DCourse(
      * The background color reference for this course.
      */
     @ColorRes
-    val colorRes: Int = MD_COURSE_COLORS[ordinal % MD_COURSE_COLORS.size]
+    val colorRes: Int = COURSE_COLORS[ordinal % COURSE_COLORS.size]
     
     companion object {
 

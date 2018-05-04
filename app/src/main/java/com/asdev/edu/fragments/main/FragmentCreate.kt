@@ -261,7 +261,7 @@ class FragmentCreate : SelectableFragment() {
 
         // show the tooltip
         // TODO: only if necessary
-        ViewTooltip.on(previewIv).apply {
+        ViewTooltip.on(this, previewIv).apply {
             autoHide(true, 2500)
             clickToHide(true)
             align(ViewTooltip.ALIGN.CENTER)

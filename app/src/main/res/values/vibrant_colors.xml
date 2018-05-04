@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="vibrant_teal">#6BD6D5</color>
+    <color name="vibrant_red">#ff5e62</color>
+    <color name="vibrant_orange">#ff9966</color>
+    <color name="vibrant_purple">#acb6e5</color>
+    <color name="vibrant_green">#43C6AC</color>
+    <color name="vibrant_pink">#FFAFBD</color>
+    <color name="vibrant_violet">#BE93C5</color>
+    <color name="vibrant_blue">#7BC6CC</color>
+
+    <color name="medium_purple">#7074DA</color>
+    <color name="medium_pink">#DC3169</color>
+    <color name="medium_yellow">#FDD42F</color>
+
+</resources>

@@ -15,6 +15,25 @@ val MD_COURSE_COLORS = arrayOf(
         R.color.md_red_500)
 
 /**
+ * A set of vibrant colors that are used for the course backgrounds.
+ */
+val VIBRANT_COURSE_COLORS = arrayOf(
+        R.color.vibrant_green,
+        R.color.vibrant_orange,
+        R.color.vibrant_pink,
+        R.color.vibrant_purple,
+        R.color.vibrant_red,
+        R.color.vibrant_teal,
+        R.color.vibrant_violet,
+        R.color.vibrant_blue
+)
+
+/**
+ * The currently selected set of course colors.
+ */
+val COURSE_COLORS = VIBRANT_COURSE_COLORS
+
+/**
  * A convenience random object.
  */
 val RANDOM = Random()

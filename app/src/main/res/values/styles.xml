@@ -6,7 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="android:textColorPrimary">#222</item>
+        <item name="android:textColorPrimary">#565656</item>
         <item name="android:textColorSecondary">#757575</item>
     </style>
 
@@ -49,10 +49,16 @@
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
-    <style name="AppTheme.TextAppearance.Header">
-        <item name="android:textSize">20sp</item>
+    <style name="AppTheme.TextAppearance.SpecialHeader">
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/baron_neue</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Header">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
     </style>
 
     <style name="AppTheme.TextAppearance.Title">
@@ -64,11 +70,54 @@
     <style name="AppTheme.TextAppearance.Subtitle">
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Normal">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Normal.Secondary">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Post" />
+
+    <style name="AppTheme.TextAppearance.Post.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Post.Body">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Post.Actions">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Widget.Button.Special" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:background">@drawable/button_pill</item>
+        <item name="android:foreground">?android:selectableItemBackground</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="AppTheme.Widget.Button.Borderless.Colored" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="AppTheme.Widget.Button.Borderless.Special" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:fontFamily">@font/baron_neue</item>
     </style>
 
 </resources>
