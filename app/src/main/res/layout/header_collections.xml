@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Spacer -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/content_desc_banner"
+        app:srcCompat="@drawable/banner_intro"/>
+
+    <!--Quick access header-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/text_quick_collections"
+        style="@style/AppTheme.TextAppearance.Header"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+
+        />
+
+    <!--Quick actions layout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--Quick saved-->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+
+            android:drawableTop="@drawable/collection_quick_saved"
+            style="@style/AppTheme.Widget.Button.Borderless.Plain"
+            android:text="@string/button_collection_quick_saved"
+            />
+
+        <!--Recently liked-->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+
+            android:drawableTop="@drawable/collection_recently_liked"
+            style="@style/AppTheme.Widget.Button.Borderless.Plain"
+            android:text="@string/button_collection_recently_liked"
+            />
+        <!--Recently viewed-->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+
+            android:drawableTop="@drawable/collection_recently_viewed"
+            style="@style/AppTheme.Widget.Button.Borderless.Plain"
+            android:text="@string/button_collection_recently_viewed"
+            />
+
+    </LinearLayout>
+
+    <!--Saved collections header-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/text_saved_collections"
+        style="@style/AppTheme.TextAppearance.Header"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        />
+
+</LinearLayout>

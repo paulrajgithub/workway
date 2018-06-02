@@ -2,5 +2,8 @@
 <resources>
 
     <string name="maps_api_key">AIzaSyALeErd5TwIsNX2nup4xBSRt-7XfoBsl68</string>
-
+    <string name="algolia_api_key">2960ef48b7ede44ec7e350da09ecb065</string>
+    <string name="algolia_app_id">6GZJDJWIXV</string>
+    <string name="algolia_posts_index">posts</string>
+    <string name="algolia_collections_index">collections</string>
 </resources>

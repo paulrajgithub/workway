@@ -1,0 +1,21 @@
+- Collections UI
+- Post Creation UI // Good enough for now
+- Profile UI
+
+- Post hold and preview UI
+- Collection hold and preview UI
+
+- GDocs integration
+- Actual post uploading to the server
+    - KUUV service already implemented
+    - Metadata posting to server
+- Home post searching algorithms
+- Search algorithms / Algolia
+    - Creating mirror search terms on Algolia
+    - Search by saved
+    - Search by course
+    - Search by class
+- Post liking / User-to-user OST transaction
+- Ad implementation
+
+MISC DEV TODOS:

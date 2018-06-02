@@ -3,6 +3,7 @@ package com.asdev.edu.services
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 
 /**
  * A singleton which integrates [FirebaseAuth] capabilities into a [Observable] friendly
@@ -32,7 +33,13 @@ object RxFirebaseAuth {
 
             val task = user.getToken(true)
             // wait for task to complete
-            task.await(lock)
+            try {
+                task.await(lock)
+            } catch (e: Exception) {
+                // error
+                emitter.onError(e)
+                return@create
+            }
 
             // if successful, trigger on next
             // otherwise error it
@@ -47,7 +54,7 @@ object RxFirebaseAuth {
             } else {
                 emitter.onError(task.exception?: Exception("An exception occurred while getting the user token"))
             }
-        }
+        }.subscribeOn(Schedulers.io())
 
 }
 

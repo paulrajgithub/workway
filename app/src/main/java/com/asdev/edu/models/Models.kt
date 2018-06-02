@@ -47,7 +47,7 @@ const val TAG_SCOPE_PROF     = 0b010000
 /**
  * A class that represents an associative textual tag.
  */
-data class DTag(val text: String, val id: Any = TAG_ID_NONSTANDARD, val scope: Int = TAG_SCOPE_ALL) {
+data class DTag(val text: String, val id: Any = TAG_ID_NONSTANDARD, val scope: Int = TAG_SCOPE_ALL): Serializable {
 
     companion object {
 
@@ -80,6 +80,10 @@ data class DUser(
          * The mongo ID of this user.
          */
         var _id: String?,
+        /**
+         * The entered name of the user.
+         */
+        var name: String,
         /**
          * The firebase id of this user.
          */
@@ -119,7 +123,11 @@ data class DUser(
         /**
          * The name of the school of the user.
          */
-        var schoolName: String): Serializable {
+        var schoolName: String,
+        /**
+         * The collections saved by this user.
+         */
+        var collections: List<DCollection>?): Serializable {
 
     companion object {
 
@@ -129,6 +137,7 @@ data class DUser(
         fun blank() =
                 DUser(
                         _id = null,
+                        name = "",
                         firebaseId = "",
                         profilePicRef = null,
                         postRefs = listOf(),
@@ -145,12 +154,17 @@ data class DUser(
                         following = listOf(),
                         grade = DGrade.GRADE_9,
                         schoolPlaceId = "",
-                        schoolName = ""
+                        schoolName = "",
+                        collections = listOf()
                 )
 
     }
 
+    fun scrub() = copy(posts = null, collections = null) // TODO: maybe scrub school name and grade?
+
 }
+
+// TODO: make post aware of the collection(s) it is in
 
 /**
  * A class that represents a user post object with an image, owner, and other attrs.
@@ -168,6 +182,16 @@ data class DPost(
          * The URL to the image containing the post.
          */
         var ref: String,
+        /**
+         * The likers of this post, with each string being the ID of the liker. Always server
+         * managed.
+         */
+        var likes: List<String>,
+        /**
+         * The number of likers of this post, always server managed. To be used by the Algolia
+         * search index.
+         */
+        val numLikes: Long,
         /**
          * A list of tags associated with this post.
          */
@@ -187,7 +211,7 @@ data class DPost(
         /**
          * The visibility of this post.
          */
-        var visibility: Int) {
+        var visibility: Int): Serializable {
 
     /**
      * Attempts to find the course of this post by taking the first tag
@@ -232,10 +256,21 @@ data class DUIAction<out T>(val type: Int, val payload: T) {
 
     companion object {
 
-        val TYPE_POST_FULLSCREEN = 1
-        val TYPE_POST_SAVE = 2
-        val TYPE_POST_SEND = 3
-        val TYPE_POST_COLLECTION = 4
+        /**
+         * Constant types for post items.
+         */
+        val TYPE_POST_FULLSCREEN = 11
+        val TYPE_POST_SAVE = 12
+        val TYPE_POST_SEND = 13
+        val TYPE_POST_COLLECTION = 14
+        val TYPE_POST_LIKE = 15
 
+        /**
+         * Constant types for collection items.
+         */
+        val TYPE_COLLECTION_LIKE = 21
+        val TYPE_COLLECTION_SHARE = 22
+        val TYPE_COLLECTION_EDIT = 23
+        val TYPE_COLLECTION_FULLSCREEN = 24
     }
 }

@@ -11,11 +11,15 @@ import com.asdev.edu.fragments.main.FragmentCreate
 import com.asdev.edu.fragments.main.FragmentHome
 import com.asdev.edu.fragments.main.FragmentProfile
 import com.asdev.edu.models.SelectableFragment
+import com.asdev.edu.models.SharedData
+import io.reactivex.plugins.RxJavaPlugins
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val fragments = arrayOf(FragmentHome(), FragmentCollections(), FragmentProfile(), FragmentCreate())
+
+    private var lastSelected: SelectableFragment? = null
 
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         val fragment: SelectableFragment = when (item.itemId) {
@@ -40,11 +44,15 @@ class MainActivity : AppCompatActivity() {
             return@OnNavigationItemSelectedListener false
         }
 
+        // update the last fragment selection and deselection
+        lastSelected?.onUnselected()
+        lastSelected = fragment
+
         fragment.onSelected()
 
         // do a transaction of the new fragment
         supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit)
+                // .setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit)
                 .replace(R.id.content, fragment)
                 .addToBackStack(null)
                 .commit()
@@ -74,6 +82,33 @@ class MainActivity : AppCompatActivity() {
             child.setShiftingMode(false)
             child.setChecked(false)
         }
+
+        RxJavaPlugins.setErrorHandler {
+            it.printStackTrace()
+        }
+
+        // get shared data to update its user object
     }
 
+    override fun onResume() {
+        super.onResume()
+        // trigger shared data hooks
+        SharedData.onResume(applicationContext)
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+
+        // call a reload on the feed
+        (fragments[0] as FragmentHome).reloadFeed()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        SharedData.onPause()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }

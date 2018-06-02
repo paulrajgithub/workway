@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        style="@style/AppTheme.TextAppearance.Header"
+        android:text="@string/text_thanks"
+        />
+
+    <TextView
+        android:id="@+id/dialog_like_top_greet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingTop="4dp"
+
+        android:gravity="center"
+        style="@style/AppTheme.TextAppearance.Subtitle"
+        android:fontFamily="@font/montserrat_semibold"
+
+        android:text="@string/text_user_liked_post"
+
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+
+        android:scaleType="fitCenter"
+
+        app:lottie_scale="2"
+        app:lottie_fileName="checkmark.json"
+        app:lottie_loop="false"
+        app:lottie_autoPlay="true"
+        />
+
+    <TextView
+        android:id="@+id/dialog_like_bottom_greet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        style="@style/AppTheme.TextAppearance.Post.Title"
+        android:gravity="center"
+        android:text="@string/text_drt_sent"
+        />
+
+</LinearLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <import type="com.asdev.edu.R"/>
+    </data>
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <!--Type icon-->
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+
+            android:layout_gravity="center_vertical"
+
+            android:padding="16dp"
+            android:tint="?android:attr/textColorSecondary"
+            app:srcCompat="@drawable/ic_document_24dp"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/item_hit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+
+                android:gravity="center_vertical|start"
+                style="@style/AppTheme.TextAppearance.Subtitle"
+
+                highlightColor="@{R.color.highlight_color}"
+                highlighted="@{true}"
+                attribute='@{"title"}'
+                />
+
+            <TextView
+                android:id="@+id/item_hit_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+
+                android:gravity="center_vertical|start"
+                style="@style/AppTheme.TextAppearance.Post.Body.Small"
+
+                prefix='@{"in "}'
+                attribute='@{"tags[0].text"}'
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+
+            android:layout_gravity="center_vertical"
+
+            android:padding="6dp"
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/item_hit_num_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:paddingRight="16dp"
+
+            style="@style/AppTheme.TextAppearance.Title"
+            android:gravity="center_vertical|start"
+            android:text="@string/text_default_likes"
+            attribute='@{"numLikes"}'
+            />
+
+    </LinearLayout>
+</layout>

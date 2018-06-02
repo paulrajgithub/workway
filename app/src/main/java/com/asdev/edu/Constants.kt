@@ -29,6 +29,16 @@ val VIBRANT_COURSE_COLORS = arrayOf(
 )
 
 /**
+ * A set of gradient drawable (res IDs) used for placeholders and collection accents.
+ */
+val GRADIENTS = arrayOf(
+        R.drawable.gradient_accent,
+        R.drawable.gradient_digital_water,
+        R.drawable.gradient_dusk,
+        R.drawable.gradient_orange_sky
+)
+
+/**
  * The currently selected set of course colors.
  */
 val COURSE_COLORS = VIBRANT_COURSE_COLORS
@@ -59,10 +69,14 @@ const val RC_ADDITIONAL_IMAGE_PICKER = 4004
  */
 const val DUSER_FILE = "duser.json"
 
+const val QUICK_SAVED_FILE = "qs.json"
+
 /**
  * The amount of time in ms that qualifies as a network timeout.
  */
 const val NETWORK_TIMEOUT = 7000L
+
+const val DEFAULT_HOME_FEED_LEN = 20
 
 /**
  * The quality of the JPEG image to export and upload
@@ -84,3 +98,7 @@ const val LOCAL_PREFS_NAME = "LocalPrefs"
  * The preference key denoting whether or not the onb has been shown.
  */
 const val PREF_KEY_HAS_SHOWN_ONB = "has_shown_onb"
+
+const val REMOTE_BASE_UI = "https://hs.asdev.ca"
+const val REMOTE_POST_UI = "$REMOTE_BASE_UI/post/"
+const val REMOTE_COLLECTIONS_UI = "$REMOTE_BASE_UI/collection/"

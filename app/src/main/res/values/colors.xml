@@ -9,4 +9,5 @@
     <color name="colorBackgroundSecondary">#EEEEEE</color>
     <color name="splash_title_color">#AAAAAA</color>
     <color name="color_search_bar">#F0F0F0</color>
+    <color name="highlight_color">#000000</color>
 </resources>

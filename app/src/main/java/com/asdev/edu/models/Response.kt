@@ -11,6 +11,7 @@
 
 package com.asdev.edu.models
 
+class ResponseException(val response: Response): Exception("An server occurred, with the response $response")
 
 data class Response(
         val error: Boolean = true,

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="36dp">
+
+    <!--Half circle cap-->
+    <View
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:translationX="-18dp"
+
+        android:background="@drawable/chip_circle"
+
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/chip_rect"
+        android:layout_toEndOf="@id/chip_rect" />
+
+    <!--Rectangle background-->
+    <View
+        android:id="@+id/chip_rect"
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/chip_rect"/>
+
+    <!--Description text-->
+    <TextView
+        android:layout_width="96dp"
+        android:layout_height="36dp"
+
+        android:gravity="center_vertical|start"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+
+        android:text="@string/text_drt_received"
+        style="@style/AppTheme.TextAppearance.Chip.Normal" />
+
+    <TextView
+        android:id="@+id/chip_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+
+        android:gravity="center"
+        android:text="@string/text_default_balance"
+        style="@style/AppTheme.TextAppearance.Chip.Currency"
+
+
+        android:layout_alignRight="@id/chip_rect"
+        android:layout_alignEnd="@id/chip_rect" />
+
+</RelativeLayout>

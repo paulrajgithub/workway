@@ -57,7 +57,7 @@ class VHCourseSelector(view: View): RecyclerView.ViewHolder(view) {
         /**
          * Creates a new course selector view item.
          */
-        fun inflate(course: DCourse, grid: GridLayout): VHCourseSelector {
+        fun inflate(course: DCourse, grid: GridLayout, callback: (DCourse) -> Unit): VHCourseSelector {
             // inflate a new view
             val inflater = LayoutInflater.from(grid.context)
             val v = inflater.inflate(R.layout.item_course_selector, grid, false)
@@ -73,6 +73,10 @@ class VHCourseSelector(view: View): RecyclerView.ViewHolder(view) {
 
             // add to grid
             grid.addView(v, v.layoutParams)
+
+            v.setOnClickListener {
+                callback(course)
+            }
 
             return holder
         }

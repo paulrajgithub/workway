@@ -17,4 +17,11 @@ abstract class SelectableFragment: Fragment() {
      * Called when this fragment is reselected.
      */
     abstract fun onReselected()
+
+    /**
+     * Called when this fragment is unselected (a different one is selected).
+     */
+    open fun onUnselected() {
+
+    }
 }

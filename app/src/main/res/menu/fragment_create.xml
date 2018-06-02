@@ -6,7 +6,7 @@
     <item android:title="@string/title_upload"
         android:id="@+id/menu_upload"
         app:showAsAction="always"
-        android:icon="@drawable/ic_share_black_24dp"
+        android:icon="@drawable/ic_file_upload_black_24dp"
         />
 
 </menu>

@@ -4,10 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.asdev.edu.models.DUser
+import com.asdev.edu.models.UserBundle
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 class LauncherActivity : AppCompatActivity() {
 
@@ -27,10 +26,10 @@ class LauncherActivity : AppCompatActivity() {
 
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
-        val duser = readDiskDuser(applicationContext)
+        val duser = readJsonFile<UserBundle>(applicationContext, DUSER_FILE)
 
         // verify the authentication state
-        if(user != null && duser != null && duser.firebaseId == user.uid) {
+        if(user != null && duser?.user != null && duser.user.firebaseId == user.uid) {
             launchMain(duser)
         } else if(user == null && duser == null){
             // if no auth and no duser, that means the ONB was skipped
@@ -50,7 +49,7 @@ class LauncherActivity : AppCompatActivity() {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
-    private fun launchMain(duser: DUser?) {
+    private fun launchMain(duser: UserBundle?) {
         val intent = Intent(applicationContext, MainActivity::class.java)
         // put duser extra
         intent.putExtra(EXTRA_DUSER, duser)

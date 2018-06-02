@@ -13,6 +13,7 @@ import com.asdev.edu.fragments.onb.*
 import com.asdev.edu.models.DGrade
 import com.asdev.edu.models.DSchool
 import com.asdev.edu.models.DUser
+import com.asdev.edu.models.UserBundle
 import com.asdev.edu.services.Localization
 import com.asdev.edu.services.RemoteResponse
 import com.asdev.edu.services.RemoteService
@@ -20,6 +21,7 @@ import com.asdev.edu.services.RxFirebaseAuth
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
+import com.firebase.ui.auth.data.model.User
 import com.google.android.gms.location.places.Place
 import com.google.android.gms.location.places.ui.PlacePicker
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -86,7 +88,7 @@ class OnBoardingActivity : AppCompatActivity() {
                 .commit()
     }
 
-    private fun handleSignIn() {
+    private fun handleSignIn(user: User) {
         // we have an auth response, finalize the registration by showing loading,
         // saving locally the data
         // and sending to server
@@ -114,6 +116,7 @@ class OnBoardingActivity : AppCompatActivity() {
                 .flatMap { token ->
                     RemoteService.userRegister(
                             authToken = token,
+                            name = user.name?: "", // TODO: ensure that a name is entered
                             grade = grade,
                             school = DSchool(school.name.toString(), school.id),
                             profilePicRef = null,
@@ -129,7 +132,7 @@ class OnBoardingActivity : AppCompatActivity() {
         subscriptions.add(sub)
     }
 
-    private fun handleSignInSuccess(response: RemoteResponse<DUser>) {
+    private fun handleSignInSuccess(response: RemoteResponse<UserBundle>) {
         if (response.error != null) {
             // we had some error
             val msg = Localization.getResponseMsg(response.error)
@@ -146,7 +149,7 @@ class OnBoardingActivity : AppCompatActivity() {
 
             // we should have our payload
             // cache response and continue
-            commitDiskDuser(response.payload, applicationContext)
+            commitJsonFile(response.payload, applicationContext, DUSER_FILE)
             launchMain(response.payload)
         }
     }
@@ -166,7 +169,7 @@ class OnBoardingActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack()
     }
 
-    private fun launchMain(duser: DUser?) {
+    private fun launchMain(duser: UserBundle?) {
         val intent = Intent(applicationContext, MainActivity::class.java)
         // put duser extra
         intent.putExtra(EXTRA_DUSER, duser)
@@ -230,13 +233,11 @@ class OnBoardingActivity : AppCompatActivity() {
 
         // launch the sign in intent, when that is completed, mark as completed
         val intent = AuthUI.getInstance().createSignInIntentBuilder()
-                .setIsSmartLockEnabled(true)
+                .setIsSmartLockEnabled(false)
                 .setLogo(R.mipmap.ic_launcher)
                 .setProviders(listOf(
-                        AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(), // Google accounts
-                        AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build(), // Facebook accounts
-                        AuthUI.IdpConfig.Builder(AuthUI.TWITTER_PROVIDER).build(), // Twitter accounts
-                        AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build() // Email accounts
+                        AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build() // Google accounts
+                // TODO: add facebook
                 )).setAllowNewEmailAccounts(true)
                 .build()
 
@@ -271,7 +272,7 @@ class OnBoardingActivity : AppCompatActivity() {
 
             if (resultCode == RESULT_OK) {
                 // got a successful auth response
-                handleSignIn()
+                handleSignIn(response.user)
             } else {
                 // error, read code
                 if (response.errorCode == ErrorCodes.NO_NETWORK) {

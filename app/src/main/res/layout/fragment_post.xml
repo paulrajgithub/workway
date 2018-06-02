@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/fragment_post_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="#FFF"
+            />
+
+        <ImageView
+            android:id="@+id/fragment_post_nav_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="10dp"
+
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+
+            android:layout_gravity="top|start"
+
+            />
+
+    </FrameLayout>
+
+    <!--Accessory view-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/fragment_post_accessories"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical">-->
+
+        <!--Title header view-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EEE"
+            android:orientation="vertical"
+
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/fragment_post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                style="@style/AppTheme.TextAppearance.Post.Title"
+                android:text="Title"
+                />
+
+            <TextView
+                android:id="@+id/fragment_post_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                style="@style/AppTheme.TextAppearance.Subtitle"
+                android:text="Subtitle"
+                />
+
+        </LinearLayout>
+
+        <!--Actions view-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/fragment_post_likes_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/fragment_post_likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+
+
+                    android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
+                    android:drawableStart="@drawable/ic_favorite_border_black_24dp"
+                    android:drawablePadding="8dp"
+
+                    android:gravity="center_vertical|start"
+                    android:text="@string/text_default_likes"
+
+                    style="@style/AppTheme.TextAppearance.Post.Actions"
+
+                    />
+
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/fragment_post_save"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+
+                android:padding="14dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_save_black_24dp"
+
+                />
+
+            <ImageView
+                android:id="@+id/fragment_post_send"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+
+                android:padding="14dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_send_black_24dp"
+
+                />
+
+        </LinearLayout>
+
+        <!--Ad spot would go here, ost earned from ad views-->
+        <TextView
+            android:id="@+id/fragment_post_ad_spot"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+
+            android:visibility="gone"
+
+            android:background="@drawable/gradient_orange_sky"
+
+            android:gravity="center"
+            android:textColor="#FFF"
+            android:text="@string/text_ad_spot"
+            />
+
+    <!--</LinearLayout>-->
+
+</LinearLayout>

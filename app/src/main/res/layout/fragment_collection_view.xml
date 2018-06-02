@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!--Actual list of posts-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_collection_view_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <ProgressBar
+            android:id="@+id/fragment_collection_view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="180dp"
+
+            android:visibility="visible"
+
+            android:background="?android:attr/colorBackground"
+
+            />
+
+    </FrameLayout>
+
+    <!--Bottom header with name, date, and actions-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EEE"
+        android:orientation="vertical"
+
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/fragment_collection_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            style="@style/AppTheme.TextAppearance.Post.Title"
+            />
+
+        <TextView
+            android:id="@+id/fragment_collection_view_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            style="@style/AppTheme.TextAppearance.Subtitle"
+            />
+
+    </LinearLayout>
+
+    <!--Actions view-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fragment_collection_view_delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_delete_black_24dp"
+
+            />
+
+        <ImageView
+            android:id="@+id/fragment_collection_view_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_edit_black_24dp"
+
+            />
+
+        <ImageView
+            android:id="@+id/fragment_collection_view_send"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_send_black_24dp"
+
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

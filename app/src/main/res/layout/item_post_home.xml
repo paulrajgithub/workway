@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/post_img"
             android:layout_width="match_parent"
             android:layout_height="150dp"
 
@@ -25,6 +26,7 @@
             android:src="@drawable/gradient_digital_water" />
 
         <TextView
+            android:id="@+id/post_title"
             style="@style/AppTheme.TextAppearance.Post.Title"
             android:layout_width="match_parent"
 
@@ -36,6 +38,7 @@
             android:text="Hi OST Team!" />
 
         <TextView
+            android:id="@+id/post_body"
             style="@style/AppTheme.TextAppearance.Post.Body"
             android:layout_width="match_parent"
 
@@ -48,39 +51,34 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom">
 
-                <!--android:contentDescription="@string/content_desc_like_post"-->
-                <!--android:paddingLeft="8dp"-->
+                <Button
+                    android:id="@+id/post_like"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
 
-                <!--android:paddingStart="8dp"-->
-                <!--android:tint="?android:textColorPrimary"-->
-                <!--app:srcCompat="@drawable/ic_favorite_border_black_24dp" />-->
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
+                    android:drawableStart="@drawable/ic_favorite_border_black_24dp"
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2"
+                    style="@style/AppTheme.TextAppearance.Post.Actions"
+                    android:gravity="center"
+                    android:paddingLeft="4dp"
+                    android:paddingStart="4dp"
+                    android:paddingRight="4dp"
 
-                android:background="?attr/selectableItemBackground"
-                android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
-                android:drawableStart="@drawable/ic_favorite_border_black_24dp"
+                    />
 
-                android:text="99"
-                style="@style/AppTheme.TextAppearance.Post.Actions"
-                android:gravity="center"
-                android:paddingLeft="4dp"
-                android:paddingStart="4dp"
-                android:paddingRight="4dp"
-
-                />
-
-            <!--<TextView-->
+                <!--<TextView-->
                 <!--style="@style/AppTheme.TextAppearance.Post.Actions"-->
                 <!--android:layout_width="wrap_content"-->
 
@@ -89,31 +87,36 @@
 
                 <!--android:text="90" />-->
 
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                <ImageButton
+                    android:id="@+id/post_save"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
 
-                android:contentDescription="@string/content_desc_action_save"
-                android:background="?attr/selectableItemBackground"
-                android:tint="?android:textColorPrimary"
-                app:srcCompat="@drawable/ic_save_black_24dp"
+                    android:contentDescription="@string/content_desc_action_save"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="?android:textColorPrimary"
+                    app:srcCompat="@drawable/ic_save_black_24dp"
 
-                />
+                    />
 
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                <ImageButton
+                    android:id="@+id/post_send"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
 
-                android:contentDescription="@string/content_desc_action_send"
-                android:background="?attr/selectableItemBackground"
-                android:tint="?android:textColorPrimary"
-                app:srcCompat="@drawable/ic_send_black_24dp"
+                    android:contentDescription="@string/content_desc_action_send"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="?android:textColorPrimary"
+                    app:srcCompat="@drawable/ic_send_black_24dp"
 
-                />
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
+
 
     </LinearLayout>
 

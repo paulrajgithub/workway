@@ -222,49 +222,6 @@
 
             </LinearLayout>
 
-            <!-- Professor item -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="60dp"
-
-                    android:layout_gravity="center_vertical|start"
-                    android:contentDescription="@string/content_desc_professor"
-                    android:padding="16dp"
-                    android:tint="?android:textColorSecondary"
-                    app:srcCompat="@drawable/ic_person_black_24dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/AppTheme.TextAppearance.Title"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_professor" />
-
-                    <TextView
-                        style="@style/AppTheme.TextAppearance.Subtitle"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_none" />
-                </LinearLayout>
-
-            </LinearLayout>
-
             <!-- Doc type item -->
             <LinearLayout
                 android:id="@+id/fragment_create_edit_doctype"
@@ -446,12 +403,46 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/custom_ip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <!-- Professor item -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
 
-                android:text="Launch OG image picker"/>
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="center_vertical|start"
+                    android:contentDescription="@string/content_desc_professor"
+                    android:padding="16dp"
+                    android:tint="?android:textColorSecondary"
+                    app:srcCompat="@drawable/ic_person_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Title"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_professor" />
+
+                    <TextView
+                        style="@style/AppTheme.TextAppearance.Subtitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_none" />
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -3,6 +3,7 @@ package com.asdev.edu
 import android.content.Context
 import com.asdev.edu.models.DCourse
 import com.asdev.edu.models.DUser
+import com.asdev.edu.models.UserBundle
 import java.io.*
 
 /**
@@ -11,28 +12,27 @@ import java.io.*
 infix fun Int.containsBits(flag: Int)
         = (this and flag) == flag
 
-fun readDiskDuser(appContext: Context): DUser? {
-    // read from duser file
-    val file = File(appContext.filesDir, DUSER_FILE)
+inline fun <reified T> readJsonFile(appContext: Context, filename: String): T? {
+    val file = File(appContext.filesDir, filename)
 
     if(!file.exists())
         return null
 
     val body = readFile(file)
     try {
-        // parse the body as a duser obj
-        return GSON.fromJson(body, DUser::class.java)
+        // parse the body as a T object
+        return GSON.fromJson(body, T::class.java)
     } catch (e: Exception) {
         e.printStackTrace()
         return null
     }
 }
 
-fun commitDiskDuser(duser: DUser, appContext: Context) {
-    val file = File(appContext.filesDir, DUSER_FILE)
+inline fun <reified T> commitJsonFile(obj: T, appContext: Context, filename: String) {
+    val file = File(appContext.filesDir, filename)
 
-    // convert duser to json
-    val body = GSON.toJson(duser)
+    // convert T to json
+    val body = GSON.toJson(obj)
     // write out
     writeFile(body, file)
 }

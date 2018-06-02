@@ -1,1 +1,2 @@
 include ':app', ':circleimageview', ':cameraview'
+includeBuild "C:\\Users\\Shahbaz\\IdeaProjects\\ost-sdk"

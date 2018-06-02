@@ -1,9 +1,12 @@
 package com.asdev.edu.services
 
+import android.content.Context
 import android.support.annotation.StringRes
 import com.asdev.edu.R
 import com.asdev.edu.models.ErrorCodes
 import com.asdev.edu.models.Response
+import java.util.*
+import kotlin.math.absoluteValue
 
 /**
  * A singleton which provides various localized message @StringRes codes.
@@ -67,4 +70,111 @@ object Localization {
         }
     }
 
+    /**
+     * Converts a given time long (in milliseconds, since epoch) to a localized time string.
+     */
+    fun convertToTimeString(submitTime: Long, context: Context): String {
+        // formats as so:
+        // Recently
+        // A few hours ago
+        // A day ago
+        // 2 days ago
+        // 3 days ago
+        // A week ago
+        // 2 weeks ago
+        // 3 weeks ago
+        // A month ago
+        // 2 months ago
+        // A year ago
+        // 2 years ago
+
+        // create a calendar instance for easy management
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = submitTime
+        val current = Calendar.getInstance()
+
+        val result = StringBuilder()
+
+        // go by years, month, weeks, days, hours, seconds
+        val yearDiff = (current[Calendar.YEAR] - calendar[Calendar.YEAR]).absoluteValue
+        if(yearDiff == 0) {
+            val monthDiff = (current[Calendar.MONTH] - calendar[Calendar.MONTH]).absoluteValue
+            if(monthDiff == 0) {
+                val weekDiff = (current[Calendar.WEEK_OF_MONTH] - calendar[Calendar.WEEK_OF_MONTH]).absoluteValue
+                if(weekDiff == 0) {
+                    val dayDiff = (current[Calendar.DAY_OF_MONTH] - calendar[Calendar.DAY_OF_MONTH]).absoluteValue
+                    if(dayDiff == 0) {
+                        val hourDifferential = (current[Calendar.HOUR_OF_DAY] - calendar[Calendar.HOUR_OF_DAY]).absoluteValue
+                        if(hourDifferential <= 3) {
+                            // Recently
+                            return context.getString(R.string.time_recently)
+                        } else if(hourDifferential <= 12) {
+                            // A few hours ago
+                            return context.getString(R.string.time_few_hours_ago)
+                        } else {
+                            // Today
+                            return context.getString(R.string.time_today)
+                        }
+                    } else {
+                        // X days ago
+                        if(dayDiff == 1) {
+                            result.append(R.string.time_singular, context)
+                            result.append(" ")
+                            result.append(R.string.time_day_singular, context)
+                        } else {
+                            result.append(dayDiff)
+                            result.append(" ")
+                            result.append(R.string.time_day_plural, context)
+                        }
+                    }
+                } else {
+                    // X weeks ago
+                    if(weekDiff == 1) {
+                        result.append(R.string.time_singular, context)
+                        result.append(" ")
+                        result.append(R.string.time_week_singular, context)
+                    } else {
+                        result.append(weekDiff)
+                        result.append(" ")
+                        result.append(R.string.time_week_plural, context)
+                    }
+                }
+            } else {
+                // X months ago
+                if(monthDiff == 1) {
+                    result.append(R.string.time_singular, context)
+                    result.append(" ")
+                    result.append(R.string.time_month_singular, context)
+                } else {
+                    result.append(monthDiff)
+                    result.append(" ")
+                    result.append(R.string.time_month_plural, context)
+                }
+            }
+        } else {
+            // X years ago
+            if(yearDiff == 1) {
+                result.append(R.string.time_singular, context)
+                result.append(" ")
+                result.append(R.string.time_year_singular, context)
+            } else {
+                result.append(yearDiff)
+                result.append(" ")
+                result.append(R.string.time_year_plural, context)
+            }
+        }
+
+        // append the last fragment; "ago"
+        result.append(" ")
+        result.append(R.string.time_ago, context)
+
+        return result.toString()
+    }
+}
+
+/**
+ * Appends the given string resource id to this StringBuilder.
+ */
+fun StringBuilder.append(@StringRes res: Int, context: Context) {
+    append(context.getString(res))
 }

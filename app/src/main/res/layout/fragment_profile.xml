@@ -1,8 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-</android.support.design.widget.CoordinatorLayout>
+    <!--Header content-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+
+        android:background="?attr/colorAccent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/banner_overlay"
+            />
+
+        <!--Settings Icon // Cog -->
+        <ImageButton
+            android:id="@+id/fragment_profile_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+
+            android:background="?attr/selectableItemBackgroundBorderless"
+
+            android:contentDescription="@string/content_desc_settings"
+            android:tint="#FFF"
+            app:srcCompat="@drawable/ic_settings_outline_black_24dp"
+            style="@style/AppTheme.Widget.Button.Borderless.Plain"
+            />
+
+        <!--Name header-->
+        <TextView
+            android:id="@+id/fragment_profile_name"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/fragment_profile_settings"
+
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+
+            android:text="Shahbaz Momi"
+            style="@style/AppTheme.TextAppearance.Profile.Name"
+
+            />
+
+        <!--School header-->
+        <TextView
+            android:id="@+id/fragment_profile_subtitle"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/fragment_profile_name"
+
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+
+            style="@style/AppTheme.TextAppearance.Profile.Subtitle"
+
+            />
+
+        <!--Profile pic container-->
+        <ImageView
+            android:id="@+id/fragment_profile_pp"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/fragment_profile_settings"
+            android:layout_marginRight="20dp"
+
+            android:contentDescription="@string/content_desc_profile_photo"
+            android:src="@drawable/ic_person_default"
+            />
+
+        <!--Change PP button-->
+        <Button
+            android:id="@+id/fragment_profile_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignStart="@id/fragment_profile_pp"
+            android:layout_alignLeft="@id/fragment_profile_pp"
+            android:layout_alignRight="@id/fragment_profile_pp"
+            android:layout_alignEnd="@id/fragment_profile_pp"
+            android:layout_below="@id/fragment_profile_pp"
+
+
+            style="@style/AppTheme.Widget.Button.Borderless.Plain"
+            android:text="@string/text_change_profile_pic"
+            android:textColor="#FFF"
+            />
+
+        <!--Received Chip-->
+        <include layout="@layout/chip_drt_balance"
+            android:id="@+id/fragment_profile_balance_chip"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+
+            android:layout_marginTop="14dp"
+            android:layout_below="@id/fragment_profile_subtitle"
+            />
+
+        <!--<TextView-->
+            <!--android:id="@+id/fragment_profile_earned_tv"-->
+            <!--android:layout_width="96dp"-->
+            <!--android:layout_height="36dp"-->
+
+            <!--android:paddingLeft="8dp"-->
+            <!--android:paddingRight="8dp"-->
+            <!--android:text="@string/text_drt_earned"-->
+            <!--android:textColor="#FFF"-->
+            <!--style="@style/AppTheme.TextAppearance.Chip.Normal"-->
+            <!--android:gravity="center_vertical|start"-->
+
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_below="@id/fragment_profile_balance_chip"-->
+            <!--android:layout_alignParentStart="true" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="48dp"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:gravity="center"-->
+
+            <!--android:layout_toRightOf="@id/fragment_profile_earned_tv"-->
+            <!--android:layout_toEndOf="@id/fragment_profile_earned_tv"-->
+            <!--android:layout_alignTop="@id/fragment_profile_earned_tv"-->
+            <!--android:layout_alignBottom="@id/fragment_profile_earned_tv"-->
+
+            <!--android:textColor="#FFF"-->
+            <!--style="@style/AppTheme.TextAppearance.Chip.Currency"-->
+            <!--android:text="@string/text_default_balance"-->
+            <!--/>-->
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_profile_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        />
+
+</LinearLayout>

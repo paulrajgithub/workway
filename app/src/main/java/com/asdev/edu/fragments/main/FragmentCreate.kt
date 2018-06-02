@@ -8,6 +8,9 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.support.annotation.StringRes
+import android.support.design.widget.Snackbar
+import android.support.v4.app.FragmentTransaction
 import android.support.v4.content.ContextCompat
 import android.support.v7.view.ContextThemeWrapper
 import android.support.v7.widget.GridLayoutManager
@@ -24,19 +27,34 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.asdev.edu.*
 import com.asdev.edu.adapters.CoursesAdapter
 import com.asdev.edu.models.*
+import com.asdev.edu.services.KuuvService
+import com.asdev.edu.services.Localization
+import com.asdev.edu.services.RemoteService
+import com.asdev.edu.services.RxFirebaseAuth
 import com.github.florent37.viewtooltip.ViewTooltip
+import com.google.firebase.auth.FirebaseAuth
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_create.*
+import java.text.NumberFormat
+
+private const val COURSE_ITEMS_NUM = 3
 
 /**
  * A fragment for the [MainActivity] which displays a post creation UI.
  */
 class FragmentCreate : SelectableFragment() {
 
-    private val COURSE_ITEMS_NUM = 3
+    private var subscriptions = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        subscriptions.dispose()
+        subscriptions = CompositeDisposable()
+
         // inflate the home layout
         val ctw = ContextThemeWrapper(context, R.style.AppTheme_Light)
 
@@ -64,12 +82,18 @@ class FragmentCreate : SelectableFragment() {
         val gradeLabel = view.findViewById(R.id.fragment_create_grade_label) as TextView
 
         SharedData.duserRo(context!!) {
-            it?: return@duserRo
-            schoolLabel.text = it.schoolName
-            gradeLabel.text = it.grade.resolveTitle(context!!)
+            it ?: return@duserRo
+            schoolLabel.text = it.user.schoolName
+            gradeLabel.text = it.user.grade.resolveTitle(context!!)
         }
 
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        subscriptions.dispose()
     }
 
     //// Lifecycle receivers ////
@@ -87,14 +111,9 @@ class FragmentCreate : SelectableFragment() {
         fragment_create_preview_clear.setOnClickListener(this::actionClearPreview)
         fragment_create_preview_add_img.setOnClickListener(this::actionSelectAdditionalImage)
         fragment_create_preview_recrop.setOnClickListener(this::actionRecrop)
-
-        ///// TODO: temp /////
-        custom_ip.setOnClickListener {
-            startActivity(Intent(context, ImageActivity::class.java))
-        }
     }
 
-    private fun onMenuItemClicked(item: MenuItem): Boolean = when(item.itemId) {
+    private fun onMenuItemClicked(item: MenuItem): Boolean = when (item.itemId) {
         R.id.menu_upload -> {
             actionUpload()
             true
@@ -106,7 +125,120 @@ class FragmentCreate : SelectableFragment() {
     //// Button/action recievers ////
 
     private fun actionUpload() {
-        Log.d("FragmentCreate", "Will upload the current post!")
+        // make sure the user is signed in
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if(user == null) {
+            showSnackbar(R.string.error_must_be_signed_in)
+            return
+        }
+
+        var uploadDialog: MaterialDialog? = null
+        var subscription: Disposable? = null
+
+        val iUri = imageUri
+        val title = postTitle
+        val course = course
+
+        if (iUri == null) {
+            showSnackbar(R.string.error_invalid_image)
+            return
+        }
+
+        if (title == null) {
+            showSnackbar(R.string.error_must_set_title)
+            return
+        }
+
+        if (course == null) {
+            showSnackbar(R.string.error_must_set_course)
+            return
+        }
+
+        // create a progress dialog
+        uploadDialog = MaterialDialog.Builder(context!!).apply {
+            title(R.string.title_uploading_post)
+            progress(false, 100, false)
+            progressPercentFormat(NumberFormat.getPercentInstance())
+
+            negativeText(R.string.text_cancel)
+            // cancel on negative button pressed
+            onNegative { _, _ -> uploadDialog?.cancel() }
+
+            cancelable(true)
+            // cancel the upload by cancelling the subscription
+            cancelListener {
+                subscription?.dispose()
+            }
+
+            canceledOnTouchOutside(false)
+        }.build()
+
+        uploadDialog?.show()
+
+        var imgUrl: String? = null
+
+        // upload the current file to kuuv, and post meta data after
+        val observable =
+                KuuvService.upload(context!!, iUri) { bytes, totalBytes ->
+                    // calculate number percentage
+                    // 90% of the process is uploading the file,
+                    // the 10% is uploading metadata
+                    val percentage = (bytes.toDouble() / totalBytes.toDouble()) * 90.0
+                    uploadDialog?.setProgress(percentage.toInt())
+                }
+                .subscribeOn(Schedulers.io())
+                .flatMap {
+                    imgUrl = it
+                    RxFirebaseAuth.getToken().subscribeOn(Schedulers.io())
+                }
+                .flatMap { token ->
+                    println("Got token")
+                    uploadDialog?.setProgress(95)
+
+                    val user = SharedData.duserRo(context!!)!!
+                    val grade = user.user.grade
+                    val school = DSchool(user.user.schoolName, user.user.schoolPlaceId)
+                    val tags = listOf(course.toTag(context!!), docType.toTag(context!!), grade.toTag(context!!), school.toTag())
+                    RemoteService.postCreate(token, title, imgUrl!!, tags, visibility).subscribeOn(Schedulers.io())
+                }
+
+        subscription = observable.subscribeBy(
+                onError = {
+                    it.printStackTrace()
+                },
+                onComplete = {
+                    uploadDialog?.setProgress(100)
+                    uploadDialog?.dismiss()
+                    // invalidate the duser object
+                    SharedData.invalidateDuser(activity!!.applicationContext)
+                },
+                onNext = {
+                    if(it.error != null && it.payload == null) {
+                        // Display the error msg
+                        val errorMsg = Localization.getResponseMsg(it.error)
+                        showSnackbar(errorMsg)
+                    } else if(it.payload != null){
+                        // SUCCESS
+                        val target = FragmentPost()
+                        target.setToPost(it.payload)
+
+                        // do a fragment transition
+                        requireActivity()
+                                .supportFragmentManager
+                                .beginTransaction()
+                                // .addSharedElement(action.sharedElement!!, "post_image_target")
+                                // .setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit, R.anim.fragment_enter, R.anim.fragment_exit)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .addToBackStack(null)
+                                .replace(R.id.content, target)
+                                .commit()
+                    }
+                }
+        )
+
+        // add to composite
+        subscriptions.add(subscription)
     }
 
     private fun actionClearPreview(@Suppress("UNUSED_PARAMETER") v: View?) {
@@ -149,10 +281,10 @@ class FragmentCreate : SelectableFragment() {
         MaterialDialog.Builder(context!!).apply {
             title(R.string.text_post_title)
 
-            input(getString(R.string.hint_post_title), postTitle, false) {
-                _, input ->
+            input(getString(R.string.hint_post_title), postTitle, false) { _, input ->
                 setPostTitle(input?.toString())
             }
+
             inputRangeRes(1, 64, R.color.md_red_500)
             inputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES or InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL or InputType.TYPE_TEXT_FLAG_AUTO_CORRECT or InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE)
             positiveText(R.string.dialog_ok)
@@ -169,10 +301,10 @@ class FragmentCreate : SelectableFragment() {
 
             // set the adapter to the courses
             SharedData.duserRo(context) {
-                adapter(CoursesAdapter(getCoursesInPriority(it), this@FragmentCreate::setCourse), GridLayoutManager(context, COURSE_ITEMS_NUM))
+                adapter(CoursesAdapter(getCoursesInPriority(it?.user), this@FragmentCreate::setCourse), GridLayoutManager(context, COURSE_ITEMS_NUM))
             }
 
-            backgroundColorRes(R.color.colorBackgroundSecondary)
+            backgroundColorRes(R.color.colorBackground)
 
         }.show()
     }
@@ -182,11 +314,10 @@ class FragmentCreate : SelectableFragment() {
         MaterialDialog.Builder(context!!).apply {
             title(R.string.text_doc_type)
             items(R.array.doc_types)
-            itemsCallback {
-                _, _, which, text ->
+            itemsCallback { _, _, which, text ->
                 // translate the index using the which index
                 val indicesArray = resources.getStringArray(R.array.doc_types_indices)
-                val dt = DDocType.byName(indicesArray[which])?: return@itemsCallback
+                val dt = DDocType.byName(indicesArray[which]) ?: return@itemsCallback
                 docType = dt
                 // update the ui
                 fragment_create_doctype_label.text = text
@@ -199,8 +330,7 @@ class FragmentCreate : SelectableFragment() {
         MaterialDialog.Builder(context!!).apply {
             title(R.string.text_visibility)
             items(R.array.visibilities)
-            itemsCallback {
-                _, _, which, text ->
+            itemsCallback { _, _, which, text ->
                 // update the selected item
                 visibility = which
                 // update the selected text
@@ -215,7 +345,7 @@ class FragmentCreate : SelectableFragment() {
 
     private fun actionRecrop(@Suppress("UNUSED_PARAMETER") v: View?) {
         // relaunch crop activity with the original image uri
-        CropImage.activity(imageUri) // TODO: this does not recrop the original
+        CropImage.activity(sourceUri)
                 .setAllowFlipping(false)
                 .setAllowRotation(true)
                 .setCropShape(CropImageView.CropShape.RECTANGLE)
@@ -275,13 +405,13 @@ class FragmentCreate : SelectableFragment() {
     }
 
     private fun calculateInSampleSize(options: BitmapFactory.Options) =
-       if(options.outHeight > 2000 || options.outWidth > 2000) {
-           4
-       } else if(options.outHeight > 1000 || options.outWidth > 1000) {
-           2
-       } else {
-           1
-       }
+            if (options.outHeight > 2000 || options.outWidth > 2000) {
+                4
+            } else if (options.outHeight > 1000 || options.outWidth > 1000) {
+                2
+            } else {
+                1
+            }
 
     private fun clearPreview() {
         fragment_create_preview_controls.visibility = View.GONE
@@ -301,7 +431,7 @@ class FragmentCreate : SelectableFragment() {
         // set the actual local var
         postTitle = title
         // update the UI
-        fragment_create_title_label.text = title?: getString(R.string.text_none)
+        fragment_create_title_label.text = title ?: getString(R.string.text_none)
         // TODO: set the drawable tint color?
     }
 
@@ -309,7 +439,7 @@ class FragmentCreate : SelectableFragment() {
     private fun setCourse(course: DCourse) {
         // dimiss course dialog if shown
         courseDialog?.apply {
-            if(isShowing) {
+            if (isShowing) {
                 dismiss()
             }
 
@@ -320,17 +450,26 @@ class FragmentCreate : SelectableFragment() {
         fragment_create_course_label.text = course.resolveTitle(context!!)
     }
 
+    private fun showSnackbar(@StringRes msgRes: Int) {
+        showSnackbar(getString(msgRes))
+    }
+
+    private fun showSnackbar(msg: String) {
+        val v = view?: return
+        Snackbar.make(v, msg, Snackbar.LENGTH_LONG).show()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             val result = CropImage.getActivityResult(data)
             // pass on to the create fragment
-            if(resultCode == Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 // trash intent data
                 result.bitmap?.recycle()
                 result.originalBitmap?.recycle()
                 setPreview(result.uri, result.originalUri)
             }
-        } else if(requestCode == RC_ADDITIONAL_IMAGE_PICKER) {
+        } else if (requestCode == RC_ADDITIONAL_IMAGE_PICKER) {
             // TODO: process additional image
         }
     }

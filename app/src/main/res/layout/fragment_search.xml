@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Header-->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="top|center_horizontal">
+
+        <!--Reward balance-->
+        <TextView
+            android:id="@+id/fragment_search_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+
+            style="@style/AppTheme.TextAppearance.RewardBalance"
+            android:text="@string/button_rewards_default"
+            android:gravity="center"
+            />
+
+        <!--Search bar-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+
+            android:background="@drawable/search_pill">
+
+            <EditText
+                android:id="@+id/fragment_search_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                style="@style/AppTheme.TextAppearance.Subtitle"
+                android:hint="@string/text_search"
+                android:inputType="text|textAutoComplete|textAutoCorrect"
+
+                android:background="@null"
+
+                android:gravity="center_vertical|start"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp" />
+
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+
+                <!--android:background="?android:selectableItemBackground"-->
+                <!--app:srcCompat="@drawable/ic_save_black_28dp"-->
+                <!--android:contentDescription="@string/content_desc_search_saved"-->
+                <!--android:tint="?android:textColorSecondary"-->
+
+                <!--android:scaleType="fitCenter"-->
+                <!--android:padding="6dp"-->
+                <!--/>-->
+
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+
+                <!--android:background="?android:selectableItemBackground"-->
+                <!--app:srcCompat="@drawable/ic_person_black_24dp"-->
+                <!--android:contentDescription="@string/content_desc_search_by_user"-->
+                <!--android:tint="?android:textColorSecondary"-->
+
+                <!--android:scaleType="fitCenter"-->
+                <!--android:padding="6dp"-->
+                <!--/>-->
+
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+
+                <!--android:background="?android:selectableItemBackground"-->
+                <!--app:srcCompat="@drawable/ic_building_black_24dp"-->
+                <!--android:contentDescription="@string/content_desc_search_by_school"-->
+                <!--android:tint="?android:textColorSecondary"-->
+
+                <!--android:scaleType="fitCenter"-->
+                <!--android:padding="6dp"-->
+
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginEnd="10dp" />-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragment_search_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        style="@style/AppTheme.TextAppearance.Post.Title"
+        android:text="@string/text_filters_none"
+        android:gravity="center_vertical"
+
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="12dp"
+
+        />
+
+    <!--Hits view-->
+    <com.algolia.instantsearch.ui.views.Hits
+        android:id="@+id/fragment_search_hits"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:infiniteScroll="true"
+        app:itemLayout="@layout/item_search_hit"
+        />
+
+</LinearLayout>

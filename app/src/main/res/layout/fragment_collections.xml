@@ -1,222 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#EEE">
+    android:layout_height="match_parent">
 
-
-    <!--Search bar-->
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-
-        app:cardElevation="4dp"
-        app:layout_scrollFlags="enterAlways|scroll">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-
-                android:contentDescription="@string/content_desc_search_icon"
-
-                android:padding="12dp"
-                app:srcCompat="@drawable/ic_search_gray_24dp" />
-
-            <TextView
-                android:id="@+id/toolbar_hint"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-
-                android:layout_marginRight="8dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="@string/text_search"
-                android:textColor="?android:textColorSecondary"
-                android:textSize="16sp"
-
-                />
-
-            <ProgressBar
-                android:id="@+id/toolbar_loading"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:indeterminate="true"
-
-                android:padding="12dp" />
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v4.widget.NestedScrollView
+    <!--Recycler view with all of the collections-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_collections_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        />
 
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="top|center_horizontal">
+
+        <!--Reward balance-->
+        <TextView
+            android:id="@+id/collections_reward_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+
+            style="@style/AppTheme.TextAppearance.RewardBalance"
+            android:text="@string/button_rewards_default"
+            android:gravity="center"
+            />
+
+        <!--Search bar-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:id="@+id/fragment_collections_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="72dp" />
+            android:layout_weight="1"
 
-            <!--Collections header-->
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+
+            android:background="@drawable/search_pill">
+
             <TextView
-                style="@style/AppTheme.TextAppearance.SuperHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
 
-                android:layout_gravity="center_vertical"
-                android:paddingBottom="8dp"
+                style="@style/AppTheme.TextAppearance.Subtitle"
+                android:text="@string/text_search_collections"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                />
 
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="8dp"
-                android:text="@string/title_collections" />
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
 
-            <!--Colored line-->
-            <View
-                android:layout_width="48dp"
-                android:layout_height="2dp"
+                <!--android:background="?android:selectableItemBackground"-->
+                <!--app:srcCompat="@drawable/ic_bookmark_black_28dp"-->
+                <!--android:contentDescription="@string/content_desc_search_saved"-->
+                <!--android:tint="?android:textColorSecondary"-->
 
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="2dp"
+                <!--android:scaleType="fitCenter"-->
+                <!--android:padding="6dp"-->
+                <!--/>-->
 
-                android:background="@color/colorAccentAlt"/>
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
 
-            <!--Quick save title-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                <!--android:background="?android:selectableItemBackground"-->
+                <!--app:srcCompat="@drawable/ic_person_black_24dp"-->
+                <!--android:contentDescription="@string/content_desc_search_by_user"-->
+                <!--android:tint="?android:textColorSecondary"-->
 
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground">
+                <!--android:scaleType="fitCenter"-->
+                <!--android:padding="6dp"-->
+                <!--/>-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
 
-                    style="@style/AppTheme.TextAppearance.Header"
-                    android:text="@string/text_quick_save_collection"
+                <!--android:background="?android:selectableItemBackground"-->
+                <!--app:srcCompat="@drawable/ic_building_black_24dp"-->
+                <!--android:contentDescription="@string/content_desc_search_by_school"-->
+                <!--android:tint="?android:textColorSecondary"-->
 
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"/>
+                <!--android:scaleType="fitCenter"-->
+                <!--android:padding="6dp"-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-
-                    style="@style/AppTheme.Widget.Button.Borderless.Colored"
-                    android:text="@string/text_more"
-                    android:textAllCaps="false"
-                    android:gravity="center_vertical|start"
-                    />
-
-            </LinearLayout>
-
-            <!--Quick saved layout-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp">
-
-                <include layout="@layout/item_post_mini" />
-                <include layout="@layout/item_post_mini" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorDivider"
-
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"/>
-
-            <!--Temporary named collections - replace with a recycler view-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-
-                    style="@style/AppTheme.TextAppearance.Header"
-                    android:text="Named collection 1"
-
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-
-                    style="@style/AppTheme.Widget.Button.Borderless.Colored"
-                    android:text="@string/text_more"
-                    android:textAllCaps="false"
-                    android:gravity="center_vertical|start"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_gravity="center">
-
-                    <include layout="@layout/item_post_micro" />
-                    <include layout="@layout/item_post_micro" />
-                    <include layout="@layout/item_post_micro" />
-
-                </LinearLayout>
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginEnd="10dp" />-->
 
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>
