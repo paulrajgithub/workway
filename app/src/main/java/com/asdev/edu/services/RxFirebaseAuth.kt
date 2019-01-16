@@ -31,7 +31,7 @@ object RxFirebaseAuth {
                 }
             }
 
-            val task = user.getToken(true)
+            val task = user.getIdToken(true)
             // wait for task to complete
             try {
                 task.await(lock)
@@ -41,10 +41,11 @@ object RxFirebaseAuth {
                 return@create
             }
 
+            val result = task.result
             // if successful, trigger on next
             // otherwise error it
-            if(task.isSuccessful && task.isComplete) {
-                val token = task.result.token
+            if(task.isSuccessful && task.isComplete && result != null) {
+                val token = result.token
                 if(token != null) {
                     emitter.onNext(token)
                     emitter.onComplete()
@@ -54,7 +55,7 @@ object RxFirebaseAuth {
             } else {
                 emitter.onError(task.exception?: Exception("An exception occurred while getting the user token"))
             }
-        }.subscribeOn(Schedulers.io())
+        }.subscribeOn(Schedulers.io())!!
 
 }
 
